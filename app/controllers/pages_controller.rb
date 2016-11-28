@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    # render layout: false
   end
 
   def about
@@ -12,5 +13,8 @@ class PagesController < ApplicationController
   end
 
   def updates
+  end
+
+  def legal
   end
 end
