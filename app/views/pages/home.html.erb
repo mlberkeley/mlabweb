@@ -1,3 +1,4 @@
+<!-- Special Animated Navigation -->
 <nav id="t-menu" class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -19,12 +20,13 @@
         <li><%= link_to "Portfolio", portfolio_path %></li>
         <li><%= link_to "Connections", connections_path %></li>
         <li><%= link_to "Updates", updates_path %></li>
-        <li id="nav-special"><a href="https://ml.berkeley.edu/blog">Blog/Events</a></li>
+        <li id="nav-special"><%= link_to "Apply Spring '17", apply_member_path %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
+<!-- Cover Section -->
 <div id="t-home" class="text-center">
   <div class="overlay">
     <div class="content">
@@ -35,6 +37,7 @@
   </div>
 </div>
 
+<!-- About Section -->
 <div id="t-about">
   <div class="container">
     <div class="row">
@@ -75,8 +78,7 @@
   </div>
 </div>
 
-<!-- Portfolio Section
-==========================================-->
+<!-- Portfolio Section -->
 <div id="t-works">
     <div class="container"> <!-- Container -->
         <div class="section-title text-center center">
@@ -245,8 +247,7 @@
     </div>
 </div>
 
-<!-- Team Page
-==========================================-->
+<!-- Team Page -->
 <div id="t-team" class="text-center">
     <div class="overlay">
         <div class="container">
@@ -373,8 +374,7 @@
     </div>
 </div>
 
-<!-- Contact Section
-==========================================-->
+<!-- Contact Section -->
 <div id="t-contact" class="text-center">
     <div class="container">
 
@@ -383,6 +383,7 @@
 
                 <div class="section-title center">
                     <h2>Feel free to <strong>contact us</strong></h2>
+                    <div class="space"></div>
                     <div class="clearfix"></div>
                 </div>
                 <p>
@@ -409,3 +410,35 @@
 
     </div>
 </div>
+
+<!-- Footer Section -->
+<nav id="footer">
+  <div class="container">
+    <div class="pull-left fnav">
+      <ul class="footer-links">
+        <li><p>ML@B &copy 2016</p></li>
+        <li>&middot</li>
+        <li><a href="/"><p>Website</p></a></li>
+        <li>&middot</li>
+        <li><a href="https://ml.berkeley.edu/blog"><p>Blog</p></a></li>
+        <li>&middot</li>
+        <li><a href="/legal"><p>Legal</p></a></li>
+        <li>&middot</li>
+        <li><a href="mailto:ml.at.berkeley@gmail.com"><p>Talk to Us <i class="fa fa-envelope"></i></p></a></li>
+        <li>&middot</li>
+        <li>
+          <ul class="footer-social">
+            <li><a href="https://www.facebook.com/berkeleyml"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.github.com/mlberkeley"><i class="fa fa-github"></i></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="pull-right fnav ocf">
+      <a href="https://www.ocf.berkeley.edu">
+        <img src="https://www.ocf.berkeley.edu/hosting-logos/ocfbadge_mini8.png" alt="Hosted by the OCF" style="border: 0;" />
+      </a>
+    </div>
+  </div>
+</nav>
