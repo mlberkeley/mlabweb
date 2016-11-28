@@ -12,7 +12,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'owlcarousel-rails'
-gem 'animate-rails'
 gem 'lato-rails'
 gem 'font-kit-rails'
 
