@@ -15,9 +15,6 @@ gem 'owlcarousel-rails'
 gem 'lato-rails'
 gem 'font-kit-rails'
 
-# FOR OCF HOSTING:
-gem 'fcgi'
-
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
