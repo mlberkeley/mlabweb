@@ -27,7 +27,7 @@
 </nav>
 
 <!-- Cover Section -->
-<div id="t-home" class="text-center">
+<!-- <div id="t-home" class="text-center">
   <div class="overlay">
     <div class="content">
       <h1><strong>Machine Learning</strong> at <span class="color">Berkeley</span></h1>
@@ -35,6 +35,38 @@
       <a href="#t-about" class="fa fa-angle-down page-scroll"></a>
     </div>
   </div>
+</div> -->
+
+<div id="t-home" class="video">
+    <div class="overlay">
+        <div class="container">
+            <div class="content-heading text-center">
+                <h1><strong>Machine Learning</strong> at <span class="color">Berkeley</span></h1>
+                <p class="lead">Building and fostering a vibrant machine learning community</p>
+
+                <div class="img-wrapper">
+                    <div>
+                        <a class="popup-youtube" href="http://www.youtube.com/watch?v=wd1ZEzLjYA8"><i class="fa fa-play"></i></a>
+                    </div>
+                    <%= image_tag("home_video.png", class: "img-responsive light-opacity") %>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Announcement Section -->
+<div id="t-announcement">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <%= link_to ">> Apply Spring '17 <<", apply_member_path, class: "announcement-title" %>
+                <p>Member Applications are open for Spring 2017!</p>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <!-- About Section -->
@@ -104,9 +136,9 @@
                 <li class="pull-left"><h4>Filter by Type:</h4></li>
                 <li class="pull-right">
                     <ol class="type">
-                        <li><a href="" data-filter="*" class="active">All</a></li>
-                        <li><a href="" data-filter=".industry">Industry</a></li>
-                        <li><a href="" data-filter=".research">Research</a></li>
+                        <li><a href="#" data-filter="*" class="active">All</a></li>
+                        <li><a href="#" data-filter=".industry">Industry</a></li>
+                        <li><a href="#" data-filter=".research">Research</a></li>
                     </ol>
                 </li>
             </ul>

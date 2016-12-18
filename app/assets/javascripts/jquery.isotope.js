@@ -56,7 +56,6 @@
 
 
   // ========================= miniModernizr ===============================
-  // <3<3<3 and thanks to Faruk and Paul for doing the heavy lifting
 
   /*!
    * Modernizr v1.6ish: miniModernizr for Isotope

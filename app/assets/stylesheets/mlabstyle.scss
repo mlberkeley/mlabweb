@@ -28,7 +28,7 @@ h1 strong{
 }
 h2{
 	text-transform: uppercase;
-	line-height: 20px;
+	line-height: 30px;
 	margin:  0;
 }
 h3{
@@ -166,11 +166,12 @@ font-weight: 900;
   	background: -ms-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* IE10+ */
   	background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
   	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
-  	height: 750px;
+		padding: 20% 0;
   	background-attachment: fixed;
   }
   p.lead{
   	color: #e3e3e3;
+		margin-bottom: 80px
   }
 }
 
@@ -182,6 +183,31 @@ font-weight: 900;
 .color{
 	color: #5084BB;
 }
+
+/* w Video */
+
+#t-home.video .overlay {
+    padding: 0;
+    padding-top: 10%;
+}
+.img-wrapper { position: relative }
+.img-wrapper img.img-responsive { margin: 0 auto !important }
+.img-wrapper i.fa {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    font-size: 25px;
+    background: rgba(32, 22, 22, 0.29);
+    padding: 18px 23px;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50%;
+    color: #ffffff;
+    margin-left: -30px;
+    transition: all 0.3s;
+}
+.img-wrapper i.fa:hover { background: #5084BB }
 
 a.fa.fa-angle-down {
 	padding: 10px 15px;
@@ -196,6 +222,30 @@ a.fa.fa-angle-down {
   	color: #ffffff;
   	border: 2px solid #5084BB;
   }
+}
+
+/* Announcement Section */
+
+#t-announcement {
+    background-color: #5084bb;
+    padding: 5% 0;
+    color: #ffffff;
+    text-align: center;
+		.announcement-title {
+			text-transform: uppercase;
+			font-size: 22px;
+			color: #fff;
+			font-weight: 900;
+			letter-spacing: 1px;
+			line-height: 50px;
+			&:hover{
+				opacity: 0.66;
+			}
+		}
+		img.announcement-logo {
+		    margin: 0 auto;
+		    margin-bottom: 25px;
+		}
 }
 
 /* About Section */

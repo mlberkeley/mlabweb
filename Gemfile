@@ -14,6 +14,7 @@ gem 'font-awesome-sass'
 gem 'owlcarousel-rails'
 gem 'lato-rails'
 gem 'font-kit-rails'
+gem 'magnific-popup-rails', '~> 1.1.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

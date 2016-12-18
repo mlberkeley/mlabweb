@@ -9,10 +9,11 @@
   </head>
 
   <body>
+    <%= render 'layouts/loader' %>
     <%= render 'layouts/header' unless yield(:title).empty? %>
     <%= yield %>
     <%= render 'layouts/footer' unless yield(:title).empty? %>
-    <%= debug(params) if Rails.env.development? %>
+    <!-- <%= debug(params) if Rails.env.development? %> -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript">
       $(window).load(function() {
