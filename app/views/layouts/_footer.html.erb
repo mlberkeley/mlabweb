@@ -8,7 +8,11 @@
         <li>&middot</li>
         <li><a href="https://ml.berkeley.edu/blog">Blog</a></li>
         <li>&middot</li>
-        <li><a href="/legal">Legal</a></li>
+        <li><%= link_to "Legal", legal_path %></li>
+        <% if !logged_in? %>
+          <li>&middot</li>
+          <li><%= link_to "Login", login_path %></li>
+        <% end %>
         <li>&middot</li>
         <li><a href="mailto:ml.at.berkeley@gmail.com">Talk to Us <i class="fa fa-envelope"></i></a></li>
         <li>&middot</li>

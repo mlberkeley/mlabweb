@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   post '/create', to: 'members#create'
   resources :members
 
+  # Session routes
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
   # Application routes
   get '/apply', to: 'apply_pages#index'
   get '/apply/member', to: 'apply_pages#member'
