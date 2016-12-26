@@ -647,14 +647,13 @@ nav#footer{
   .fnav{ vertical-align: middle;}
   a{
   	color: #fff;
-  }
-  p{
-  	font-size: 12px;
+		font-size: 12px;
   	margin-top: 10px;
   }
 }
-.ocf{ margin-top: 7px}
+.ocf{ margin: 3px 0 }
 ul.footer-links li{
+	font-size: 12px;
 	display: inline-flex;
 	padding: 0 5px;
 }
