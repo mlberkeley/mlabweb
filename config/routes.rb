@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   # Member routes
   get '/create', to: 'members#new'
+  post '/create', to: 'members#create'
+  resources :members
 
   # Application routes
   get '/apply', to: 'apply_pages#index'
