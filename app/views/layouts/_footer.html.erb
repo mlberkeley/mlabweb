@@ -1,4 +1,4 @@
-<nav id="footer" class="navbar-fixed-bottom">
+<nav id="footer" <%= 'class=navbar-fixed-bottom' if !yield(:title).empty? %>>
   <div class="container">
     <div class="pull-left fnav">
       <ul class="footer-links">
@@ -25,7 +25,16 @@
         </li>
       </ul>
     </div>
+    <% if yield(:title).empty? %>
+      <div class="pull-right fnav ocf">
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocfbadge_mini8.png" alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+      </div>
+    <% end %>
   </div>
 </nav>
 
-</div>
+<% if !yield(:title).empty? %>
+  </div>
+<% end %>
