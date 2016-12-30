@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
-  before_action :logged_in_member, only: [:index, :edit, :update]
+  before_action :logged_in_member, only: [:index, :edit, :update, :destroy]
   before_action :correct_member, only: [:edit, :update]
+  before_action :exec_member, only: :destroy
 
   def index
     @members = Member.all
@@ -39,6 +40,12 @@ class MembersController < ApplicationController
     end
   end
 
+  def destroy
+    Member.find(params[:id]).destroy
+    flash[:success] = "Member deleted"
+    redirect_to members_url
+  end
+
   private
 
     def member_params
@@ -58,5 +65,13 @@ class MembersController < ApplicationController
     def correct_member
       @member = Member.find(params[:id])
       redirect_to(root_url) unless current_member?(@member)
+    end
+
+    def exec_member
+      redirect_to(root_url) unless (current_member.exec? or current_member.admin?)
+    end
+
+    def admin_member
+      redirect_to(root_url) unless current_member.admin?
     end
 end

@@ -1,0 +1,16 @@
+david:
+  name: David Lee
+  email: david@example.com
+  password_digest: <%= Member.digest('password') %>
+  admin: true
+
+ted:
+  name: Ted Xiao
+  email: ted@example.com
+  password_digest: <%= Member.digest('password') %>
+  exec: true
+
+fool:
+  name: What A Fool
+  email: fool@example.com
+  password_digest: <%= Member.digest('password') %>
