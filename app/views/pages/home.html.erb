@@ -256,113 +256,24 @@
     <div class="overlay">
         <div class="container">
             <div class="section-title center">
-                <h2><strong>our</strong> admin <strong>team</strong></h2>
+                <h2><strong>our</strong> executive <strong>team</strong></h2>
                 <div class="line">
                     <hr>
                 </div>
             </div>
 
             <div id="team" class="owl-carousel owl-theme row">
+              <% @members.each do |member| %>
                 <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/wg.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>William Guss</h3>
-                            <p>VP of Research</p>
-                        </div>
+                  <div class="thumbnail">
+                    <%= picture_of member %>
+                    <div class="caption">
+                      <h3><%= member.name %></h3>
+                      <p><%= member.name %></p>
                     </div>
+                  </div>
                 </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/gk.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Gautham Kesineni</h3>
-                            <p>President</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/tx.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Ted Xiao</h3>
-                            <p>Advisor</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/pk.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Philip Kuznetsov</h3>
-                            <p>VP of Education</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/rd.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Richard Doan</h3>
-                            <p>Head of Outreach</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/bc.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Brenton Chu</h3>
-                            <p>VP of Admin</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/rs.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Renee Sweeney</h3>
-                            <p>Events Coordinator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/rp.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Raul Puric</h3>
-                            <p>PM@R, Head of Dev</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/jp.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Jin Park</h3>
-                            <p>PM@I, Bootcamp Coordinator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                      <%= image_tag("team/pp.jpg", class: "img-circle team-img") %>
-                        <div class="caption">
-                            <h3>Piyush Patil</h3>
-                            <p>VP of Industry</p>
-                        </div>
-                    </div>
-                </div>
-
+              <% end %>
             </div>
 
             <p><br>

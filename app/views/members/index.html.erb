@@ -1,0 +1,12 @@
+<% provide(:title, 'All members') %>
+
+<h1>All members</h1>
+
+<ul class="members">
+  <% @members.each do |member| %>
+    <li>
+      <%= picture_of member %>
+      <%= link_to member.name, member %>
+    </li>
+  <% end %>
+</ul>

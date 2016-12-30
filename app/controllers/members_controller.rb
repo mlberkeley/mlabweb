@@ -1,4 +1,11 @@
 class MembersController < ApplicationController
+  before_action :logged_in_member, only: [:index, :edit, :update]
+  before_action :correct_member, only: [:edit, :update]
+
+  def index
+    @members = Member.all
+  end
+
   def show
     @member = Member.find(params[:id])
   end
@@ -36,5 +43,20 @@ class MembersController < ApplicationController
 
     def member_params
       params.require(:member).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    #Before filters
+
+    def logged_in_member
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    def correct_member
+      @member = Member.find(params[:id])
+      redirect_to(root_url) unless current_member?(@member)
     end
 end
