@@ -10,10 +10,25 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     if @member.save
-      flash[:success] = "Sup #{@member.name}. -David"
+      log_in @member
+      flash[:success] = "Sup #{@member.name}! -David"
       redirect_to @member
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @member = Member.find(params[:id])
+  end
+
+  def update
+    @member = Member.find(params[:id])
+    if @member.update_attributes(member_params)
+      flash[:success] = "Profile updated"
+      redirect_to @member
+    else
+      render 'edit'
     end
   end
 
