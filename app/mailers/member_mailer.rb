@@ -1,6 +1,6 @@
 class MemberMailer < ApplicationMailer
 
-  default from: 'no-reply@ml.berkeley.edu'
+  default from: 'dssd1001@gmail.com'
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
