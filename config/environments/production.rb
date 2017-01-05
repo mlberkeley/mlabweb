@@ -69,7 +69,7 @@ Rails.application.configure do
     :user_name            => Rails.application.secrets.gmail_username,
     :password             => Rails.application.secrets.gmail_password,
     :authentication       => :plain,
-    :domain               => 'heroku.com'
+    :domain               => 'heroku.com',
     :enable_starttls_auto => true
   }
 
