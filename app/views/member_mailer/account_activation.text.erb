@@ -1,0 +1,7 @@
+Sup <%= @member.name %>,
+
+Welcome to the new ML@B website! Click on the link below to activate your account:
+
+<%= edit_account_activation_url(@member.activation_token, email: @member.email) %>
+
+-D

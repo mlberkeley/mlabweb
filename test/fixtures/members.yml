@@ -3,14 +3,20 @@ david:
   email: david@example.com
   password_digest: <%= Member.digest('password') %>
   admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 ted:
   name: Ted Xiao
   email: ted@example.com
   password_digest: <%= Member.digest('password') %>
   exec: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 fool:
   name: What A Fool
   email: fool@example.com
   password_digest: <%= Member.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>

@@ -4,11 +4,12 @@ class MembersController < ApplicationController
   before_action :exec_member, only: :destroy
 
   def index
-    @members = Member.all
+    @members = Member.where(activated: true).all
   end
 
   def show
     @member = Member.find(params[:id])
+    redirect_to root_url and return unless @member.activated?
   end
 
   def new
@@ -18,9 +19,9 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     if @member.save
-      log_in @member
-      flash[:success] = "Sup #{@member.name}! -David"
-      redirect_to @member
+      @member.send_activation_email
+      flash[:info] = "Check your email to activate your ML@B account!  -David"
+      redirect_to login_url
     else
       render 'new'
     end
@@ -64,7 +65,7 @@ class MembersController < ApplicationController
 
     def correct_member
       @member = Member.find(params[:id])
-      redirect_to(root_url) unless current_member?(@member)
+      redirect_to(root_url) unless (current_member?(@member) or current_member.admin?)
     end
 
     def exec_member

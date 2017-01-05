@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/create', to: 'members#new'
   post '/create', to: 'members#create'
   resources :members
+  resources :account_activations, only: [:edit]
 
   # Session routes
   get '/login', to: 'sessions#new'

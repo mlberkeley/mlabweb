@@ -9,14 +9,20 @@ Member.create!(name: "David Lee",
                email: "dssd1001@gmail.com",
                password: "lsj0918",
                password_confirmation: "lsj0918",
-               admin: true)
+               admin: true,
+               activated: true,
+               activated_at: Time.zone.now)
 
 Member.create!(name: "Phillip Kuznetsov",
                email: "pk@ml.berkeley.edu",
                password: "foobar",
-               password_confirmation: "foobar")
+               password_confirmation: "foobar",
+               activated: true,
+               activated_at: Time.zone.now)
 Member.create!(name: "Ted Xiao",
                email: "tx@ml.berkeley.edu",
                password: "foobar",
                password_confirmation: "foobar",
-               exec: true)
+               exec: true,
+               activated: true,
+               activated_at: Time.zone.now)
