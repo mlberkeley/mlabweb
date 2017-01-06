@@ -26,6 +26,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li><%= link_to "Profile", current_member %></li>
+                <li><%= link_to "My Project", '#' %></li>
                 <li><%= link_to "Settings", edit_member_path(current_member) %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Log out", logout_path, method: "delete" %></li>

@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   # Newsletter Subscription routes
   get '/subscribe', to: 'subscribers#new'
   post '/subscribe', to: 'subscribers#create'
+
+  # Project routes
+  get'/newproject', to: 'projects#new'
 end

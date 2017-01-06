@@ -35,6 +35,11 @@ module SessionsHelper
     !current_member.nil?
   end
 
+  #Returns true if member is admin or exec
+  def admin_or_exec?
+    current_member.admin? or current_member.exec?
+  end
+
   #Forgets the persistent session
   def forget(member)
     member.forget

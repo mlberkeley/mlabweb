@@ -1,7 +1,11 @@
 <% provide(:title, "Portfolio") %>
 
-<h1>Pages#portfolio</h1>
-<p>Find me in app/views/pages/portfolio.html.erb</p>
+<h1>Portfolio</h1>
+<p>About to be populated with our current and past projects.</p>
+
+<% if logged_in? and admin_or_exec? %>
+<%= link_to "Initiate Project", newproject_path, class: "btn btn-default" %>
+<% end %>
 
 <%= image_tag("favicon.png", alt: "ML@B logo", class: "logo-resize") %>
 <div class="space"></div>
