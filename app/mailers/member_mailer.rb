@@ -9,7 +9,7 @@ class MemberMailer < ApplicationMailer
   #
   def account_activation(member)
     @member = member
-    mail to: member.email, subject: "Mailer Test in Production: Activation: #{@member.name}'s ML@B Account"
+    mail to: member.email, subject: "Activation: #{@member.name}'s ML@B Account"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,9 +17,8 @@ class MemberMailer < ApplicationMailer
   #
   #   en.member_mailer.password_reset.subject
   #
-  def password_reset
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def password_reset(member)
+    @member = member
+    mail to: member.email, subject: "Password Reset: #{member.name}'s ML@B Account"
   end
 end

@@ -23,6 +23,9 @@ class MembersController < ApplicationController
       flash[:info] = "Check your email to activate your ML@B account!  -David"
       redirect_to login_url
     else
+      if @member.errors.messages[:email]
+        @member.errors.messages[:email].append("must end in @ml.berkeley.edu")
+      end
       render 'new'
     end
   end
