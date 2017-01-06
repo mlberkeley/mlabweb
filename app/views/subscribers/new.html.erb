@@ -1,2 +1,30 @@
-<h1>Subscribers#new</h1>
-<p>Find me in app/views/subscribers/new.html.erb</p>
+<% provide(:title, "Subscribe") %>
+
+<h1><strong>Follow</strong> our <strong>Blog/Events/Newsletter</strong></h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@subscriber, url: subscribe_path) do |f| %>
+      <% if @subscriber.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-danger">
+            The form contains <%= pluralize(@subscriber.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% @subscriber.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.submit "Subscribe", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

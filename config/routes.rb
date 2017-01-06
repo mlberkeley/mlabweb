@@ -27,5 +27,5 @@ Rails.application.routes.draw do
 
   # Newsletter Subscription routes
   get '/subscribe', to: 'subscribers#new'
-  # resources :subscribers, only: [:new]
+  post '/subscribe', to: 'subscribers#create'
 end
