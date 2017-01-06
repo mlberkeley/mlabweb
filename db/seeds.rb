@@ -5,24 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Member.create!(name: "David Lee",
-               email: "dssd1001@gmail.com",
+Member.create!(name: "David Lee Admin",
+               email: "djlee@ml.berkeley.edu",
                password: "lsj0918",
                password_confirmation: "lsj0918",
                admin: true,
                activated: true,
                activated_at: Time.zone.now)
 
-Member.create!(name: "Phillip Kuznetsov",
-               email: "pk@ml.berkeley.edu",
-               password: "foobar",
-               password_confirmation: "foobar",
-               activated: true,
-               activated_at: Time.zone.now)
-Member.create!(name: "Ted Xiao",
-               email: "tx@ml.berkeley.edu",
+Member.create!(name: "David Lee Exec",
+               email: "djlee2@ml.berkeley.edu",
                password: "foobar",
                password_confirmation: "foobar",
                exec: true,
+               activated: true,
+               activated_at: Time.zone.now)
+Member.create!(name: "David Lee Member",
+               email: "djlee3@ml.berkeley.edu",
+               password: "foobar",
+               password_confirmation: "foobar",
                activated: true,
                activated_at: Time.zone.now)

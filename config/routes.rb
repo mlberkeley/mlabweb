@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
-
   root 'pages#home'
 
   # Static pages routes
@@ -28,4 +24,8 @@ Rails.application.routes.draw do
   get '/apply', to: 'apply_pages#index'
   get '/apply/member', to: 'apply_pages#member'
   get '/apply/client', to: 'apply_pages#client'
+
+  # Newsletter Subscription routes
+  get '/subscribe', to: 'subscribers#new'
+  # resources :subscribers, only: [:new]
 end

@@ -3,7 +3,7 @@ require 'test_helper'
 class MemberTest < ActiveSupport::TestCase
 
   def setup
-    @member = Member.new(name: "Example Member", email: "member@example.com", password: "foobar", password_confirmation: "foobar")
+    @member = Member.new(name: "Example Member", email: "member@ml.berkeley.edu", password: "foobar", password_confirmation: "foobar")
   end
 
   test "should be valid" do
@@ -31,8 +31,7 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test "email validation should accept valid addresses" do
-    valid_addresses = %w[member@example.com MEMBER@foo.COM A_MEM-BER@foo.bar.org
-                         first.last@foo.jp alice+bob@baz.cn]
+    valid_addresses = %w[member@ml.berkeley.edu MEMBER@ml.berkeley.EDU A_MEM-BER@ml.berkeley.edu]
     valid_addresses.each do |valid_address|
       @member.email = valid_address
       assert @member.valid?, "#{valid_address.inspect} should be valid"
@@ -56,7 +55,7 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test "email addresses should be saved as lower-case" do
-    mixed_case_email = "Foo@ExAMPle.CoM"
+    mixed_case_email = "Foo@Ml.bErKEley.EDu"
     @member.email = mixed_case_email
     @member.save
     assert_equal mixed_case_email.downcase, @member.reload.email
