@@ -1,4 +1,5 @@
 class Member < ApplicationRecord
+  has_many :blogposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save { email.downcase! }
   before_create :create_activation_digest

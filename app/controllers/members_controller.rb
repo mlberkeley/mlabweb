@@ -9,6 +9,7 @@ class MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
+    @blogposts = @member.blogposts.paginate(page: params[:page])
     redirect_to root_url and return unless @member.activated?
   end
 

@@ -7,6 +7,23 @@
         <%= picture_of @member %>
         <%= @member.name %>
       </h1>
+      <h5>
+        <%= @member.email %>
+      </h5>
+      <p>
+        <%= @member.position %>
+      </p>
     </section>
   </aside>
+  <div class="col-md-8">
+    <h3>Introduction</h3>
+    <p><%= @member.introduction %></p>
+    <% if @member.blogposts.any? %>
+      <h3>Blogposts (<%= @member.blogposts.count %>)</h3>
+      <ol class="blogposts">
+        <%= render @blogposts %>
+      </ol>
+      <%= will_paginate @blogposts %>
+    <% end %>
+  </div>
 </div>

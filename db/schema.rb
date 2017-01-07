@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106234331) do
+ActiveRecord::Schema.define(version: 20170107002152) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
-    t.boolean  "published"
+    t.boolean  "published",  default: false
     t.integer  "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["member_id", "created_at"], name: "index_blogposts_on_member_id_and_created_at"
     t.index ["member_id"], name: "index_blogposts_on_member_id"
   end
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20170106234331) do
   create_table "members", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "exec",              default: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170106234331) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.text     "introduction",      default: "I love Machine Learning At Berkeley"
     t.index ["email"], name: "index_members_on_email", unique: true
   end
 

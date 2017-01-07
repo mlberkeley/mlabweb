@@ -1,0 +1,8 @@
+<li id="blogpost-<%= blogpost.id %>">
+  <%= link_to picture_of(blogpost.member), blogpost.member %>
+  <span class="member"><%= link_to blogpost.member.name, blogpost.member %></span>
+  <span class="content"><%= blogpost.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(blogpost.created_at) %> ago.
+  </span>
+</li>
