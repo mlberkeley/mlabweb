@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Member.create!(name: "David Lee 1",
                email: "djlee@ml.berkeley.edu",
-               password: "lsj0918",
-               password_confirmation: "lsj0918",
+               password: "mlabmlab",
+               password_confirmation: "mlabmlab",
                introduction: "I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. ",
                admin: true,
                activated: true,
