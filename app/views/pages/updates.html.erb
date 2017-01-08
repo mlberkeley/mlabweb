@@ -1,7 +1,32 @@
 <% provide(:title, "Public Updates") %>
 
-<h1>Pages#updates</h1>
-<p>Find me in app/views/pages/updates.html.erb</p>
+<header class="updates_header">
+  <div class="container">
+
+    <div class="page_title">
+      <%= content_tag(:h1, 'Blog') %>
+    </div>
+
+    <div class="snav">
+      <ul class="snav-links">
+        <li>Blog</li>
+        <li> / </li>
+        <li>Events</li>
+        <li> / </li>
+        <li>Videos</li>
+        <li> / </li>
+        <li><%= link_to "Get Updates", subscribe_path %></li>
+      </ul>
+    </div>
+
+  </div>
+</header>
+
+<div id="blog" class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= render 'shared/blog' %>
+  </div>
+</div>
 
 <%= image_tag("favicon.png", alt: "ML@B logo", class: "logo-resize") %>
 <div class="space"></div>

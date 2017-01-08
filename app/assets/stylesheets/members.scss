@@ -9,6 +9,8 @@
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
 }
+$mlab-blue: #5084BB;
+$mlab-red: #9E4A46;
 
 /* sidebar */
 
@@ -60,10 +62,10 @@ input {
 }
 
 #error_explanation {
-  color: red;
+  color: $mlab-red;
   ul {
-    color: red;
-    margin: 0 0 30px 0;
+    color: $mlab-red;
+    margin: 0 0 30px 50px;
   }
 }
 
@@ -83,7 +85,7 @@ input {
   }
 }
 
-#session_remember_me {
+#session_remember_me, #blogpost_published {
   width: auto;
   margin-left: 0;
 }
@@ -106,30 +108,32 @@ input {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
+    padding: 25px 0;
     border-top: 1px solid #e8e8e8;
   }
-  .member {
-    margin-top: 5em;
-    padding-top: 0;
+  .title {
+    font-size: 1.25em;
+    font-weight: bold;
   }
-  .content {
+  .member {
     display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
+    font-size: 0.9em;
+    a {
+      color: $gray-light;
     }
   }
   .timestamp {
     color: $gray-light;
     display: block;
-    margin-left: 60px;
+    font-size: 0.9em;
   }
-  .team-img {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
+  .content {
+    padding: 20px 0 5px 0;
+    display: block;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
   }
 }
 
@@ -144,5 +148,42 @@ span.picture {
   margin-top: 10px;
   input {
     border: 0;
+  }
+}
+
+/* Pagination style */
+
+.mlab_pagination {
+  // background: #f1f1f1;
+  // border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  cursor: default;
+  ul {
+    li {
+      padding: 0.2em 0.3em;
+      a {
+        border: none;
+        background: none;
+        text-decoration: none;
+        color: black;
+        &:hover, &:focus {
+          color: black;
+        }
+      }
+    }
+    .disabled {
+      display: none;
+    }
+    .active {
+      a {
+        font-weight: bold;
+        background-color: darken(#f1f1f1, 20);
+        &:hover, &:focus {
+          text-decoration: none;
+          background-color: $mlab-blue;
+        }
+      }
+    }
   }
 }

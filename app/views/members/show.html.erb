@@ -3,17 +3,13 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="member_info">
-      <h1>
-        <%= picture_of @member %>
-        <%= @member.name %>
-      </h1>
-      <h5>
-        <%= @member.email %>
-      </h5>
-      <p>
-        <%= @member.position %>
-      </p>
+      <%= render 'shared/member_info' %>
     </section>
+    <% if current_member?(@member) %>
+    <section class="blogpost_form">
+      <%= link_to "Write a Post", new_blogpost_path, class: "btn btn-default" %>
+    </section>
+    <% end %>
   </aside>
   <div class="col-md-8">
     <h3>Introduction</h3>
@@ -23,7 +19,7 @@
       <ol class="blogposts">
         <%= render @blogposts %>
       </ol>
-      <%= will_paginate @blogposts %>
+      <%= will_paginate @blogposts, :class => "mlab_pagination" %>
     <% end %>
   </div>
 </div>

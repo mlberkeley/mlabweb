@@ -9,7 +9,7 @@ class MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    @blogposts = @member.blogposts.paginate(page: params[:page])
+    @blogposts = @member.blogposts.paginate(page: params[:page], per_page: 5)
     redirect_to root_url and return unless @member.activated?
   end
 
@@ -58,14 +58,6 @@ class MembersController < ApplicationController
     end
 
     #Before filters
-
-    def logged_in_member
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
 
     def correct_member
       @member = Member.find(params[:id])

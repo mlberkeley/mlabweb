@@ -9,6 +9,7 @@
 
 $gray-medium-light: #eaeaea;
 $grayish-light-blue: #ADC2D2;
+$mlab-blue: #5084BB;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -23,6 +24,12 @@ body, html{
 	text-rendering: optimizeLegibility !important;
 	-webkit-font-smoothing: antialiased !important;
 	color: #5a5a5a;
+}
+
+.btn-mlab {
+  color: white;
+  border-color: darken($mlab-blue, 10);
+  background-color: $mlab-blue;
 }
 
 /* typography */
@@ -154,6 +161,36 @@ font-weight: 900;
 }
 .navbar-default .navbar-toggle:hover>.icon-bar {
 	background-color: #FFF;
+}
+
+/* Updates Header */
+
+.updates_header {
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: -1px;
+  text-align: center;
+  .page_title {
+    h1 {
+      font-size: 2.2em;
+      // padding-top: 9px;
+      font-weight: 300;
+    }
+  }
+  .snav {
+    margin-bottom: 1.5em;
+  }
+  a {
+    color: black;
+    font-size: 14px;
+    &:hover, &:focus {
+      color: $mlab-blue;
+    }
+  }
+  ul.snav-links li {
+    font-size: 14px;
+    display: inline;
+    margin: 0 1em;
+  }
 }
 
 /* Home Style */

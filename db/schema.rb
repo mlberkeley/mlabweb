@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107002152) do
+ActiveRecord::Schema.define(version: 20170107214001) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
     t.boolean  "published",  default: false
     t.integer  "member_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "title",      default: "Title"
     t.index ["member_id", "created_at"], name: "index_blogposts_on_member_id_and_created_at"
     t.index ["member_id"], name: "index_blogposts_on_member_id"
   end

@@ -6,7 +6,7 @@
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, class: 'form-control', placeholder: "your_mlab_email@ml.berkeley.edu" %>
 
       <%= f.label :password %>
       <%= link_to "(forgot password)", new_password_reset_path %>
@@ -17,7 +17,7 @@
         <span>Remember me on this computer</span>
       <% end %>
 
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <%= f.submit "Log in", class: "btn btn-mlab" %>
     <% end %>
 
     <p>New member? <%= link_to "Create ML@B member account", create_path %></p>

@@ -1,0 +1,17 @@
+<%= form_for(@blogpost) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
+
+  <div class="field">
+    <%= f.text_area :content, class: 'form-control', placeholder: "Compose new blogpost..." %>
+  </div>
+
+  <%= f.label :published, class: "checkbox inline" do %>
+    <%= f.check_box :published %>
+    <span>Publish this on the main blog?</span>
+  <% end %>
+
+  <%= f.submit "Post", class: "btn btn-mlab" %>
+<% end %>

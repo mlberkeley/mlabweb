@@ -31,4 +31,7 @@ Rails.application.routes.draw do
 
   # Project routes
   get'/newproject', to: 'projects#new'
+
+  # Blogpost routes
+  resources :blogposts, only: [:new, :create, :destroy]
 end

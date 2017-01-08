@@ -1,22 +1,11 @@
 <% provide(:title, "Subscribe") %>
 
-<h1><strong>Follow</strong> our <strong>Blog/Events/Newsletter</strong></h1>
+<h1>Follow  our  <strong>Blog</strong> / <strong>Events</strong> / <strong>Newsletter</strong></h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@subscriber, url: subscribe_path) do |f| %>
-      <% if @subscriber.errors.any? %>
-        <div id="error_explanation">
-          <div class="alert alert-danger">
-            The form contains <%= pluralize(@subscriber.errors.count, "error") %>.
-          </div>
-          <ul>
-            <% @subscriber.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
@@ -24,7 +13,7 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.submit "Subscribe", class: "btn btn-primary" %>
+      <%= f.submit "Subscribe", class: "btn btn-mlab" %>
     <% end %>
   </div>
 </div>
