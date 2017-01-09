@@ -98,7 +98,7 @@ a:focus{
 
 /* Navigation */
 
-#t-menu {
+#m-menu {
 	padding: 20px;
 	transition: all 0.8s;
   a.navbar-brand {
@@ -108,7 +108,7 @@ a:focus{
   font-weight: 900;
   }
 }
-#t-menu.navbar-default {
+#m-menu.navbar-default {
 	background-color: rgba(248, 248, 248, 0);
 	border-color: rgba(231, 231, 231, 0);
   .navbar-nav > li > a {
@@ -195,7 +195,7 @@ font-weight: 900;
 
 /* Home Style */
 
-#t-home{
+#m-home{
 	background: url( asset-path('bg.jpg') );
 	background-size: cover;
 	background-position: center;
@@ -230,7 +230,7 @@ font-weight: 900;
 
 /* w Video */
 
-#t-home.video .overlay {
+#m-home.video .overlay {
     padding: 0;
     padding-top: 10%;
 }
@@ -270,7 +270,7 @@ a.fa.fa-angle-down {
 
 /* Announcement Section */
 
-#t-announcement {
+#m-announcement {
     background-color: #5084bb;
     padding: 5% 0;
     color: #ffffff;
@@ -294,7 +294,7 @@ a.fa.fa-angle-down {
 
 /* About Section */
 
-#t-about{
+#m-about{
 	padding: 80px 0;
 }
 ul.about-list {
@@ -312,7 +312,7 @@ ul.about-list {
 
 /* Team Section */
 
-#t-team{
+#m-team{
 	background: url( asset-path('team.jpg') );
 	background-size: cover;
 	background-position: center;
@@ -340,7 +340,7 @@ ul.about-list {
     }
   }
 }
-#t-team
+#m-team
 .section-title.center{
 	padding: 30px 0;
 }
@@ -411,7 +411,7 @@ img.img-circle.team-img {
 }
 
 /* Services Section */
-#t-services{
+#m-services{
 	padding: 80px 0;
   i.fa {
   	font-size: 40px;
@@ -438,7 +438,7 @@ img.img-circle.team-img {
 }
 
 /* Clients Section maybe in the future */
-#t-clients{
+#m-clients{
 	background: url( asset-path('wall.jpg') );
 	background-size: cover;
 	background-position: center;
@@ -467,7 +467,7 @@ img.img-circle.team-img {
 
 /* Gallery Section */
 
-#t-works{
+#m-works{
 	padding: 80px 0;
   li.pull-right {
   	margin-top: 10px;
@@ -578,7 +578,7 @@ ol.type li{
 
 /* Maybe a quotes section for future use */
 
-#t-quotes{
+#m-quotes{
 	background: url( asset-path('wall.jpg') );
 	background-size: cover;
 	background-position: center;
@@ -614,7 +614,7 @@ ol.type li{
 
 /* Contact Section */
 
-#t-contact{
+#m-contact{
 	padding: 80px 0;
   .form-control {
   	display: block;
@@ -717,10 +717,10 @@ ul.footer-social li{
 }
 
 @media (max-width: 603px){
-#t-menu.navbar-default {
+#m-menu.navbar-default {
 	background-color: rgba(0, 0, 0, 0.79);
 	}
-#t-works li.pull-right, #t-works li.pull-left {
+#m-works li.pull-right, #m-works li.pull-left {
     margin-top: 10px;
     float: none !important;
     text-align: center;

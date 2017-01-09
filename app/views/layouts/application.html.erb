@@ -17,7 +17,6 @@
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
-    <%= debug(params) if Rails.env.development? %>
     <script type="text/javascript">
       $(window).load(function() {
         $(".loader").fadeOut();

@@ -1,6 +1,7 @@
 class Member < ApplicationRecord
   has_many :blogposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
+  mount_uploader :picture, PictureUploader
   before_save { email.downcase! }
   before_create :create_activation_digest
   validates :name, presence: true, length: { maximum: 50 }
@@ -10,6 +11,7 @@ class Member < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validate :picture_size
 
   # Returns hash digest of a string
   def Member.digest(string)

@@ -4,5 +4,12 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(blogpost.created_at) %> ago
   </span>
-  <span class="content"><%= blogpost.content %></span>
+  <% if current_member?(blogpost.member) %>
+      <%= link_to "delete", blogpost, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  <span class="content">
+    <%= blogpost.content %>
+    <%= image_tag blogpost.picture.url if blogpost.picture? %>
+  </span>
 </li>

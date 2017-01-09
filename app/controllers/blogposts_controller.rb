@@ -1,5 +1,6 @@
 class BlogpostsController < ApplicationController
   before_action :logged_in_member, only: [:create, :destroy]
+  before_action :correct_member, only: :destroy
 
   def new
     if logged_in?
@@ -13,7 +14,6 @@ class BlogpostsController < ApplicationController
   def create
     @blogpost = current_member.blogposts.build(blogpost_params)
     @blogpost.published = true if (params[:blogpost][:published] == '1')
-    debugger
     if @blogpost.save
       flash[:success] = "Blogpost created!"
       redirect_to current_member
@@ -23,11 +23,19 @@ class BlogpostsController < ApplicationController
   end
 
   def destroy
+    @blogpost.destroy
+    flash[:success] = "Blogpost deleted"
+    redirect_to request.referrer || updates_path
   end
 
   private
 
     def blogpost_params
-      params.require(:blogpost).permit(:title, :content)
+      params.require(:blogpost).permit(:title, :content, :picture)
+    end
+
+    def correct_member
+      @blogpost = current_member.blogposts.find_by(id: params[:id])
+      redirect_to updates_path if @blogpost.nil?
     end
 end
