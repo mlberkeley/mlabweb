@@ -3,20 +3,20 @@ function main() {
 (function () {
    'use strict';
 
-   /* quote slider maybe in the future */
+   /* automatic scrolling to target maybe future */
 
-  	$('a.page-scroll').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-          if (target.length) {
-            $('html,body').animate({
-              scrollTop: target.offset().top - 40
-            }, 900);
-            return false;
-          }
-        }
-      });
+  	// $('a.page-scroll').click(function() {
+    //     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    //       var target = $(this.hash);
+    //       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+    //       if (target.length) {
+    //         $('html,body').animate({
+    //           scrollTop: target.offset().top - 40
+    //         }, 900);
+    //         return false;
+    //       }
+    //     }
+    //   });
 
     /* slider */
     $(window).bind('scroll', function() {
@@ -80,13 +80,13 @@ function main() {
   	});
 
   	/* portfolio isotope filter */
-    $(window).load(function() {
+    $(document).ready(function() {
         var $container = $('#lightbox');
         $container.isotope({
             filter: '*',
             animationOptions: {
                 duration: 750,
-                easing: 'linear',
+                easing: 'swing',
                 queue: false
             }
         });
@@ -98,7 +98,7 @@ function main() {
                 filter: selector,
                 animationOptions: {
                     duration: 750,
-                    easing: 'linear',
+                    easing: 'swing',
                     queue: false
                 }
             });

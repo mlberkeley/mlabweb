@@ -10,20 +10,13 @@
   </head>
 
   <body>
-    <%= render 'layouts/loader' %>
+    <!-- <%= render 'layouts/loader' %> -->
     <%= render 'layouts/header' %>
     <% flash.each do |message_type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
-    <script type="text/javascript">
-      $(window).load(function() {
-        $(".loader").fadeOut();
-      })
-      $(document).ready(function() {
-        $(".loader").fadeOut();
-      })
-    </script>
+    <%= render 'layouts/home_scripts' %>
   </body>
 </html>
