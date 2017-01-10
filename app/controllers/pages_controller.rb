@@ -1,19 +1,21 @@
 class PagesController < ApplicationController
   def home
     @members = Member.all
+    @projects = Project.where(current: true).all
   end
 
   def about
   end
 
   def portfolio
+    @projects = Project.all
   end
 
   def connections
   end
 
   def updates
-    @blog_feed = Blogpost.where("published = ?", true)
+    @blogposts = Blogpost.where("published = ?", true)
   end
 
   def legal

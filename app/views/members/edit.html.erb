@@ -1,8 +1,13 @@
 <% provide(:title, "Edit member") %>
 
-<h1>Update profile settings</h1>
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'Update Profile Settings') %>
+    </div>
+</header>
 
 <div class="row">
+  <div class="space"><div>
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@member, html: { multipart: true }) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>

@@ -2,6 +2,10 @@ class BlogpostsController < ApplicationController
   before_action :logged_in_member, only: [:create, :destroy]
   before_action :correct_member, only: :destroy
 
+  def show
+    @blogpost = Blogpost.find(params[:id])
+  end
+
   def new
     if logged_in?
       @blogpost = current_member.blogposts.build
@@ -13,12 +17,25 @@ class BlogpostsController < ApplicationController
 
   def create
     @blogpost = current_member.blogposts.build(blogpost_params)
-    @blogpost.published = true if (params[:blogpost][:published] == '1')
     if @blogpost.save
       flash[:success] = "Blogpost created!"
       redirect_to current_member
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @blogpost = Blogpost.find(params[:id])
+  end
+
+  def update
+    @blogpost = Blogpost.find(params[:id])
+    if @blogpost.update_attributes(blogpost_params)
+      flash[:success] = "Blogpost updated"
+      redirect_to current_member
+    else
+      render 'edit'
     end
   end
 
@@ -31,7 +48,7 @@ class BlogpostsController < ApplicationController
   private
 
     def blogpost_params
-      params.require(:blogpost).permit(:title, :content, :picture)
+      params.require(:blogpost).permit(:title, :content, :published, :picture)
     end
 
     def correct_member

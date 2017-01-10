@@ -17,7 +17,7 @@
     <% if @member.blogposts.any? %>
       <h3>Blogposts (<%= @member.blogposts.count %>)</h3>
       <ol class="blogposts">
-        <%= render @blogposts %>
+        <%= render @blogposts, object: yield(:title) %>
       </ol>
       <%= will_paginate @blogposts, :class => "mlab_pagination" %>
     <% end %>

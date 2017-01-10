@@ -1,0 +1,17 @@
+<% provide(:title, @project.name) %>
+
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, @project.name) %>
+    </div>
+    <%= content_tag(:p, @project.tag) %>
+    <% if logged_in? and admin_or_exec? %>
+    <%= link_to "Edit", edit_project_path(@project), class: "btn btn-default" %>
+    <%= link_to "Delete", @project, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-default" %>
+    <% end %>
+</header>
+
+<div class="project">
+  <div class="space"></div>
+  <%= render 'shared/project' %>
+</div>

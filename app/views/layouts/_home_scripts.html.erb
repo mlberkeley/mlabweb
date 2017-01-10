@@ -1,13 +1,9 @@
 <% if yield(:title).empty? %>
 <script type="text/javascript" src="/javascripts/lib/isotope.pkgd.min.js"></script>
-<!-- <script type="text/javascript" src="/javascripts/lib/jquery.isotope.js"></script> -->
 <script type="text/javascript" src="/javascripts/lib/main.js"></script>
 <% end %>
 <script type="text/javascript">
-  $(window).load(function() {
-    $(".loader").fadeOut();
-  })
-  $(document).ready(function() {
-    $(".loader").fadeOut();
+  $(window).on("turbolinks:load", function() {
+    $(".loader").fadeOut(600);
   })
 </script>

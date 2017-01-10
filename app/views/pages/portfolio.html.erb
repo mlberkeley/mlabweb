@@ -1,11 +1,79 @@
 <% provide(:title, "Portfolio") %>
 
-<h1>Portfolio</h1>
-<p>About to be populated with our current and past projects.</p>
+<header class="secondary_header">
+  <div class="container">
 
-<% if logged_in? and admin_or_exec? %>
-<%= link_to "Initiate Project", newproject_path, class: "btn btn-default" %>
-<% end %>
+    <div class="page_title">
+      <%= content_tag(:h1, 'Portfolio') %>
+    </div>
+
+    <div class="snav">
+      <ul class="snav-links">
+        <li><%= link_to "All", "#", data_filter: "*", class: "active" %></li>
+        <li> / </li>
+        <li><%= link_to "Current", "#", data_filter: ".true" %></li>
+        <li> / </li>
+        <li><%= link_to "Past", "#", data_filter: ".false" %></li>
+      </ul>
+    </div>
+
+    <% if logged_in? and admin_or_exec? %>
+    <%= link_to "Initiate a new Project", newproject_path, class: "btn btn-default" %>
+    <% end %>
+
+  </div>
+</header>
+
+<div class="space"></div>
+<div id="lightbox" class="row">
+
+  <% @projects.each do |project| %>
+    <div class="col-sm-6 col-md-3 col-lg-3 <%= project.current %>">
+      <div class="portfolio-item">
+        <div class="hover-bg">
+          <a href="projects/<%= project.id %>">
+            <div class="hover-text">
+              <h4><%= project.name %></h4>
+              <small><%= project.tag %></small>
+              <div class="clearfix"></div>
+              <i class="fa fa-plus"></i>
+            </div>
+            <%= picture_of_project(project, class: "img-responsive") %>
+          </a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
 
 <%= image_tag("favicon.png", alt: "ML@B logo", class: "logo-resize") %>
-<div class="space"></div>
+<script type="text/javascript" src="/javascripts/lib/isotope.pkgd.min.js"></script>
+<script type="text/javascript">
+$(window).on("turbolinks:load", function() {
+    var $container = $('#lightbox');
+    $container.isotope({
+        filter: '*',
+        animationOptions: {
+            duration: 750,
+            easing: 'swing',
+            queue: false
+        }
+    });
+    $('.snav-links a').click(function() {
+        $('.snav-links .active').removeClass('active');
+        $(this).addClass('active');
+        var selector = $(this).attr('data_filter');
+        $container.isotope({
+            filter: selector,
+            animationOptions: {
+                duration: 750,
+                easing: 'swing',
+                queue: false
+            }
+        });
+        return false;
+    });
+
+});
+</script>

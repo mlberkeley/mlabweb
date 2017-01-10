@@ -4,12 +4,13 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(blogpost.created_at) %> ago
   </span>
-  <% if current_member?(blogpost.member) %>
-      <%= link_to "delete", blogpost, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-    <% end %>
+  <% if logged_in? and (current_member?(blogpost.member) or admin_or_exec?) %>
+    <%= link_to "edit", edit_blogpost_path(blogpost) %> |
+    <%= link_to "delete", blogpost, method: :delete, data: { confirm: "You sure?" } %>
+  <% end %>
   <span class="content">
-    <%= blogpost.content %>
+    <%= object.eql?("Updates") ? content_tag(:pre, blogpost.content) : blogpost.content %>
+
     <%= image_tag blogpost.picture.url if blogpost.picture? %>
   </span>
 </li>

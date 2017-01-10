@@ -1,8 +1,13 @@
 <% provide(:title, "Sign Up") %>
 
-<h1>Create Account</h1>
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'Create Account') %>
+    </div>
+</header>
 
 <div class="row">
+  <div class="space"><div>
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@member, url: create_path) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>

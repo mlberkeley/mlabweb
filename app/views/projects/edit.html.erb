@@ -1,13 +1,13 @@
-<% provide(:title, 'Initialize Project') %>
+<% provide(:title, "Edit project") %>
 
 <header class="secondary_header">
     <div class="page_title">
-      <%= content_tag(:h1, 'New Project') %>
+      <%= content_tag(:h1, 'Update Project') %>
     </div>
 </header>
 
 <div class="row">
-  <div class="space"></div>
+  <div class="space"><div>
   <div class="col-md-8 col-md-offset-2">
     <%= form_for(@project, html: { multipart: true }) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
@@ -25,25 +25,24 @@
 
       <div class="field">
         <%= f.label :description %>
-        <%= f.text_area :description, class: 'form-control', placeholder: "(may be left blank for later edit)", rows: 20 %>
+        <%= f.text_area :description, class: 'form-control', rows: 20 %>
       </div>
 
       <span class="picture">
-        <%= f.label :picture, "Project Picture" %><br>
+        <%= f.label :picture, "Upload a new picture" %><br>
         <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
       </span>
 
-      <%= f.submit "Initialize", class: "btn btn-mlab" %>
+      <%= f.submit "Save", class: "btn btn-mlab" %>
     <% end %>
-
-    <script type="text/javascript">
-      $('#project_picture').bind('change', function() {
-        var size_in_megabytes = this.files[0].size/1024/1024;
-        if (size_in_megabytes > 5) {
-          alert('Maximum file size is 5MB. Please choose a smaller file.');
-        }
-      });
-    </script>
-
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#project_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

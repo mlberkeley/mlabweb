@@ -1,6 +1,6 @@
-<% provide(:title, "Public Updates") %>
+<% provide(:title, "Updates") %>
 
-<header class="updates_header">
+<header class="secondary_header">
   <div class="container">
 
     <div class="page_title">
@@ -24,9 +24,14 @@
 
 <div id="blog" class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= render 'shared/blog' %>
+    <ol class="blogposts">
+      <%= render @blogposts, object: yield(:title) %>
+    </ol>
   </div>
 </div>
 
 <%= image_tag("favicon.png", alt: "ML@B logo", class: "logo-resize") %>
-<div class="space"></div>
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>

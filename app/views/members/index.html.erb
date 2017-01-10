@@ -1,7 +1,12 @@
 <% provide(:title, 'All members') %>
 
-<h1>All members</h1>
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'All Members') %>
+    </div>
+</header>
 
+<div class="space"><div>
 <ul class="members">
   <% @members.each do |member| %>
     <li>

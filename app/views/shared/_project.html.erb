@@ -1,0 +1,3 @@
+<pre><%= @project.description %></pre>
+<%= @project.picture? ? picture_of_project(@project) : content_tag(:p, "no project picture uploaded") %>
+<p>currently no documents uploaded for this project</p>

@@ -120,7 +120,25 @@
 
         <div id="lightbox" class="row">
 
-            <div class="col-sm-6 col-md-3 col-lg-3 research">
+          <% @projects.each do |project| %>
+            <div class="col-sm-6 col-md-3 col-lg-3 <%= project.tag %>">
+              <div class="portfolio-item">
+                <div class="hover-bg">
+                  <a href="/projects/<%= project.id %>">
+                    <div class="hover-text">
+                      <h4><%= project.name %></h4>
+                      <small><%= project.tag %></small>
+                      <div class="clearfix"></div>
+                      <i class="fa fa-plus"></i>
+                    </div>
+                    <%= picture_of_project(project, class: "img-responsive") %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+            <!-- <div class="col-sm-6 col-md-3 col-lg-3 research">
                 <div class="portfolio-item">
                     <div class="hover-bg">
                         <a href="">
@@ -246,7 +264,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>

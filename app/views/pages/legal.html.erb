@@ -1,7 +1,10 @@
 <% provide(:title, "Privacy & Legal") %>
 
-<h1>Legal</h1>
-<p></p>
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'Legal') %>
+    </div>
+</header>
 
 <h3>Nonprofit Statement</h3>
 <p>Machine Learning at Berkeley (ML@B) is student-run organization based at the University of California, Berkeley, and is dedicated to building and fostering a vibrant machine learning community on the University of California, Berkeley campus as well as contributing to the greater machine learning community beyond the campus.</p>
@@ -14,4 +17,3 @@
 </p>
 
 <%= image_tag("favicon.png", alt: "ML@B logo", class: "logo-resize") %>
-<div class="space"></div>

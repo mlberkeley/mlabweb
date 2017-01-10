@@ -30,8 +30,10 @@ Rails.application.routes.draw do
   post '/subscribe', to: 'subscribers#create'
 
   # Project routes
-  get'/newproject', to: 'projects#new'
+  get '/newproject', to: 'projects#new'
+  post '/newproject', to: 'projects#create'
+  resources :projects
 
   # Blogpost routes
-  resources :blogposts, only: [:new, :create, :destroy]
+  resources :blogposts, only: [:show, :new, :create, :edit, :update, :destroy]
 end

@@ -10,6 +10,7 @@
 $gray-medium-light: #eaeaea;
 $grayish-light-blue: #ADC2D2;
 $mlab-blue: #5084BB;
+$mlab-text: #5a5a5a;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -68,6 +69,13 @@ p.intro{
 }
 p.ocf-disclaimer{
 	font-size: 8px;
+}
+pre {
+  border: none;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  word-wrap: normal;
+  word-break: keep-all;
 }
 a{ color: #5084BB;}
 a:hover,
@@ -163,11 +171,12 @@ font-weight: 900;
 	background-color: #FFF;
 }
 
-/* Updates Header */
+/* Secondary Headers */
 
-.updates_header {
+.secondary_header {
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: -1px;
+  padding-bottom: 10px;
   text-align: center;
   .page_title {
     h1 {
@@ -177,14 +186,17 @@ font-weight: 900;
     }
   }
   .snav {
-    margin-bottom: 1.5em;
+    margin-bottom: 10px;
   }
   a {
-    color: black;
+    color: $mlab-text;
     font-size: 14px;
     &:hover, &:focus {
       color: $mlab-blue;
     }
+  }
+  .active {
+    color: $mlab-blue;
   }
   ul.snav-links li {
     font-size: 14px;
@@ -434,7 +446,7 @@ img.img-circle.team-img {
 }
 
 .space{
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 /* Clients Section maybe in the future */
@@ -465,7 +477,7 @@ img.img-circle.team-img {
     text-align: center;
 }
 
-/* Gallery Section */
+/* Portfolio Section */
 
 #m-works{
 	padding: 80px 0;

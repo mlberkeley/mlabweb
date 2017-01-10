@@ -1,10 +1,29 @@
 <% provide(:title, "About") %>
 
-<h1>Legacy</h1>
-<h1>Team</h1>
-<h1>New Member Opportunities</h1>
-<h1><%= link_to "Legal", legal_path %></h1>
+<header class="secondary_header">
+  <div class="container">
 
+    <div class="page_title">
+      <%= content_tag(:h1, 'Team') %>
+    </div>
+
+    <div class="snav">
+      <ul class="snav-links">
+        <li>Legacy</li>
+        <li> / </li>
+        <li>Team</li>
+        <li> / </li>
+        <li>New Member Opportunities</li>
+        <li> / </li>
+        <li><%= link_to "Legal", legal_path %></li>
+      </ul>
+    </div>
+
+  </div>
+</header>
+
+<div class="space">
+
+</div>
 
 <%= image_tag("favicon.png", alt: "ML@B logo", class: "logo-resize") %>
-<div class="space"></div>

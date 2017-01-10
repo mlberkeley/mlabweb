@@ -5,13 +5,13 @@
   <%= f.text_field :title, class: 'form-control' %>
 
   <div class="field">
-    <%= f.text_area :content, class: 'form-control', placeholder: "Compose new blogpost..." %>
+    <%= f.label :content %>
+    <%= f.text_area :content, class: 'form-control', placeholder: "Compose blogpost...", rows: 10 %>
   </div>
 
   <span class="picture">
     <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
   </span>
-
 
   <%= f.label :published, class: "checkbox inline" do %>
     <%= f.check_box :published %>

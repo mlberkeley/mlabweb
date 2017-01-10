@@ -80,7 +80,7 @@ function main() {
   	});
 
   	/* portfolio isotope filter */
-    $(document).ready(function() {
+    $(window).on("turbolinks:load", function() {
         var $container = $('#lightbox');
         $container.isotope({
             filter: '*',
