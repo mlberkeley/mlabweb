@@ -13,7 +13,8 @@
       <li>
         <%= picture_of member %>
         <%= link_to member.name, member %>
-        <% if (current_member.exec? or current_member.admin?) && !current_member?(member) %>
+        <% if admin_or_exec? && !current_member?(member) %>
+          | <%= link_to "edit", edit_member_path(member) %>
           | <%= link_to "delete", member, method: :delete, data: { confirm: "You sure?" } %>
         <% end %>
       </li>

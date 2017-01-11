@@ -18,11 +18,22 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control', placeholder: 'leave blank to keep current password' %>
+      <%= f.label :exec, class: "checkbox inline" do %>
+        <%= f.check_box :exec %>
+        <span>Exec?</span>
+      <% end %>
+      <%= f.label :officer, class: "checkbox inline" do %>
+        <%= f.check_box :officer %>
+        <span>Officer?</span>
+      <% end %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <% if current_member?(@member) %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'leave blank to keep current password' %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <% end %>
 
       <%= f.submit "Save changes", class: "btn btn-mlab" %>
 

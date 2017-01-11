@@ -5,9 +5,14 @@
     <section class="member_info">
       <%= render 'shared/member_info', object: @member %>
     </section>
-    <% if current_member?(@member) %>
-    <section class="blogpost_form">
+    <% if logged_in? %>
+    <section class="buttons">
+      <% if admin_or_exec? %>
+      <%= link_to "Edit Member", edit_member_path(@member), class: "btn btn-default" %>
+      <% end %>
+      <% if current_member?(@member) %>
       <%= link_to "Write a Post", new_blogpost_path, class: "btn btn-default" %>
+      <% end %>
     </section>
     <% end %>
   </aside>
