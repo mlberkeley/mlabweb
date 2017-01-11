@@ -75,7 +75,7 @@ So, definitely keep an eye on this blog if you’re interested in machine learni
 # Project.create(name: "Grand Rounds", tag: "industry", description: "Working with medicare data, our team was tasked to explore and discover anomalies and trends in the data. In particular, we were charged with figuring out the best way to featurize patients and physicians to then better match the two. For example, a patient with a certain illness should be matched with a physician who has great experience diagnosis this illness and performing the correct procedures for that patient. With our team of about 10, we were able to do first order statistics and generate primitive cost and patient models with the data.")
 
 Special.create(title: "About ML@B",
-               content: "Machine Learning at Berkeley was founded in 2003 by a group of engineers in Silicon Valley who wanted to prove that #{Faker::Loream.Paragraph(8)}
+               content: "Machine Learning at Berkeley was founded in 2003 by a group of engineers in Silicon Valley who wanted to prove that #{Faker::Lorem.Paragraph(8)}
 
               #{Faker::Lorem.paragraph(30)}
 
