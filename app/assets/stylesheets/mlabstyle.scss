@@ -2,9 +2,8 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "lato";
 @import "font-kit-rails/open-sans";
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 
 /* mixins, variables, etc. */
 
@@ -37,6 +36,11 @@ body, html{
 }
 
 /* typography */
+
+.rev {
+  unicode-bidi:bidi-override;
+  direction:rtl;
+}
 
 h1{
 	text-transform: uppercase;
@@ -367,10 +371,11 @@ ul.about-list {
 
 #m-team{
 	background: url( asset-path('team.jpg') );
-	background-size: cover;
+  background-size: 100%;
+	// background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 	color: #ffffff;
   .overlay{
   	background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */

@@ -7,11 +7,11 @@
 
     <div class="snav">
       <ul class="snav-links">
-        <li filter="blog" class="active">Blog</li>
+        <li filter="blog" class="track active">Blog</li>
         <li> / </li>
-        <li filter="events">Events</li>
+        <li filter="events" class="track">Events</li>
         <li> / </li>
-        <li filter="videos">Videos</li>
+        <li filter="videos" class="track">Videos</li>
         <li> / </li>
         <li><%= link_to "Get Updates", subscribe_path %></li>
       </ul>
@@ -74,7 +74,7 @@
 </script>
 <script type="text/javascript">
   $(window).on("turbolinks:load", function() {
-      $('.snav-links li').click(function() {
+      $('.snav-links .track').click(function() {
           var hide = $('.snav-links .active').attr('filter')
           $('.snav-links .active').removeClass('active');
           $(this).addClass('active');

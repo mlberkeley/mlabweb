@@ -43,11 +43,12 @@ Member.create!(name: "David Lee",
 #               activated: true,
 #               activated_at: Time.zone.now)
 
-15.times do
+10.times do
   Member.create!(name: Faker::Name.name,
                  email: Faker::Lorem.word + "@ml.berkeley.edu",
                  password: "foobar",
                  password_confirmation: "foobar",
+                 officer: true,
                  activated: true,
                  activated_at: Time.zone.now)
 end

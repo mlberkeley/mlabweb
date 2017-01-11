@@ -7,13 +7,13 @@
 
     <div class="snav">
       <ul class="snav-links">
-        <li filter= "legacy">Advisors</li>
+        <li filter= "legacy" class="track">Advisors</li>
         <li> / </li>
-        <li filter= "about_mlab">About ML@B</li>
+        <li filter= "about_mlab" class="track">About ML@B</li>
         <li> / </li>
-        <li filter= "team2" class="active">Team</li>
+        <li filter= "team2" class="track active">Team</li>
         <li> / </li>
-        <li filter= "nmo">New Member Opportunities</li>
+        <li filter= "nmo" class="track">New Member Opportunities</li>
         <li> / </li>
         <li><%= link_to "Legal", legal_path %></li>
       </ul>
@@ -67,7 +67,7 @@
 
 <script type="text/javascript">
   $(window).on("turbolinks:load", function() {
-      $('.snav-links li').click(function() {
+      $('.snav-links .track').click(function() {
           var hide = $('.snav-links .active').attr('filter')
           $('.snav-links .active').removeClass('active');
           $(this).addClass('active');

@@ -19,12 +19,6 @@
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control' %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control', placeholder: 'leave blank to keep current password' %>
-
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-
         <%= f.label :grade, "Class" %>
         <%= f.text_field :grade, class: 'form-control', placeholder: 'Freshman, Sophomore, etc.' %>
 
@@ -46,14 +40,12 @@
       <% end %>
       <% end %>
 
-
-
       <%= f.submit "Save changes", class: "btn btn-mlab" %>
 
       <div class="img_edit">
         <%= picture_of @member %>
         <span class="picture">
-          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>  ^ change picture
+          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>  ^ change picture (square is best)
         </span>
       </div>
     <% end %>
