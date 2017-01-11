@@ -24,15 +24,18 @@
 
         <%= f.label :password_confirmation, "Confirmation" %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+        <%= f.label :grade, "Class" %>
+        <%= f.text_field :grade, class: 'form-control', placeholder: 'Freshman, Sophomore, etc.' %>
+
+        <%= f.label :major, "Major(s)" %>
+        <%= f.text_field :major, class: 'form-control', placeholder: 'pls dont be extra and spell out EECS' %>
       <% end %>
 
-      <%= f.label :grade, "Class" %>
-      <%= f.text_field :grade, class: 'form-control', placeholder: 'Freshman, Sophomore, etc.' %>
-
-      <%= f.label :major, "Major(s)" %>
-      <%= f.text_field :major, class: 'form-control', placeholder: 'pls dont be extra and spell out EECS' %>
-
       <% if admin_or_exec? %>
+      <%= f.label :position, "Role" %>
+      <%= f.text_field :position, class: 'form-control', placeholder: 'Position in club' %>
+
       <%= f.label :exec, class: "checkbox inline" do %>
         <%= f.check_box :exec %>
         <span>Exec?</span>

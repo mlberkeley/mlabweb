@@ -70,7 +70,7 @@ So, definitely keep an eye on this blog if you’re interested in machine learni
                   published: true)
 
 Blogpost.create(title: "MathJax",
-                content: "When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$",
+                content: 'When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$',
                 member_id: 1,
                 published: true)
 
@@ -92,6 +92,23 @@ Special.create(title: "About ML@B",
 
               #{Faker::Lorem.paragraph}")
 
-Special.create(title: "Demo Day",
+
+Special.create(title: "Join a Project",
+               tag: "nmo",
+               content: "edit this pls")
+
+Special.create(title: "General Meetings",
+               tag: "nmo",
+               content: "edit this pls")
+
+Special.create(title: "Boot Camp",
+               tag: "nmo",
+               content: "edit this pls")
+
+Special.create(title: "Demo Days",
+               tag: "nmo",
+               content: "edit this pls")
+
+Special.create(title: "Decal",
                tag: "nmo",
                content: "edit this pls")

@@ -7,10 +7,12 @@
 
 /* mixins, variables, etc. */
 
+$mlab-light: #F5F5F5;
 $gray-medium-light: #eaeaea;
 $grayish-light-blue: #ADC2D2;
 $mlab-blue: #5084BB;
 $mlab-text: #5a5a5a;
+$mlab-dark-text: #333333;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;

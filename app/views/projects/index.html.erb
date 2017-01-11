@@ -4,6 +4,10 @@
     <div class="page_title">
       <%= content_tag(:h1, 'Manage Projects (A-Z)') %>
     </div>
+
+    <% if admin_or_exec? %>
+    <%= link_to "Initiate a new Project", newproject_path, class: "btn btn-default" %>
+    <% end %>
 </header>
 
 <div class="row">

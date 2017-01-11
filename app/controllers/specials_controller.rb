@@ -1,7 +1,7 @@
 class SpecialsController < ApplicationController
   before_action :logged_in_member, only: [:new, :create, :edit, :update, :destroy]
-  before_action :exec_member, only: [:create, :update]
-  before_action :admin_member, only: [:new, :destroy]
+  before_action :exec_member, only: [:create, :update, :destroy]
+  before_action :admin_member, only: [:new]
 
   def new
     @special = Special.new
