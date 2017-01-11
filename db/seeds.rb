@@ -78,11 +78,9 @@ Project.create(name: "Open Brain", tag: "Research", description: "In this projec
 Project.create(name: "Grand Rounds", tag: "industry", description: "Working with medicare data, our team was tasked to explore and discover anomalies and trends in the data. In particular, we were charged with figuring out the best way to featurize patients and physicians to then better match the two. For example, a patient with a certain illness should be matched with a physician who has great experience diagnosis this illness and performing the correct procedures for that patient. With our team of about 10, we were able to do first order statistics and generate primitive cost and patient models with the data.")
 
 Special.create(title: "About ML@B",
-               content: "Tesla Motors was founded in 2003 by a group of engineers in Silicon Valley who wanted to prove that electric cars could be better than gasoline-powered cars. With instant torque, incredible power, and zero emissions, Tesla’s products would be cars without compromise. Each new generation would be increasingly affordable, helping the company work towards its mission: to accelerate the world’s transition to sustainable transport.
+               content: "Machine Learning at Berkeley was founded in 2003 by a group of engineers in Silicon Valley who wanted to prove that #{Faker::Loream.Paragraph(8)}
 
               #{Faker::Lorem.paragraph(30)}
-
-              #{Faker::Lorem.paragraph(40)}
 
               #{Faker::Lorem.paragraph(15)}
 

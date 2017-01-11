@@ -2,6 +2,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
+  def get_mlab_graph
+    oauth = Koala::Facebook::OAuth.new(Rails.application.secrets.fb_app_id, Rails.application.secrets.fb_app_secret)
+    graph = Koala::Facebook::API.new(Rails.application.secrets.fb_user_access_token)
+    token = graph.get_object("me/accounts")[1]['access_token']
+    return Koala::Facebook::API.new(token)
+  end
+  
   private
 
     # Before filters

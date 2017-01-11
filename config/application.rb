@@ -18,5 +18,7 @@ module Webdraft
         ENV[key.to_s] = value
       end if File.exists?(env_file)
     end
+
+    Koala.config.api_version = Rails.application.secrets.fb_api_version
   end
 end

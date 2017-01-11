@@ -1,0 +1,7 @@
+<% provide(:title, "Upcoming Events") %>
+
+<p><%= @mlab_graph.get_object("me").to_s %></p>
+
+<% @events.each do |event| %>
+  <p><%= event.to_s %></p><br>
+<% end %>

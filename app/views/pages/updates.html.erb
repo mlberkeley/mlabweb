@@ -2,23 +2,23 @@
 
 <header class="secondary_header">
     <div class="page_title">
-      <%= content_tag(:h1, 'Blog') %>
+      <%= content_tag(:h1, 'Blog', id: 'dynamic_title') %>
     </div>
 
     <div class="snav">
       <ul class="snav-links">
-        <li>Blog</li>
+        <li filter="blog" class="active">Blog</li>
         <li> / </li>
-        <li>Events</li>
+        <li filter="events">Events</li>
         <li> / </li>
-        <li>Videos</li>
+        <li filter="videos">Videos</li>
         <li> / </li>
         <li><%= link_to "Get Updates", subscribe_path %></li>
       </ul>
     </div>
 </header>
 
-<div id="blog" class="row">
+<div id="blog" class="row" style="display:block;">
   <div class="col-md-10 col-md-offset-1">
     <ol class="blogposts">
       <%= render @blogposts, object: yield(:title) %>
@@ -26,8 +26,51 @@
   </div>
 </div>
 
+<div id="events" class="row" style="display:none;">
+  <div class="space"></div>
+  <div class="col-md-10 col-md-offset-1">
+    <div class="upcoming">
+      <h4>Upcoming Events</h4>
+      <% if @events.any? %>
+        <% @events.each do |event| %>
+          <p><%= event.to_s %></p><br>
+        <% end %>
+      <% else %>
+        <p>None scheduled, see you next semester!</p>
+      <% end %>
+    </div>
+
+    <div class="feature_fb_feed">
+      <h4>Featured posts from our Facebook Feed</h4>
+      <% @mlab_graph.get_connection('me', 'feed').each do |feed_item| %>
+        <p><%= feed_item.to_s %></p><br>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="videos" class="row" style="display:none;">
+  <div class="space"></div>
+  <div class="col-md-10 col-md-offset-1">
+  </div>
+</div>
+
 <%= image_tag("favicon.png", alt: "ML@B logo", class: "logo-resize") %>
 
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/javascript">
+  $(window).on("turbolinks:load", function() {
+      $('.snav-links li').click(function() {
+          var hide = $('.snav-links .active').attr('filter')
+          $('.snav-links .active').removeClass('active');
+          $(this).addClass('active');
+          var show = $(this).attr('filter');
+          var title = $(this).html();
+          document.getElementById(hide).style.display="none";
+          document.getElementById(show).style.display="block";
+          document.getElementById('dynamic_title').innerHTML=title;
+      });
+  });
 </script>

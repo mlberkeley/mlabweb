@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'specials/new'
-
-  get 'specials/edit'
-
   root 'pages#home'
 
   # Static pages routes
@@ -41,4 +37,8 @@ Rails.application.routes.draw do
   # Blogpost/Special routes
   resources :blogposts, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :specials, only: [:new, :create, :edit, :update, :destroy]
+
+  # Event routes
+  get '/past', to: 'events#past'
+  resources :events, only: :index
 end

@@ -19,7 +19,7 @@ loadMathJax = ->
         ]
       ]
 
-# Facebook Social Plugins
+# Facebook
 # $ ->
 #   loadFacebookSDK()
 #   bindFacebookEvents() unless window.fbEventsBound
@@ -50,8 +50,17 @@ loadMathJax = ->
 #
 # initializeFacebookSDK = ->
 #   FB.init
-#     appId  : '1359684477389545'
+#     appId  : Rails.application.secrets.fb_app_id.to_s
 #     status : true
 #     cookie : true
 #     xfbml  : true
-#     version: 'v2.8'
+#     version: Rails.application.secrets.fb_api_version.to_s
+#
+#   FB.getLoginStatus (response) ->
+#   if response.status == 'connected'
+#     uid = response.authResponse.userID
+#     accessToken = response.authResponse.accessToken
+#     FB.api("/me", (response) ->
+#       console.log("Hello #{response.name}")
+#     )
+#   return
