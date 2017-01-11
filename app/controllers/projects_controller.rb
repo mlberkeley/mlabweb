@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :logged_in_member, only: [:new, :create, :edit, :update, :destroy]
+  before_action :logged_in_member, only: [:index, :new, :create, :edit, :update, :destroy]
   before_action :correct_member, only: [:edit, :update]
   before_action :exec_member, only: [:new, :create, :destroy]
 
@@ -45,12 +45,9 @@ class ProjectsController < ApplicationController
     # @members = @project.members.paginate(page: params[:page], per_page: 5)
   end
 
-  def industry
-    @projects = Project.where(tag: 'industry')
-  end
-
-  def research
-    @projects = Project.where(tag: 'research')
+  def index
+    @industry = Project.where(tag: 'industry')
+    @research = Project.where(tag: 'research')
   end
 
   private

@@ -1,0 +1,41 @@
+<% provide(:title, 'All Projects') %>
+
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'Manage Projects (A-Z)') %>
+    </div>
+</header>
+
+<div class="row">
+  <div class="space"></div>
+  <div class="col-md-6">
+    <h2>Industry</h2>
+    <ul class="index-list">
+      <% @industry.each do |industry| %>
+        <li>
+          <%= picture_of_project industry %>
+          <%= link_to industry.name, industry %>
+          <% if admin_or_exec? %>
+            | <%= link_to "edit", edit_project_path(industry) %>
+            | <%= link_to "delete", industry, method: :delete, data: { confirm: "You sure?" } %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h2>Research</h2>
+    <ul class="index-list">
+      <% @research.each do |industry| %>
+        <li>
+          <%= picture_of_project industry %>
+          <%= link_to industry.name, industry %>
+          <% if admin_or_exec? %>
+            | <%= link_to "edit", edit_project_path(industry) %>
+            | <%= link_to "delete", industry, method: :delete, data: { confirm: "You sure?" } %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

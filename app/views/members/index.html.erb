@@ -2,13 +2,13 @@
 
 <header class="secondary_header">
     <div class="page_title">
-      <%= content_tag(:h1, 'All Members') %>
+      <%= content_tag(:h1, 'Manage Members (A-Z)') %>
     </div>
 </header>
 
 <div class="row">
-  <div class="space"><div>
-  <ul class="members">
+  <div class="space"></div>
+  <ul class="index-list">
     <% @members.each do |member| %>
       <li>
         <%= picture_of member %>
