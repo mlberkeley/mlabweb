@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'specials/new'
+
+  get 'specials/edit'
+
   root 'pages#home'
 
   # Static pages routes
@@ -34,6 +38,7 @@ Rails.application.routes.draw do
   post '/newproject', to: 'projects#create'
   resources :projects
 
-  # Blogpost routes
+  # Blogpost/Special routes
   resources :blogposts, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :specials, only: [:new, :create, :edit, :update, :destroy]
 end

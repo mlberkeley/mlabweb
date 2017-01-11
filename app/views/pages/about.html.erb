@@ -25,19 +25,16 @@
 
   <div id="legacy" class="row" style="display:none;">
     <h4>Notes from ML@B's former Presidents:</h4>
+    <h3>Ted Xiao</h3>
     <pre>Something inspiring...</pre>
+    <h3>Gautham K</h3>
     <pre>Something inspiring...</pre>
   </div>
 
   <div id="about_mlab" class="row" style="display:none;">
-    <%= content_tag(:p, Faker::Lorem.paragraph(20)) %>
-    <%= content_tag(:p, Faker::Lorem.paragraph(40)) %>
-    <%= content_tag(:p, Faker::Lorem.paragraph(30)) %>
-    <%= content_tag(:p, Faker::Lorem.paragraph(10)) %>
-    <%= content_tag(:p, Faker::Lorem.paragraph(20)) %>
-    <%= content_tag(:p, Faker::Lorem.paragraph) %>
-    <% if logged_in? and admin_or_exec? %>
-    <%= link_to "Somebody EDIT this so this can be the landing view of the 'Us' page, not the team members", "#", class: "btn btn-default" %>
+    <p><%= simple_format(@aboutmlab[0].content) %></p>
+    <% if logged_in? %>
+    <%= link_to "Somebody EDIT this so this can be the landing view of the 'Us' page, not the team members", edit_special_path(@aboutmlab[0]), class: "btn btn-default" %>
     <% end %>
   </div>
 
@@ -59,15 +56,11 @@
   </div>
 
   <div id="nmo" class="row" style="display:none;">
-    <h1>What you will do as a new ML@Ber</h1>
-    <h2>What you will do as a new ML@Ber</h2>
-    <h3>What you will do as a new ML@Ber</h3>
     <h4>What you will do as a new ML@Ber</h4>
-    <h5>What you will do as a new ML@Ber</h5>
-    <h6>What you will do as a new ML@Ber</h6>
-    <p>What you will do as a new ML@Ber</p>
-    <br>
-    <p>Details to come...</p>
+    <!-- <br> -->
+    <% @nmos.each do |special| %>
+      <%= render 'shared/special', object: special %>
+    <% end %>
   </div>
 </div>
 

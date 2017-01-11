@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110013255) do
+ActiveRecord::Schema.define(version: 20170111051118) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170110013255) do
     t.string   "remember_digest"
     t.boolean  "exec",              default: false
     t.boolean  "admin",             default: false
-    t.string   "position",          default: "Member"
+    t.string   "position",          default: "Position"
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 20170110013255) do
     t.datetime "updated_at",                 null: false
     t.string   "picture"
     t.boolean  "current",     default: true
+  end
+
+  create_table "specials", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "tag"
   end
 
   create_table "subscribers", force: :cascade do |t|

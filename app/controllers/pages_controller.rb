@@ -7,6 +7,8 @@ class PagesController < ApplicationController
   def about
     @president = Member.where("position = ?", "President")
     @members = Member.where("position != ?", "President")
+    @aboutmlab = Special.where(title: "About ML@B")
+    @nmos = Special.where(tag: "nmo")
   end
 
   def portfolio
