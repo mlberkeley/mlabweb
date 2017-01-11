@@ -9,7 +9,6 @@
     <%= link_to "delete", blogpost, method: :delete, data: { confirm: "You sure?" } %>
   <% end %>
   <span class="content">
-    <!-- <%= object.eql?("Updates") ? content_tag(:pre, blogpost.content, class: 'updatesblog') : simple_format(blogpost.content) %> -->
     <%= simple_format(blogpost.content) %>
 
     <%= image_tag blogpost.picture.url if blogpost.picture? %>
