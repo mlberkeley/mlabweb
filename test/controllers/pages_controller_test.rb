@@ -6,11 +6,6 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get about" do
-    get about_path
-    assert_response :success
-  end
-
   test "should get portfolio" do
     get portfolio_path
     assert_response :success
@@ -18,11 +13,6 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get connections" do
     get connections_path
-    assert_response :success
-  end
-
-  test "should get updates" do
-    get updates_path
     assert_response :success
   end
 

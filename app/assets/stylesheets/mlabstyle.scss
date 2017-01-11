@@ -229,13 +229,13 @@ font-weight: 900;
   }
   p.lead{
   	color: #e3e3e3;
-		margin-bottom: 80px
+		margin-bottom: 50px
   }
 }
 
 .content{
 	position: relative;
-	padding: 20% 0 0;
+	padding: 10% 0 0;
 }
 
 .color{
@@ -289,6 +289,7 @@ a.fa.fa-angle-down {
     padding: 5% 0;
     color: #ffffff;
     text-align: center;
+    margin: 0 -20em;
 		.announcement-title {
 			text-transform: uppercase;
 			font-size: 22px;
@@ -627,6 +628,14 @@ ol.type li{
 }
 .hover-bg:hover .hover-text{
 	opacity: 1;
+}
+
+/* Events PAGE */
+#events {
+  text-align: center;
+  .feature_fb_feed {
+    margin-top: 50px;
+  }
 }
 
 /* Maybe a quotes section for future use */

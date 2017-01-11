@@ -51,7 +51,19 @@
 
 <div id="videos" class="row" style="display:none;">
   <div class="space"></div>
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-1 text-center">
+    <h4>Featured</h4><br>
+    <div class="img-wrapper">
+        <div>
+            <a class="popup-youtube" href="http://www.youtube.com/watch?v=wd1ZEzLjYA8"><i class="fa fa-play"></i></a>
+        </div>
+        <%= image_tag("home_video.png", class: "img-responsive light-opacity") %>
+    </div>
+    <div id="m-announcement">
+      <%= link_to ">> Apply Spring '17 <<", apply_member_path, class: "announcement-title" %>
+      <p>Member Applications are open for Spring 2017!</p>
+    </div>
+    <div class="space"></div>
   </div>
 </div>
 
