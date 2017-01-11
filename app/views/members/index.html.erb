@@ -6,15 +6,17 @@
     </div>
 </header>
 
-<div class="space"><div>
-<ul class="members">
-  <% @members.each do |member| %>
-    <li>
-      <%= picture_of member %>
-      <%= link_to member.name, member %>
-      <% if (current_member.exec? or current_member.admin?) && !current_member?(member) %>
-        | <%= link_to "delete", member, method: :delete, data: { confirm: "You sure?" } %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="space"><div>
+  <ul class="members">
+    <% @members.each do |member| %>
+      <li>
+        <%= picture_of member %>
+        <%= link_to member.name, member %>
+        <% if (current_member.exec? or current_member.admin?) && !current_member?(member) %>
+          | <%= link_to "delete", member, method: :delete, data: { confirm: "You sure?" } %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

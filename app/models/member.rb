@@ -1,6 +1,7 @@
 class Member < ApplicationRecord
   has_many :blogposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
+  default_scope -> { order(:name) }
   mount_uploader :picture, PictureUploader
   before_save { email.downcase! }
   before_create :create_activation_digest

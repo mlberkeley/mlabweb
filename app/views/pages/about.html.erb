@@ -1,29 +1,89 @@
 <% provide(:title, "About") %>
 
 <header class="secondary_header">
-  <div class="container">
-
     <div class="page_title">
-      <%= content_tag(:h1, 'Team') %>
+      <%= content_tag(:h1, 'Team', id: 'dynamic_title') %>
     </div>
 
     <div class="snav">
       <ul class="snav-links">
-        <li>Legacy</li>
+        <li filter= "legacy">Advisors</li>
         <li> / </li>
-        <li>Team</li>
+        <li filter= "about_mlab">About ML@B</li>
         <li> / </li>
-        <li>New Member Opportunities</li>
+        <li filter= "team2" class="active">Team</li>
+        <li> / </li>
+        <li filter= "nmo">New Member Opportunities</li>
         <li> / </li>
         <li><%= link_to "Legal", legal_path %></li>
       </ul>
     </div>
-
-  </div>
 </header>
 
-<div class="space">
+<div class="col-md-10 col-md-offset-1">
+  <div class="space"></div>
 
+  <div id="legacy" class="row" style="display:none;">
+    <h4>Notes from ML@B's former Presidents:</h4>
+    <pre>Something inspiring...</pre>
+    <pre>Something inspiring...</pre>
+  </div>
+
+  <div id="about_mlab" class="row" style="display:none;">
+    <%= content_tag(:p, Faker::Lorem.paragraph(20)) %>
+    <%= content_tag(:p, Faker::Lorem.paragraph(40)) %>
+    <%= content_tag(:p, Faker::Lorem.paragraph(30)) %>
+    <%= content_tag(:p, Faker::Lorem.paragraph(10)) %>
+    <%= content_tag(:p, Faker::Lorem.paragraph(20)) %>
+    <%= content_tag(:p, Faker::Lorem.paragraph) %>
+    <% if logged_in? and admin_or_exec? %>
+    <%= link_to "Somebody EDIT this so this can be the landing view of the 'Us' page, not the team members", "#", class: "btn btn-default" %>
+    <% end %>
+  </div>
+
+  <div id="team2" class="row" style="display:block;">
+    <div class="president item">
+      <h4>President</h4>
+      <%= render 'shared/member_info', object: @president.first %>
+    </div>
+    <div class="others">
+      <h4>Admins / Execs / Members</h4>
+      <ul>
+        <% @members.each do |member| %>
+          <li class="item">
+            <%= render 'shared/member_info', object: member %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div id="nmo" class="row" style="display:none;">
+    <h1>What you will do as a new ML@Ber</h1>
+    <h2>What you will do as a new ML@Ber</h2>
+    <h3>What you will do as a new ML@Ber</h3>
+    <h4>What you will do as a new ML@Ber</h4>
+    <h5>What you will do as a new ML@Ber</h5>
+    <h6>What you will do as a new ML@Ber</h6>
+    <p>What you will do as a new ML@Ber</p>
+    <br>
+    <p>Details to come...</p>
+  </div>
 </div>
 
 <%= image_tag("favicon.png", alt: "ML@B logo", class: "logo-resize") %>
+
+<script type="text/javascript">
+  $(window).on("turbolinks:load", function() {
+      $('.snav-links li').click(function() {
+          var hide = $('.snav-links .active').attr('filter')
+          $('.snav-links .active').removeClass('active');
+          $(this).addClass('active');
+          var show = $(this).attr('filter');
+          var title = $(this).html();
+          document.getElementById(hide).style.display="none";
+          document.getElementById(show).style.display="block";
+          document.getElementById('dynamic_title').innerHTML=title;
+      });
+  });
+</script>

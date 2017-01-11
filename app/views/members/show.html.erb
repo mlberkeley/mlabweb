@@ -3,7 +3,7 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="member_info">
-      <%= render 'shared/member_info' %>
+      <%= render 'shared/member_info', object: @member %>
     </section>
     <% if current_member?(@member) %>
     <section class="blogpost_form">

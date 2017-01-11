@@ -7,31 +7,49 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Member.create!(name: "David Lee 1",
                email: "djlee@ml.berkeley.edu",
-               password: "mlabmlab",
-               password_confirmation: "mlabmlab",
-               introduction: "I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. I love Machine Learning At Berkeley. ",
+               password: "lsj0918",
+               password_confirmation: "lsj0918",
+               introduction: Faker::Lorem.paragraphs(2),
                admin: true,
                activated: true,
                activated_at: Time.zone.now)
 
-Member.create!(name: "David Lee 2",
-               email: "djlee2@ml.berkeley.edu",
+Member.create!(name: "Exec Member",
+               email: "exec@ml.berkeley.edu",
                password: "foobar",
                password_confirmation: "foobar",
                exec: true,
                activated: true,
                activated_at: Time.zone.now)
-Member.create!(name: "David Lee 3",
-               email: "djlee3@ml.berkeley.edu",
+Member.create!(name: "Just Member",
+               email: "jm@ml.berkeley.edu",
                password: "foobar",
                password_confirmation: "foobar",
                activated: true,
                activated_at: Time.zone.now)
 
+Member.create!(name: "Supreme President",
+              email: "supres@ml.berkeley.edu",
+              password: "foobar",
+              password_confirmation: "foobar",
+              position: "President",
+              exec: true,
+              activated: true,
+              activated_at: Time.zone.now)
 
-members = Member.order(:created_at).take(2)
+20.times do
+  Member.create!(name: Faker::Name.name,
+                 email: Faker::Lorem.word + "@ml.berkeley.edu",
+                 password: "foobar",
+                 password_confirmation: "foobar",
+                 exec: false,
+                 activated: true,
+                 activated_at: Time.zone.now)
+end
+
+members = Member.order(:created_at).take(3)
 25.times do
-  content = Faker::Lorem.sentence(100)
+  content = Faker::Lorem.paragraphs(5, true)
   members.each { |member| member.blogposts.create!(content: content) }
 end
 
@@ -46,5 +64,5 @@ So, definitely keep an eye on this blog if you’re interested in machine learni
                   member_id: 1,
                   published: true,)
 
-Project.create(name: "Open Brain", tag: "Research", description: "In this project, we introduce a new framework and philosophy for recurrent neurocomputation. By requiring that all neurons act asynchrynously and independently, we introduce a new metric for evaluating the universal intelligence of continuous time agents. We proved representation and universal approximation results in this context which lead to a set of learning rules in the spirit of John Conway's game of life. Finally evaluate this framework against different intelligent agent algorithms by implementing an approximate universal intelligence measure for agents embedded in turing computable environments in Minecraft, BF, and a variety of other reference machines.", picture:"https://s3-us-west-1.amazonaws.com/mlberkeley/open_brain.png")
-Project.create(name: "Grand Rounds", tag: "industry", description: "Working with medicare data, our team was tasked to explore and discover anomalies and trends in the data. In particular, we were charged with figuring out the best way to featurize patients and physicians to then better match the two. For example, a patient with a certain illness should be matched with a physician who has great experience diagnosis this illness and performing the correct procedures for that patient. With our team of about 10, we were able to do first order statistics and generate primitive cost and patient models with the data.", picture: "https://s3-us-west-1.amazonaws.com/mlberkeley/grand_round.png")
+Project.create(name: "Open Brain", tag: "Research", description: "In this project, we introduce a new framework and philosophy for recurrent neurocomputation. By requiring that all neurons act asynchrynously and independently, we introduce a new metric for evaluating the universal intelligence of continuous time agents. We proved representation and universal approximation results in this context which lead to a set of learning rules in the spirit of John Conway's game of life. Finally evaluate this framework against different intelligent agent algorithms by implementing an approximate universal intelligence measure for agents embedded in turing computable environments in Minecraft, BF, and a variety of other reference machines.")
+Project.create(name: "Grand Rounds", tag: "industry", description: "Working with medicare data, our team was tasked to explore and discover anomalies and trends in the data. In particular, we were charged with figuring out the best way to featurize patients and physicians to then better match the two. For example, a patient with a certain illness should be matched with a physician who has great experience diagnosis this illness and performing the correct procedures for that patient. With our team of about 10, we were able to do first order statistics and generate primitive cost and patient models with the data.")

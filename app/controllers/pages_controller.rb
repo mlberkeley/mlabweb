@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
   def home
-    @members = Member.all
-    @projects = Project.where(current: true).all
+    @members = Member.where("admin = ?", true)
+    @projects = Project.where(current: true)
   end
 
   def about
+    @president = Member.where("position = ?", "President")
+    @members = Member.where("position != ?", "President")
   end
 
   def portfolio
