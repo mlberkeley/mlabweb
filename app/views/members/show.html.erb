@@ -7,7 +7,7 @@
     </section>
     <% if logged_in? %>
     <section class="buttons">
-      <% if admin_or_exec? %>
+      <% if admin_or_exec? and !current_member?(@member) %>
       <%= link_to "Edit Member", edit_member_path(@member), class: "btn btn-default" %>
       <% end %>
       <% if current_member?(@member) %>

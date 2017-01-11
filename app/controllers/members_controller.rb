@@ -54,13 +54,13 @@ class MembersController < ApplicationController
   private
 
     def member_params
-      params.require(:member).permit(:name, :email, :password, :password_confirmation, :picture, :exec, :officer)
+      params.require(:member).permit(:name, :email, :password, :password_confirmation, :picture, :exec, :officer, :grade, :major)
     end
 
     #Before filters
 
     def correct_member
       @member = Member.find(params[:id])
-      redirect_to(root_url) unless (current_member?(@member) or current_member.admin?)
+      redirect_to(root_url) unless (current_member?(@member) or admin_or_exec?)
     end
 end

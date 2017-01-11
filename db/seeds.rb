@@ -5,15 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Member.create!(name: "David Lee 1",
+Member.create!(name: "David Lee",
                email: "djlee@ml.berkeley.edu",
                password: "lsj0918",
                password_confirmation: "lsj0918",
-               introduction: Faker::Lorem.paragraphs(2),
+               introduction: Faker::Lorem.paragraph(10),
                admin: true,
                activated: true,
                activated_at: Time.zone.now)
-
 Member.create!(name: "Exec Member",
                email: "exec@ml.berkeley.edu",
                password: "foobar",
@@ -21,6 +20,13 @@ Member.create!(name: "Exec Member",
                exec: true,
                activated: true,
                activated_at: Time.zone.now)
+Member.create!(name: "Officer Member",
+              email: "officer@ml.berkeley.edu",
+              password: "foobar",
+              password_confirmation: "foobar",
+              officer: true,
+              activated: true,
+              activated_at: Time.zone.now)
 Member.create!(name: "Just Member",
                email: "jm@ml.berkeley.edu",
                password: "foobar",
@@ -37,19 +43,18 @@ Member.create!(name: "Supreme President",
               activated: true,
               activated_at: Time.zone.now)
 
-20.times do
+15.times do
   Member.create!(name: Faker::Name.name,
                  email: Faker::Lorem.word + "@ml.berkeley.edu",
                  password: "foobar",
                  password_confirmation: "foobar",
-                 exec: false,
                  activated: true,
                  activated_at: Time.zone.now)
 end
 
 members = Member.order(:created_at).take(3)
 25.times do
-  content = Faker::Lorem.paragraphs(5, true)
+  content = Faker::Lorem.paragraph(20, true)
   members.each { |member| member.blogposts.create!(content: content) }
 end
 
@@ -62,7 +67,31 @@ As for this blog, this is the place where we’ll be letting the world know abou
 
 So, definitely keep an eye on this blog if you’re interested in machine learning. And even if you’re not sure about it, you should check in periodically. We might be able to change your mind!",
                   member_id: 1,
-                  published: true,)
+                  published: true)
+
+Blogpost.create(title: "MathJax",
+                content: "When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$",
+                member_id: 1,
+                published: true)
 
 Project.create(name: "Open Brain", tag: "Research", description: "In this project, we introduce a new framework and philosophy for recurrent neurocomputation. By requiring that all neurons act asynchrynously and independently, we introduce a new metric for evaluating the universal intelligence of continuous time agents. We proved representation and universal approximation results in this context which lead to a set of learning rules in the spirit of John Conway's game of life. Finally evaluate this framework against different intelligent agent algorithms by implementing an approximate universal intelligence measure for agents embedded in turing computable environments in Minecraft, BF, and a variety of other reference machines.")
 Project.create(name: "Grand Rounds", tag: "industry", description: "Working with medicare data, our team was tasked to explore and discover anomalies and trends in the data. In particular, we were charged with figuring out the best way to featurize patients and physicians to then better match the two. For example, a patient with a certain illness should be matched with a physician who has great experience diagnosis this illness and performing the correct procedures for that patient. With our team of about 10, we were able to do first order statistics and generate primitive cost and patient models with the data.")
+
+Special.create(title: "About ML@B",
+               content: "Tesla Motors was founded in 2003 by a group of engineers in Silicon Valley who wanted to prove that electric cars could be better than gasoline-powered cars. With instant torque, incredible power, and zero emissions, Tesla’s products would be cars without compromise. Each new generation would be increasingly affordable, helping the company work towards its mission: to accelerate the world’s transition to sustainable transport.
+
+              #{Faker::Lorem.paragraph(30)}
+
+              #{Faker::Lorem.paragraph(40)}
+
+              #{Faker::Lorem.paragraph(15)}
+
+              #{Faker::Lorem.paragraph(50)}
+
+              #{Faker::Lorem.paragraph(10)}
+
+              #{Faker::Lorem.paragraph}")
+
+Special.create(title: "Demo Day",
+               tag: "nmo",
+               content: "edit this pls")

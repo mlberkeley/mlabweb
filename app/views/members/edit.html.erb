@@ -15,9 +15,24 @@
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <% if current_member?(@member) %>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
 
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'leave blank to keep current password' %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <% end %>
+
+      <%= f.label :grade, "Class" %>
+      <%= f.text_field :grade, class: 'form-control', placeholder: 'Freshman, Sophomore, etc.' %>
+
+      <%= f.label :major, "Major(s)" %>
+      <%= f.text_field :major, class: 'form-control', placeholder: 'pls dont be extra and spell out EECS' %>
+
+      <% if admin_or_exec? %>
       <%= f.label :exec, class: "checkbox inline" do %>
         <%= f.check_box :exec %>
         <span>Exec?</span>
@@ -26,14 +41,9 @@
         <%= f.check_box :officer %>
         <span>Officer?</span>
       <% end %>
-
-      <% if current_member?(@member) %>
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control', placeholder: 'leave blank to keep current password' %>
-
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
       <% end %>
+
+
 
       <%= f.submit "Save changes", class: "btn btn-mlab" %>
 

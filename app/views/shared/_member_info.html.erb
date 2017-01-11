@@ -1,10 +1,13 @@
 <h1>
-  <%= picture_of object %>
+  <%= yield(:title).eql?("About") ? link_to(picture_of(object), object) : picture_of(object) %>
   <%= object.name %>
 </h1>
 <h5>
   <%= object.email %>
 </h5>
+<p>
+  <%= object.grade %> | <%= object.major %>
+</p>
 <p>
   <%= object.position %>
 </p>

@@ -422,8 +422,10 @@ ul.about-list {
       margin: 15px;
       color: #FFF;
       text-align: center;
-      .thumbnail:hover>img.img-circle.team-img{
-      	border: 4px solid #5084BB;
+      img {
+        &:hover {
+          border: 4px solid $mlab-blue;
+        }
       }
   }
 }

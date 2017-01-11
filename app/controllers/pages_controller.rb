@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @members = Member.where("admin = ?", true)
+    @members = Member.where("officer = ?", true)
     @projects = Project.where(current: true)
   end
 

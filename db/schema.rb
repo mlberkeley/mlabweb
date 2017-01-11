@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111081239) do
+ActiveRecord::Schema.define(version: 20170111093052) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170111081239) do
     t.string   "remember_digest"
     t.boolean  "exec",              default: false
     t.boolean  "admin",             default: false
-    t.string   "position",          default: "Position"
+    t.string   "position",          default: "Project Member"
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170111081239) do
     t.text     "introduction",      default: "I love Machine Learning At Berkeley"
     t.string   "picture"
     t.boolean  "officer",           default: false
+    t.string   "major",             default: "Agriculture"
+    t.string   "grade",             default: "Freshman"
     t.index ["email"], name: "index_members_on_email", unique: true
   end
 
