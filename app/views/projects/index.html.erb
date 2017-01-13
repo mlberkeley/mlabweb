@@ -15,14 +15,9 @@
   <div class="col-md-6">
     <h2>Industry</h2>
     <ul class="index-list">
-      <% @industry.each do |industry| %>
+      <% @industry.each do |project| %>
         <li>
-          <%= picture_of_project industry %>
-          <%= link_to industry.name, industry %>
-          <% if admin_or_exec? %>
-            | <%= link_to "edit", edit_project_path(industry) %>
-            | <%= link_to "delete", industry, method: :delete, data: { confirm: "You sure?" } %>
-          <% end %>
+          <%= render 'shared/project_info', object: project %>
         </li>
       <% end %>
     </ul>
@@ -30,14 +25,9 @@
   <div class="col-md-6">
     <h2>Research</h2>
     <ul class="index-list">
-      <% @research.each do |industry| %>
+      <% @research.each do |project| %>
         <li>
-          <%= picture_of_project industry %>
-          <%= link_to industry.name, industry %>
-          <% if admin_or_exec? %>
-            | <%= link_to "edit", edit_project_path(industry) %>
-            | <%= link_to "delete", industry, method: :delete, data: { confirm: "You sure?" } %>
-          <% end %>
+          <%= render 'shared/project_info', object: project %>
         </li>
       <% end %>
     </ul>

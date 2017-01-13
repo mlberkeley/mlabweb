@@ -42,7 +42,6 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    # @members = @project.members.paginate(page: params[:page], per_page: 5)
   end
 
   def index
@@ -57,9 +56,10 @@ class ProjectsController < ApplicationController
     end
 
     def correct_member
-      # @member = Member.find(params[:id])
-      # redirect_to(root_url) unless (current_member?(@member) or current_member.admin?)
 
-      # execs OR project members should be able to :edit, :update
+      unless (officer_or_higher? or current_member.project_ids.include?(params[:id]))
+        flash[:danger] = "Action restricted to EXECs or Project Team"
+        redirect_to request.referrer
+      end
     end
 end

@@ -19,6 +19,11 @@
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control' %>
 
+        <div class="field">
+          <%= f.label :introduction %>
+          <%= f.text_area :introduction, class: 'form-control', placeholder: "Tell the world about you...", rows: 5 %>
+        </div>
+
         <%= f.label :grade, "Class" %>
         <%= f.text_field :grade, class: 'form-control', placeholder: 'Freshman, Sophomore, etc.' %>
 

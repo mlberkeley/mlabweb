@@ -1,0 +1,8 @@
+<%= picture_of_project object %>
+<%= link_to object.name, object %>
+<% if object.members.include?(current_member) or officer_or_higher? %>
+  | <%= link_to "edit", edit_project_path(object) %>
+  <% if admin_or_exec? %>
+    | <%= link_to "delete", object, method: :delete, data: { confirm: "You sure?" } %>
+  <% end %>
+<% end %>

@@ -34,6 +34,10 @@ body, html{
   border-color: darken($mlab-blue, 10);
   background-color: $mlab-blue;
 }
+.turbolinks-progress-bar {
+  height: 10px;
+  background-color: $mlab-light;
+}
 
 /* typography */
 
@@ -636,7 +640,30 @@ ol.type li{
 	opacity: 1;
 }
 
+/* Portfolio PAGE */
+
+#project-show {
+  section {
+    display: block;
+    margin-bottom: 25px;
+  }
+  .owl-carousel {
+    text-align: center;
+    .thumbnail {
+      border: none;
+      margin-bottom: 0;
+      .caption { padding: 0; }
+      h3 {
+        font-weight: 400;
+        font-size: 15px;
+      }
+      p { font-size: 11px; }
+    }
+  }
+}
+
 /* Events PAGE */
+
 #events {
   text-align: center;
   .feature_fb_feed {

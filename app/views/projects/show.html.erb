@@ -5,13 +5,15 @@
       <%= content_tag(:h1, @project.name) %>
     </div>
     <%= content_tag(:p, @project.tag) %>
-    <% if logged_in? and admin_or_exec? %>
+    <% if logged_in? and officer_or_higher? %>
     <%= link_to "Edit", edit_project_path(@project), class: "btn btn-default" %>
+    <%= link_to "Add Members to Project", team_projects_path, class: "btn btn-default" %>
     <%= link_to "Delete", @project, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-default" %>
     <% end %>
 </header>
 
-<div class="project">
+<div id="project-show">
   <div class="space"></div>
   <%= render 'shared/project' %>
+  <%= link_to "<< Back to Portfolio", portfolio_path, class: "btn btn-default" %>
 </div>

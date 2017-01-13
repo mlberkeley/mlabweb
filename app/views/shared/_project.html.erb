@@ -1,3 +1,32 @@
-<pre><%= @project.description %></pre>
-<%= @project.picture? ? picture_of_project(@project) : content_tag(:p, "no project picture uploaded") %>
-<p>currently no documents uploaded for this project</p>
+<section>
+  <h4>About This Project</h4>
+  <pre><%= @project.description %></pre>
+</section>
+
+<section>
+  <h4>Project Members</h4>
+  <div class="owl-carousel">
+    <% @project.members.each do |member| %>
+      <div class="item">
+        <div class="thumbnail">
+          <%= link_to(picture_of(member), member) %>
+          <div class="caption">
+            <h3><%= member.name %></h3>
+            <p><%= member.position %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<section>
+  <%= @project.picture? ? picture_of_project(@project) : content_tag(:p, "no project picture uploaded") %>
+</section>
+
+<section>
+  <p>currently no documents uploaded for this project</p>
+</section>
+<script type="text/javascript">
+  $(".owl-carousel").owlCarousel();
+</script>

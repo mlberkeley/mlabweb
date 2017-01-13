@@ -1,5 +1,7 @@
 class Member < ApplicationRecord
   has_many :blogposts, dependent: :destroy
+  has_many :teams
+  has_many :projects, through: :teams
   attr_accessor :remember_token, :activation_token, :reset_token
   default_scope -> { order(:name) }
   mount_uploader :picture, PictureUploader

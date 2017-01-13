@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111093052) do
+ActiveRecord::Schema.define(version: 20170113111724) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
@@ -71,6 +71,18 @@ ActiveRecord::Schema.define(version: 20170111093052) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_subscribers_on_email", unique: true
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "project_id"
+    t.integer  "year"
+    t.string   "semester"
+    t.string   "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_teams_on_member_id"
+    t.index ["project_id"], name: "index_teams_on_project_id"
   end
 
 end

@@ -61,6 +61,6 @@ class MembersController < ApplicationController
 
     def correct_member
       @member = Member.find(params[:id])
-      redirect_to(root_url) unless (current_member?(@member) or admin_or_exec?)
+      redirect_to(root_url) unless (current_member?(@member) or officer_or_higher?)
     end
 end

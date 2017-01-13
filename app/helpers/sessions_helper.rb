@@ -40,6 +40,10 @@ module SessionsHelper
     current_member.admin? or current_member.exec?
   end
 
+  def officer_or_higher?
+    current_member.officer? or admin_or_exec?
+  end
+
   #Forgets the persistent session
   def forget(member)
     member.forget
