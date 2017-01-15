@@ -22,6 +22,7 @@ class PagesController < ApplicationController
     @blogposts = Blogpost.where("published = ?", true)
     @mlab_graph = get_mlab_graph
     @events = @mlab_graph.get_object("v2.8/1701763616733787/events").select { |hash| hash["start_time"] > Time.now.beginning_of_day }
+    @feed = @mlab_graph.get_connection('me', 'feed')
   end
 
   def legal

@@ -13,14 +13,14 @@ Member.create!(name: "David Lee",
                admin: true,
                activated: true,
                activated_at: Time.zone.now)
-# Member.create!(name: "Supreme President",
-#               email: "supres@ml.berkeley.edu",
-#               password: "foobar",
-#               password_confirmation: "foobar",
-#               position: "President",
-#               exec: true,
-#               activated: true,
-#               activated_at: Time.zone.now)
+Member.create!(name: "Supreme President",
+              email: "supres@ml.berkeley.edu",
+              password: "foobar",
+              password_confirmation: "foobar",
+              position: "President",
+              exec: true,
+              activated: true,
+              activated_at: Time.zone.now)
 
 6.times do
   Member.create!(name: Faker::Name.name,
@@ -41,7 +41,7 @@ end
 Blogpost.create!(title: "Hello World!",
                  content: 'One of the hottest and most exciting topics floating around these days is machine learning. People have created amazing things through machine learning, such as self-driving cars, mind-controlled prosthetics, and actual, readable dialogues in the style of Shakespeare. But just what is machine learning? Surely it’s something obscure and esoteric. Right? And surely the subject is so entangled in computer science and mathematics that it would make any reasonable student run the other way. Right?
 
-                 When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+                 When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
 That’s where Machine Learning at Berkeley comes in. ML@B is the first undergraduate machine learning club at UC Berkeley. We were founded with the goal of making machine learning accessible to everyone. We host tech talks, hold workshops, work on projects for companies, and conduct independent research projects. This semester, there are about 30 students working with businesses such as Intuit, SAP, and Github, and about 30 students working on research.
 

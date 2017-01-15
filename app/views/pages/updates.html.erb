@@ -31,6 +31,7 @@
   <div class="col-md-10 col-md-offset-1">
     <div class="upcoming">
       <h4>Upcoming Events</h4>
+      <hr>
       <% if @events.any? %>
         <% @events.each do |event| %>
           <p><%= event.to_s %></p><br>
@@ -42,8 +43,13 @@
 
     <div class="feature_fb_feed">
       <h4>Featured posts from our Facebook Feed</h4>
-      <% @mlab_graph.get_connection('me', 'feed').each do |feed_item| %>
-        <p><%= feed_item.to_s %></p><br>
+      <hr>
+      <% @feed.each do |feed_item| %>
+        <% if feed_item.key?("story") and !feed_item["story"].include?("event") %>
+          <h6><%= feed_item["created_time"][0..9] %></h6>
+          <h5><%= feed_item["story"] %></h5>
+          <p><%= simple_format(feed_item["message"]) %></p><br>
+        <% end %>
       <% end %>
     </div>
   </div>

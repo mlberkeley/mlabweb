@@ -40,11 +40,11 @@
 
   <div id="team2" class="row" style="display:block;">
     <div class="president item">
-      <h4>President</h4>
+      <h4>President</h4><hr>
       <%= render 'shared/member_info', object: @president.first if @president.any? %>
     </div>
     <div class="others">
-      <h4>Admins / Execs / Members</h4>
+      <h4>Admins / Execs / Members</h4><hr>
       <ul>
         <% @members.each do |member| %>
           <li class="item">
