@@ -2,15 +2,14 @@
   <span class="title"><%= blogpost.title %></span>
   <span class="member"><%= link_to blogpost.member.name, blogpost.member %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(blogpost.created_at) %> ago
+    <%= blogpost.created_at.to_formatted_s(:medium_ordinal) %> | <i class="fa fa-eye"> <%= blogpost.views %></i>
   </span>
   <% if logged_in? and (current_member?(blogpost.member) or admin_or_exec?) %>
     <%= link_to "edit", edit_blogpost_path(blogpost) %> |
     <%= link_to "delete", blogpost, method: :delete, data: { confirm: "You sure?" } %>
   <% end %>
   <span class="content">
-    <%= simple_format(blogpost.content) %>
-
-    <%= image_tag blogpost.picture.url if blogpost.picture? %>
+    <%= simple_format(truncate(blogpost.content, length: 1000, separator: ' ')) %>
   </span>
+  <span class="continue"><%= link_to "Continue Reading", blogpost %></span>
 </li>

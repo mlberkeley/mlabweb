@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   # Member routes
   get '/create', to: 'members#new'
   post '/create', to: 'members#create'
-  resources :members
+  resources :members do
+    member do
+      put 'join'
+      put 'leave'
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
 
@@ -32,7 +37,11 @@ Rails.application.routes.draw do
   # Project routes
   get '/newproject', to: 'projects#new'
   post '/newproject', to: 'projects#create'
-  resources :projects
+  resources :projects do
+    member do
+      get :members
+    end
+  end
 
   # Blogpost/Special routes
   resources :blogposts, only: [:show, :new, :create, :edit, :update, :destroy]

@@ -1,6 +1,6 @@
 class Member < ApplicationRecord
   has_many :blogposts, dependent: :destroy
-  has_many :teams
+  has_many :teams, dependent: :destroy
   has_many :projects, through: :teams
   attr_accessor :remember_token, :activation_token, :reset_token
   default_scope -> { order(:name) }
@@ -61,6 +61,20 @@ class Member < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # Joins a project team
+  def join(project)
+    projects << project
+  end
+
+  # Leaves a project team
+  def leave(project)
+    projects.delete(project)
+  end
+
+  def devoted?(project)
+    projects.include?(project)
   end
 
   private

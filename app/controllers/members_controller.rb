@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :logged_in_member, only: [:index, :edit, :update, :destroy]
-  before_action :correct_member, only: [:edit, :update]
+  before_action :correct_member, only: [:edit, :update, :join, :leave]
   before_action :exec_member, only: :destroy
 
   def index
@@ -49,6 +49,19 @@ class MembersController < ApplicationController
     Member.find(params[:id]).destroy
     flash[:success] = "Member deleted"
     redirect_to members_url
+  end
+
+  # AJAX methods for accessing model methods
+  def join
+    member = Member.find(params[:id])
+    project = Project.find(params[:p_id])
+    member.join(project)
+  end
+
+  def leave
+    member = Member.find(params[:id])
+    project = Project.find(params[:p_id])
+    member.leave(project)
   end
 
   private

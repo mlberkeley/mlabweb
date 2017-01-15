@@ -4,6 +4,7 @@ class BlogpostsController < ApplicationController
 
   def show
     @blogpost = Blogpost.find(params[:id])
+    @blogpost.update_attribute(:views, @blogpost.views.next)
   end
 
   def new

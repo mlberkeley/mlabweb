@@ -15,7 +15,7 @@
   <div class="space"></div>
 
   <span class="timestamp">
-    Posted <%= time_ago_in_words(@blogpost.created_at) %> ago
+    <%= @blogpost.created_at.to_formatted_s(:medium_ordinal) %> <i class="fa fa-eye pull-right"> <%= @blogpost.views %></i>
   </span>
   <span class="content">
     <%= @blogpost.content %>

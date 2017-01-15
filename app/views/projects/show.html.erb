@@ -7,7 +7,7 @@
     <%= content_tag(:p, @project.tag) %>
     <% if logged_in? and officer_or_higher? %>
     <%= link_to "Edit", edit_project_path(@project), class: "btn btn-default" %>
-    <%= link_to "Add Members to Project", team_projects_path, class: "btn btn-default" %>
+    <%= link_to "Add Members to Project", members_project_path(@project.id), class: "btn btn-default" %>
     <%= link_to "Delete", @project, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-default" %>
     <% end %>
 </header>

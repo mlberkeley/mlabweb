@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113111724) do
+ActiveRecord::Schema.define(version: 20170113193422) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170113111724) do
     t.datetime "updated_at",                   null: false
     t.string   "title",      default: "Title"
     t.string   "picture"
+    t.bigint   "views",      default: 0
     t.index ["member_id", "created_at"], name: "index_blogposts_on_member_id_and_created_at"
     t.index ["member_id"], name: "index_blogposts_on_member_id"
   end

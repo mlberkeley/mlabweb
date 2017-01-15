@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     token = graph.get_object("me/accounts")[1]['access_token']
     return Koala::Facebook::API.new(token)
   end
-  
+
   private
 
     # Before filters
@@ -22,17 +22,24 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def officer_member
+      unless officer_or_higher?
+        flash[:danger] = "Action restricted to OFFICER members"
+        redirect_to request.referrer || about_path
+      end
+    end
+
     def exec_member
-      unless (current_member.exec? or current_member.admin?)
+      unless admin_or_exec?
         flash[:danger] = "Action restricted to EXEC members"
-        redirect_to request.referrer
+        redirect_to request.referrer || about_path
       end
     end
 
     def admin_member
       unless current_member.admin?
         flash[:danger] = "You do not have permission to perform this action"
-        redirect_to about_path
+        redirect_to request.referrer || about_path
       end
     end
 end

@@ -1,0 +1,41 @@
+<% provide(:title, "Team #{@project.name}") %>
+
+<div class="col-md-10 col-md-offset-1">
+  <div class="space"></div>
+
+  <div id="join_or_leave" class="row">
+    <%= link_to "Done", @project, class: "btn btn-default" %>
+    <ul class="selector">
+      <% @members.each do |member| %>
+        <li id="<%= member.id %>" class="item <%= member.devoted?(@project) ? 'devoted' : '' %>">
+          <%= render 'shared/member_info', object: member %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+  $(window).on("turbolinks:load", function() {
+      $('.selector li').click(function() {
+          var m_id = $(this).attr('id');
+          if ( $(this).hasClass('devoted') ) {
+            $(this).removeClass('devoted')
+            $.ajax({
+              type: "PUT",
+              url: "/members/".concat(m_id, "/leave"),
+              data: {'p_id':<%= @project.id %>}
+            });
+          } else {
+            $(this).addClass('devoted')
+            $.ajax({
+              type: "PUT",
+              url: "/members/".concat(m_id, "/join"),
+              data: {'p_id':<%= @project.id %>}
+            });
+          }
+      });
+  });
+</script>

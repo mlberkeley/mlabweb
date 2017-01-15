@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :logged_in_member, only: [:index, :new, :create, :edit, :update, :destroy]
-  before_action :correct_member, only: [:edit, :update]
+  before_action :logged_in_member, only: [:index, :new, :create, :edit, :update, :destroy, :members]
+  before_action :correct_member, only: [:edit, :update, :members]
   before_action :exec_member, only: [:new, :create, :destroy]
 
   def new
@@ -49,6 +49,12 @@ class ProjectsController < ApplicationController
     @research = Project.where(tag: 'research')
   end
 
+  def members
+    @project = Project.find(params[:id])
+    @members = Member.all
+    render 'team'
+  end
+
   private
 
     def project_params
@@ -56,7 +62,6 @@ class ProjectsController < ApplicationController
     end
 
     def correct_member
-
       unless (officer_or_higher? or current_member.project_ids.include?(params[:id]))
         flash[:danger] = "Action restricted to EXECs or Project Team"
         redirect_to request.referrer
