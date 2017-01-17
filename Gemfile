@@ -25,6 +25,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'koala'
 
+gem 'unicorn'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
