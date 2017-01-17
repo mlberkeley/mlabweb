@@ -2,6 +2,40 @@
 
 <p><%= @mlab_graph.get_object("me").to_s %></p>
 
-<% @events.each do |event| %>
-  <p><%= event.to_s %></p><br>
+<% if @current %>
+  <pre>Here at "<%= @current.name %>": <br><br>
+    <% @current.members.each do |member| %>
+      <%= member.name %><br>
+    <% end %>
+  </pre>
 <% end %>
+
+<div class="event_list">
+  <% @events.each do |event| %>
+    <hr>
+    <p><%= event.to_s %></p>
+    <%= link_to "#{ (@current and event["name"].eql?(@current.name)) ? "Finish Roll-Call" : "Take Attendance" }", '#', class: "btn btn-default", id: "#{event["id"]}" %>
+  <% end %>
+</div>
+
+
+<script type="text/javascript">
+  $(window).on("turbolinks:load", function() {
+      $('.event_list a').click(function() {
+          var id = $(this).attr('id');
+          if ( $(this).html()==="Take Attendance" ) {
+            $.ajax({
+              type: "PUT",
+              url: "events/call_roll",
+              data: {'e_id':id}
+            });
+          } else {
+            $.ajax({
+              type: "PUT",
+              url: "events/finish",
+              data: {'e_id':id}
+            });
+          }
+      });
+  });
+</script>

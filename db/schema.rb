@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113193422) do
+ActiveRecord::Schema.define(version: 20170116231714) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
@@ -23,6 +23,22 @@ ActiveRecord::Schema.define(version: 20170113193422) do
     t.bigint   "views",      default: 0
     t.index ["member_id", "created_at"], name: "index_blogposts_on_member_id_and_created_at"
     t.index ["member_id"], name: "index_blogposts_on_member_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "live",       default: false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "events_members", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "member_id"
+    t.index ["event_id"], name: "index_events_members_on_event_id"
+    t.index ["member_id"], name: "index_events_members_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|

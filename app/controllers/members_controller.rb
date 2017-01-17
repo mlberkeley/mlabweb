@@ -11,6 +11,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     @blogposts = @member.blogposts.paginate(page: params[:page], per_page: 5)
     redirect_to root_url and return unless @member.activated?
+    @event = Event.where(live: true).first
   end
 
   def new
@@ -62,6 +63,12 @@ class MembersController < ApplicationController
     member = Member.find(params[:id])
     project = Project.find(params[:p_id])
     member.leave(project)
+  end
+
+  def attend
+    member = Member.find(params[:id])
+    event = Event.where(live: true).first
+    member.attend(event)
   end
 
   private

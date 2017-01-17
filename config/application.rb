@@ -19,6 +19,9 @@ module Webdraft
       end if File.exists?(env_file)
     end
 
+    # Include the authenticity token in remote forms.
+    config.action_view.embed_authenticity_token_in_remote_forms = true
+
     Koala.config.api_version = Rails.application.secrets.fb_api_version
   end
 end

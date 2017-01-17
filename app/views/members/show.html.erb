@@ -8,10 +8,13 @@
     <% if logged_in? %>
     <section class="buttons">
       <% if admin_or_exec? and !current_member?(@member) %>
-      <%= link_to "Edit Member", edit_member_path(@member), class: "btn btn-default" %>
+      <%= link_to "Edit Member", edit_member_path(@member), class: "btn btn-default" %><br>
       <% end %>
       <% if current_member?(@member) %>
       <%= link_to "Write a Post", new_blogpost_path, class: "btn btn-default" %>
+        <% if @event and !@member.events.include?(@event) %>
+        <br><%= link_to "Check-in to #{@event.name}", "#", class: "btn btn-default check-in" %>
+        <% end %>
       <% end %>
     </section>
     <% end %>
@@ -28,3 +31,15 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(window).on("turbolinks:load", function() {
+      $('.check-in').click(function() {
+          var m_id = <%= params[:id] %>;
+          $.ajax({
+            type: "PUT",
+            url: "/members/".concat(m_id, "/attend")
+          });
+      });
+  });
+</script>

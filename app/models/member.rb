@@ -2,6 +2,7 @@ class Member < ApplicationRecord
   has_many :blogposts, dependent: :destroy
   has_many :teams, dependent: :destroy
   has_many :projects, through: :teams
+  has_and_belongs_to_many :events, -> { distinct }
   attr_accessor :remember_token, :activation_token, :reset_token
   default_scope -> { order(:name) }
   mount_uploader :picture, PictureUploader
@@ -75,6 +76,11 @@ class Member < ApplicationRecord
 
   def devoted?(project)
     projects.include?(project)
+  end
+
+  # Attends an event
+  def attend(event)
+    events << event
   end
 
   private

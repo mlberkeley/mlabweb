@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       put 'join'
       put 'leave'
+      put 'attend'
     end
   end
   resources :account_activations, only: [:edit]
@@ -49,5 +50,10 @@ Rails.application.routes.draw do
 
   # Event routes
   get '/past', to: 'events#past'
-  resources :events, only: :index
+  resources :events, only: :index do
+    collection do
+      put 'call_roll'
+      put 'finish'
+    end
+  end
 end

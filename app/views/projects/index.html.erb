@@ -2,22 +2,34 @@
 
 <header class="secondary_header">
     <div class="page_title">
-      <%= content_tag(:h1, 'All Projects') %>
+      <%= content_tag(:h1, 'All Projects (A-Z)') %>
     </div>
+
+    <% if admin_or_exec? %>
+      <%= link_to "Initiate a new Project", newproject_path, class: "btn btn-default" %>
+    <% end %>
 </header>
 
 <div class="row">
   <div class="space"><div>
-  <ul class="members">
-    <% @members.each do |member| %>
-      <li>
-        <%= picture_of member %>
-        <%= link_to member.name, member %>
-        <% if admin_or_exec? && !current_member?(member) %>
-          | <%= link_to "edit", edit_member_path(member) %>
-          | <%= link_to "delete", member, method: :delete, data: { confirm: "You sure?" } %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="col-md-6">
+    <h2>Industry</h2>
+    <ul class="index-list">
+      <% @industry.each do |project| %>
+        <li>
+          <%= render 'shared/project_info', object: project %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h2>Research</h2>
+    <ul class="index-list">
+      <% @research.each do |project| %>
+        <li>
+          <%= render 'shared/project_info', object: project %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
