@@ -1,24 +1,47 @@
-# README
+# ML@B Web Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ML@B's server-side web application logic in Ruby, around the framework Rails, managing the interchange of data between the server and the ML@B members through back-end components and connections to APIs and web services, also fully integrated to front-end elements.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+If you as a member of ML@B would like to contribute, these instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+You'll want to use rvm so that you can easily install and manage dependencies and versions. [(RVM one-liner)](https://rvm.io):
 
-* Database creation
+```
+$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+$ \curl -sSL https://get.rvm.io | bash -s stable
+```
 
-* Database initialization
+Run it, source rvm, and install and use the version of Ruby you want (at the time of writing this, the last commit was in 2.3.3p222).
 
-* How to run the test suite
+Install Ruby on Rails('~> 5.0.0', '>= 5.0.0.1' atm).
 
-* Services (job queues, cache servers, search engines, etc.)
+### Clone/Fork
 
-* Deployment instructions
+To get a development env running,
 
-* ...
+```
+$ bundle install
+$ rails db:migrate
+$ rails db:seed
+$ rails s
+```
+
+For developing and testing member account functionalities, login at localhost:3000/login with
+
+'''
+login: admin@ml.berkeley.edu
+password: foobar
+'''
+
+Some pages may not load properly due to dependencies on secret keys (e.g. Facebook), so you'll have to ask me for the keys and set them as local environments in your system.
+
+## Running the tests
+
+'''
+$ rails t
+'''
+You should not encounter any errors.
