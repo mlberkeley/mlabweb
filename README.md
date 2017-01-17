@@ -32,16 +32,16 @@ $ rails s
 
 For developing and testing member account functionalities, login at localhost:3000/login with
 
-'''
+```
 login: admin@ml.berkeley.edu
 password: foobar
-'''
+```
 
 Some pages may not load properly due to dependencies on secret keys (e.g. Facebook), so you'll have to ask me for the keys and set them as local environments in your system.
 
 ## Running the tests
 
-'''
+```
 $ rails t
-'''
+```
 You should not encounter any errors.
