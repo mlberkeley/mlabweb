@@ -24,3 +24,4 @@
 
 # Ignore sesitive info
 /config/local_env.yml
+/config/application.yml

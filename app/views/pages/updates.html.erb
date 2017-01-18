@@ -33,8 +33,13 @@
       <h4>Upcoming Events</h4>
       <hr>
       <% if @events.any? %>
-        <% @events.each do |event| %>
-          <p><%= event.to_s %></p><br>
+        <% @events.reverse_each do |event| %>
+          <h5><%= event["name"] %></h5>
+          <h6>When: <%= event["start_time"][0..9] %></h6>
+          <% if p = event["place"] %>
+            <h6>Where: <%= p["name"] + ", " + p["location"]["street"] %></h6>
+          <% end %>
+          <p><%= simple_format(event["description"]) %></p><br>
         <% end %>
       <% else %>
         <p>None scheduled, see you next semester!</p>

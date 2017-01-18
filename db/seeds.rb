@@ -5,10 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Member.create!(name: "David Lee",
-               email: "djlee@ml.berkeley.edu",
-               password: "lsj0918",
-               password_confirmation: "lsj0918",
+Member.create!(name: "ML Admin",
+               email: "admin@ml.berkeley.edu",
+               password: "foobar",
+               password_confirmation: "foobar",
                introduction: Faker::Lorem.paragraph(10),
                admin: true,
                activated: true,
@@ -32,12 +32,6 @@ Member.create!(name: "Supreme President",
                  activated_at: Time.zone.now)
 end
 
-# members = Member.order(:created_at).take(3)
-# 25.times do
-#   content = Faker::Lorem.paragraph(20, true)
-#   members.each { |member| member.blogposts.create!(content: content) }
-# end
-
 Blogpost.create!(title: "Hello World!",
                  content: 'One of the hottest and most exciting topics floating around these days is machine learning. People have created amazing things through machine learning, such as self-driving cars, mind-controlled prosthetics, and actual, readable dialogues in the style of Shakespeare. But just what is machine learning? Surely it’s something obscure and esoteric. Right? And surely the subject is so entangled in computer science and mathematics that it would make any reasonable student run the other way. Right?
 
@@ -50,9 +44,6 @@ As for this blog, this is the place where we’ll be letting the world know abou
 So, definitely keep an eye on this blog if you’re interested in machine learning. And even if you’re not sure about it, you should check in periodically. We might be able to change your mind!',
                   member_id: 1,
                   published: true)
-
-# Project.create(name: "Open Brain", tag: "Research", description: "In this project, we introduce a new framework and philosophy for recurrent neurocomputation. By requiring that all neurons act asynchrynously and independently, we introduce a new metric for evaluating the universal intelligence of continuous time agents. We proved representation and universal approximation results in this context which lead to a set of learning rules in the spirit of John Conway's game of life. Finally evaluate this framework against different intelligent agent algorithms by implementing an approximate universal intelligence measure for agents embedded in turing computable environments in Minecraft, BF, and a variety of other reference machines.")
-# Project.create(name: "Grand Rounds", tag: "industry", description: "Working with medicare data, our team was tasked to explore and discover anomalies and trends in the data. In particular, we were charged with figuring out the best way to featurize patients and physicians to then better match the two. For example, a patient with a certain illness should be matched with a physician who has great experience diagnosis this illness and performing the correct procedures for that patient. With our team of about 10, we were able to do first order statistics and generate primitive cost and patient models with the data.")
 
 4.times do
   Project.create(name: "Some Project", tag: "research", description: "#{Faker::Lorem.paragraph(20)}", current: true)

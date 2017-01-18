@@ -24,6 +24,7 @@ gem 'bootstrap-will_paginate'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'koala'
+gem 'figaro'
 
 gem 'unicorn'
 
