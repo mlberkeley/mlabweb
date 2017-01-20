@@ -1,5 +1,4 @@
 class Project < ApplicationRecord
-  has_and_belongs_to_many :members
   has_many :teams, dependent: :destroy
   has_many :members, through: :teams
   before_save { tag.downcase! }
