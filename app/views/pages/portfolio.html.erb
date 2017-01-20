@@ -25,13 +25,13 @@
       <div class="portfolio-item">
         <div class="hover-bg">
           <a href="projects/<%= project.id %>">
+            <%= picture_of_project(project, class: "img-responsive") %>
             <div class="hover-text">
               <h4><%= project.name %></h4>
               <small><%= project.tag %></small>
               <div class="clearfix"></div>
               <i class="fa fa-plus"></i>
             </div>
-            <%= picture_of_project(project, class: "img-responsive") %>
           </a>
         </div>
       </div>

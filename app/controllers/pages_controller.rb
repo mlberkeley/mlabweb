@@ -6,7 +6,9 @@ class PagesController < ApplicationController
 
   def about
     @president = Member.where("position = ?", "President")
-    @members = Member.where("position != ?", "President")
+    @execs = Member.where(["exec = ? and position != ?", true, "President"])
+    @officers = Member.where(officer: true)
+    @members = Member.where(exec: false, officer: false)
     @aboutmlab = Special.where(title: "About ML@B")
     @nmos = Special.where(tag: "nmo")
   end

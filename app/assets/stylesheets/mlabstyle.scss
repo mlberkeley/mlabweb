@@ -597,6 +597,12 @@ ol.type li{
   	height: 220px;
   	overflow: hidden;
   	position: relative;
+    .img-responsive {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 

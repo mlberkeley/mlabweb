@@ -43,8 +43,22 @@
       <h4>President</h4><hr>
       <%= render 'shared/member_info', object: @president.first if @president.any? %>
     </div>
+
     <div class="others">
-      <h4>Admins / Execs / Members</h4><hr>
+      <h4>Execs / Officers</h4><hr>
+      <ul>
+        <% @execs.each do |member| %>
+          <li class="item">
+            <%= render 'shared/member_info', object: member %>
+          </li>
+        <% end %>
+        <% @officers.each do |member| %>
+          <li class="item">
+            <%= render 'shared/member_info', object: member %>
+          </li>
+        <% end %>
+      </ul>
+      <h4>Members</h4><hr>
       <ul>
         <% @members.each do |member| %>
           <li class="item">
