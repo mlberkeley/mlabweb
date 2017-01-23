@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get '/portfolio', to: 'pages#portfolio'
   get '/connections', to: 'pages#connections'
   get '/updates', to: 'pages#updates'
-  get '/legal', to: 'pages#legal'
 
   # Member routes
   get '/create', to: 'members#new'

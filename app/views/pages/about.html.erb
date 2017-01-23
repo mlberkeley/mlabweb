@@ -2,20 +2,18 @@
 
 <header class="secondary_header">
     <div class="page_title">
-      <%= content_tag(:h1, 'Team', id: 'dynamic_title') %>
+      <%= content_tag(:h1, 'About ML@B', id: 'dynamic_title') %>
     </div>
 
     <div class="snav">
       <ul class="snav-links">
         <li filter= "legacy" class="track">Advisors</li>
         <li> / </li>
-        <li filter= "about_mlab" class="track">About ML@B</li>
+        <li filter= "about_mlab" class="track active">About ML@B</li>
         <li> / </li>
-        <li filter= "team2" class="track active">Team</li>
+        <li filter= "team2" class="track">Team</li>
         <li> / </li>
         <li filter= "nmo" class="track">New Member Opportunities</li>
-        <li> / </li>
-        <li><%= link_to "Legal", legal_path %></li>
       </ul>
     </div>
 </header>
@@ -26,32 +24,57 @@
   <div id="legacy" class="row" style="display:none;">
     <h4>Notes from ML@B's former Presidents:</h4>
     <h3>Ted Xiao</h3>
-    <pre>Something inspiring...</pre>
+    <pre>A bit more than a year ago, I started Machine Learning at Berkeley.
+At the time, I had no idea that a random idea I pitched to my good friend Gautham would become what it is today: an established 50+ member community that is at the forefront of the machine learning community at UC Berkeley.
+
+Machine learning as a field is extremeley exciting  to me not just because of the mind-boggling problems we tackle or even the diverse array of methods we employ; machine learning is exciting because of the intense, passionate, crazy smart people we meet along this journey. I'm very happy to have started a movement that has brought together a community of such like-minded individuals at Berkeley.
+
+Regardless of your background, I welcome you to join Machine Learning at Berkeley along our quest to delve deeper into the beautiful field of machine learning.</pre>
     <h3>Gautham K</h3>
     <pre>Something inspiring...</pre>
   </div>
 
-  <div id="about_mlab" class="row" style="display:none;">
+  <div id="about_mlab" class="row" style="display:block;">
     <p><%= simple_format(@aboutmlab[0].content) %></p>
     <% if logged_in? %>
-    <%= link_to "Somebody EDIT this so this can be the landing view of the 'Us' page, not the team members", edit_special_path(@aboutmlab[0]), class: "btn btn-default" %>
+    <%= link_to "Edit This Intro", edit_special_path(@aboutmlab[0]), class: "btn btn-default" %>
     <% end %>
+
+    <div id="m-clients" class="text-center">
+      <div class="overlay">
+        <div class="container">
+          <h2><strong>Companies</strong> we work with</h2>
+          <div id="clients" class="owl-carousel owl-theme">
+            <% (1..14).each_slice(2) do |i, j| %>
+              <div class="item">
+                <%= image_tag("companies/#{i}.png") %>
+                <%= image_tag("companies/#{j}.png") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div id="team2" class="row" style="display:block;">
+  <div id="team2" class="row" style="display:none;">
     <div class="president item">
       <h4>President</h4><hr>
       <%= render 'shared/member_info', object: @president.first if @president.any? %>
     </div>
 
     <div class="others">
-      <h4>Execs / Officers</h4><hr>
+      <h4>Execs</h4><hr>
       <ul>
         <% @execs.each do |member| %>
           <li class="item">
             <%= render 'shared/member_info', object: member %>
           </li>
         <% end %>
+      </ul>
+      <h4>Officers</h4><hr>
+      <ul>
         <% @officers.each do |member| %>
           <li class="item">
             <%= render 'shared/member_info', object: member %>
@@ -91,5 +114,23 @@
           document.getElementById(show).style.display="block";
           document.getElementById('dynamic_title').innerHTML=title;
       });
+
+      $("#clients").owlCarousel({
+
+  	      navigation : false, // Show next and prev buttons
+  	      slideSpeed : 300,
+  	      paginationSpeed : 400,
+  	      autoHeight : true,
+  	      itemsCustom : [
+				        [0, 1],
+				        [450, 2],
+				        [600, 2],
+				        [700, 2],
+				        [1000, 4],
+				        [1200, 5],
+				        [1400, 5],
+				        [1600, 5]
+				      ],
+  	  });
   });
 </script>

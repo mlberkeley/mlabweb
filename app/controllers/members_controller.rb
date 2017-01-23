@@ -4,7 +4,7 @@ class MembersController < ApplicationController
   before_action :exec_member, only: :destroy
 
   def index
-    @members = Member.where(activated: true).all
+    @members = Member.all
   end
 
   def show

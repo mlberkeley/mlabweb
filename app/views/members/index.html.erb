@@ -17,6 +17,9 @@
           | <%= link_to "edit", edit_member_path(member) %>
           | <%= link_to "delete", member, method: :delete, data: { confirm: "You sure?" } %>
         <% end %>
+        <% if !member.activated? %>
+         *ACCOUNT HAS NOT BEEN ACTIVATED*
+        <% end %>
       </li>
     <% end %>
   </ul>

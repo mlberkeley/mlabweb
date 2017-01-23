@@ -294,6 +294,11 @@ a.fa.fa-angle-down {
 /* Announcement Section */
 
 #m-announcement {
+    // background: url( asset-path('announcement.png') );
+    // background-size: cover;
+  	// background-position: center;
+  	// background-attachment: fixed;
+  	// background-repeat: no-repeat;
     background-color: #5084bb;
     padding: 5% 0;
     color: #ffffff;
@@ -509,6 +514,10 @@ img.img-circle.team-img {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #ffffff;
+  width: 100vw;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  margin-left: calc(-50vw + 50%);
   .overlay{
   	background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
   	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.8)), color-stop(17%,rgba(0,0,0,0.73)), color-stop(35%,rgba(0,0,0,0.66)), color-stop(62%,rgba(0,0,0,0.55)), color-stop(100%,rgba(0,0,0,0.4))); /* Chrome,Safari4+ */
@@ -522,11 +531,19 @@ img.img-circle.team-img {
   }
 }
 
-#clients .item{
+#clients {
+  margin: 20px 0;
+  .item{
     padding: 0;
     margin: 35px;
     color: #FFF;
     text-align: center;
+    img {
+      display: block;
+      width: 180px;
+      padding: 50px 0;
+    }
+  }
 }
 
 /* Portfolio Section */

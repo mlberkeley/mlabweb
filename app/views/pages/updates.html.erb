@@ -2,12 +2,14 @@
 
 <header class="secondary_header">
     <div class="page_title">
-      <%= content_tag(:h1, 'Blog', id: 'dynamic_title') %>
+      <%= content_tag(:h1, 'Member Updates', id: 'dynamic_title') %>
     </div>
 
     <div class="snav">
       <ul class="snav-links">
-        <li filter="blog" class="track active">Blog</li>
+        <li><a href="https://ml.berkeley.edu/blog" target="_blank">Blog</a></li>
+        <li> / </li>
+        <li filter="updt" class="track active">Member Updates</li>
         <li> / </li>
         <li filter="events" class="track">Events</li>
         <li> / </li>
@@ -18,7 +20,7 @@
     </div>
 </header>
 
-<div id="blog" class="row" style="display:block;">
+<div id="updt" class="row" style="display:block;">
   <div class="col-md-10 col-md-offset-1">
     <ol class="blogposts">
       <%= render @blogposts, object: yield(:title) %>
