@@ -45,10 +45,10 @@ Regardless of your background, I welcome you to join Machine Learning at Berkele
         <div class="container">
           <h2><strong>Companies</strong> we work with</h2>
           <div id="clients" class="owl-carousel owl-theme">
-            <% (1..14).each_slice(2) do |i, j| %>
+            <% (1..17).each_slice(2) do |i, j| %>
               <div class="item">
                 <%= image_tag("companies/#{i}.png") %>
-                <%= image_tag("companies/#{j}.png") %>
+                <%= image_tag("companies/#{j}.png") if j %>
               </div>
             <% end %>
           </div>
