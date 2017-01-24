@@ -6,7 +6,10 @@
   <%= object.email.reverse %>
 </h5>
 <p>
-  <%= object.grade %> | <%= object.major %>
+  <% if !yield(:title).eql?("About") %>
+  <%= object.grade %> |
+  <% end %>
+  <%= object.major %>
 </p>
 <p>
   <%= object.position %>
