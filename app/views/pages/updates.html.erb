@@ -2,7 +2,7 @@
 
 <header class="secondary_header">
     <div class="page_title">
-      <%= content_tag(:h1, 'Member Updates', id: 'dynamic_title') %>
+      <%= content_tag(:h1, 'Events', id: 'dynamic_title') %>
     </div>
 
     <div class="snav">
@@ -20,7 +20,7 @@
     </div>
 </header>
 
-<div id="updt" class="row" style="display:block;">
+<div id="updt" class="row" style="display:none;">
   <div class="col-md-10 col-md-offset-1">
     <ol class="blogposts">
       <%= render @blogposts, object: yield(:title) %>
@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<div id="events" class="row" style="display:none;">
+<div id="events" class="row" style="display:block;">
   <div class="space"></div>
   <div class="col-md-10 col-md-offset-1">
     <div class="upcoming">
