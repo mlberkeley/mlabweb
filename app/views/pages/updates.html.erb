@@ -41,6 +41,7 @@
           <% if p = event["place"] %>
             <h6>Where: <%= p["name"] + ", " + p["location"]["street"] %></h6>
           <% end %>
+          <%= image_tag(event["picture"], class: "") %>
           <p><%= simple_format(event["description"]) %></p><br>
         <% end %>
       <% else %>
@@ -55,6 +56,7 @@
         <% if feed_item.key?("story") and !feed_item["story"].include?("event") %>
           <h6><%= feed_item["created_time"][0..9] %></h6>
           <h5><%= feed_item["story"] %></h5>
+          <%= image_tag(feed_item["picture"], class: "") %>
           <p><%= simple_format(feed_item["message"]) %></p><br>
         <% end %>
       <% end %>
