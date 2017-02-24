@@ -41,8 +41,10 @@
           <% if p = event["place"] %>
             <h6>Where: <%= p["name"] + ", " + p["location"]["street"] %></h6>
           <% end %>
-          <%= image_tag(event["picture"], class: "") %>
-          <p><%= simple_format(event["description"]) %></p><br>
+          <h6>Live Counter: <strong><%= event["attending_count"] %></strong> going | <strong><%= event["interested_count"] + event["maybe_count"] %></strong> interested</h6>
+          <%= image_tag(event["cover"]["source"], class: "") if event["cover"]["source"] %>
+          <p><%= simple_format(event["description"]) %></p>
+          <%= link_to "See on Facebook >", "https://www.facebook.com/events/#{event["id"]}", target: "_blank" %><br>
         <% end %>
       <% else %>
         <p>None scheduled, see you next semester!</p>
@@ -56,8 +58,9 @@
         <% if feed_item.key?("story") and !feed_item["story"].include?("event") %>
           <h6><%= feed_item["created_time"][0..9] %></h6>
           <h5><%= feed_item["story"] %></h5>
-          <%= image_tag(feed_item["picture"], class: "") %>
-          <p><%= simple_format(feed_item["message"]) %></p><br>
+          <%= image_tag(feed_item["full_picture"], class: "") if feed_item["full_picture"] %>
+          <p><%= simple_format(feed_item["message"]) %></p>
+          <%= link_to "See on Facebook >", feed_item["link"], target: "_blank" %><br><br>
         <% end %>
       <% end %>
     </div>
