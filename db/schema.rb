@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116231714) do
+ActiveRecord::Schema.define(version: 20170225063944) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
@@ -27,11 +27,14 @@ ActiveRecord::Schema.define(version: 20170116231714) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "live",       default: false
+    t.boolean  "live",        default: false
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "description"
+    t.string   "place"
+    t.datetime "when"
   end
 
   create_table "events_members", force: :cascade do |t|

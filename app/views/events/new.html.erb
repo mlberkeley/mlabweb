@@ -1,0 +1,37 @@
+<% provide(:title, 'Create Event') %>
+
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'New Event') %>
+    </div>
+</header>
+
+<div class="row">
+  <div class="space"></div>
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for(@event, url: newevent_path, html: { multipart: true }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :place %>
+      <%= f.text_field :place, class: 'form-control', placeholder: "e.g. HP Auditorium" %>
+
+      <%= f.label :when, "Date / When" %>
+      <%= f.text_field :when, class: 'form-control', placeholder: "e.g. Mar 31, 1999" %>
+
+      <%= f.label :live, class: "checkbox inline" do %>
+        <%= f.check_box :live %>
+        <span>Currently live for taking attendance?</span>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-control', placeholder: "(may be left blank for later edit)", rows: 10 %>
+      </div>
+
+      <%= f.submit "Create", class: "btn btn-mlab" %>
+    <% end %>
+  </div>
+</div>

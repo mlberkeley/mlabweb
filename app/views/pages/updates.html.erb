@@ -47,7 +47,23 @@
           <%= link_to "See on Facebook >", "https://www.facebook.com/events/#{event["id"]}", target: "_blank" %><br>
         <% end %>
       <% else %>
-        <p>None scheduled, see you next semester!</p>
+        <p>None scheduled, check back later!</p>
+      <% end %>
+    </div>
+
+    <div class="recent">
+      <% if @recent %>
+      <h4>Recent Events</h4>
+      <hr>
+          <h5><%= @recent["name"] %></h5>
+          <h6>When: <%= @recent["start_time"][0..9] %></h6>
+          <% if p = @recent["place"] %>
+            <h6>Where: <%= p["name"] + ", " + p["location"]["street"] %></h6>
+          <% end %>
+          <h6><strong><%= @recent["attending_count"] %></strong> people came</h6>
+          <%= image_tag(@recent["cover"]["source"], class: "") if @recent["cover"]["source"] %>
+          <p><%= simple_format(@recent["description"]) %></p>
+          <%= link_to "See on Facebook >", "https://www.facebook.com/events/#{@recent["id"]}", target: "_blank" %><br>
       <% end %>
     </div>
 

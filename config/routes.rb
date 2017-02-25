@@ -49,10 +49,14 @@ Rails.application.routes.draw do
 
   # Event routes
   get '/past', to: 'events#past'
-  resources :events, only: :index do
+  get '/attendance', to: 'events#attendance'
+  get '/newevent', to: 'events#new'
+  post '/newevent', to: 'events#create'
+  resources :events do
     collection do
       put 'call_roll'
       put 'finish'
+      put 'make_event'
     end
   end
 end

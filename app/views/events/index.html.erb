@@ -1,6 +1,16 @@
-<% provide(:title, "Upcoming Events") %>
+<% provide(:title, "All Events") %>
 
-<p><%= @mlab_graph.get_object("me").to_s %></p>
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'All Events') %>
+    </div>
+
+    <% if admin_or_exec? %>
+      <%= link_to "Create a new Event", newevent_path, class: "btn btn-default" %>
+    <% end %>
+</header>
+
+<!-- <p><%= @mlab_graph.get_object("me").to_s %></p> -->
 
 <% if @current %>
   <pre>Here at "<%= @current.name %>": <br><br>
@@ -10,12 +20,38 @@
   </pre>
 <% end %>
 
-<div class="event_list">
-  <% @events.each do |event| %>
-    <hr>
-    <p><%= event.to_s %></p>
-    <%= link_to "#{ (@current and event["name"].eql?(@current.name)) ? "Finish Roll-Call" : "Take Attendance" }", '#', class: "btn btn-default", id: "#{event["id"]}" %>
-  <% end %>
+<div class="row event_list center">
+  <div class="space"></div>
+
+  <div class="col-md-4">
+    <h2>Upcoming From FB</h2>
+    <% if @fb_events %>
+      <% @fb_events.each do |event| %>
+        <hr>
+        <p><%= event.to_s %></p>
+        <%= link_to "Make Event", '#', class: "btn btn-default", id: "#{event["id"]}" if event["start_time"] > Time.now.beginning_of_day and true %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="col-md-8">
+    <h2>Saved Events</h2>
+    <% if @saved_events %>
+      <% @saved_events.each do |event| %>
+        <hr>
+        <h5><%= event.name %></h5>
+        <h6><%= event.when.to_formatted_s(:medium_ordinal) %></h6>
+        <p><%= event.to_s %></p>
+        <% if event.when > Time.now.beginning_of_day %>
+          <%= link_to "#{ (@current.eql?(event)) ? "Finish Roll-Call" : "Take Attendance" }", '#', class: "btn btn-mlab", id: "#{event.id}" %>
+          <%= link_to "Details", event, class: "btn btn-default" if !event.members.empty? %>
+        <% else %>
+          <%= link_to "Details", event, class: "btn btn-default" %>
+        <% end %>
+        <%= link_to "Delete", event, class: "btn btn-mlab-danger", method: :delete, data: { confirm: "You sure?" } if admin_or_exec? %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 
@@ -23,16 +59,25 @@
   $(window).on("turbolinks:load", function() {
       $('.event_list a').click(function() {
           var id = $(this).attr('id');
+          var option = $(this).html();
           if ( $(this).html()==="Take Attendance" ) {
             $.ajax({
               type: "PUT",
               url: "events/call_roll",
               data: {'e_id':id}
             });
-          } else {
+          }
+          if ( $(this).html()==="Finish Roll-Call" ) {
             $.ajax({
               type: "PUT",
               url: "events/finish",
+              data: {'e_id':id}
+            });
+          }
+          if ( $(this).html()==="Make Event" ) {
+            $.ajax({
+              type: "PUT",
+              url: "events/make_event",
               data: {'e_id':id}
             });
           }

@@ -11,6 +11,7 @@ $mlab-light: #F5F5F5;
 $gray-medium-light: #eaeaea;
 $grayish-light-blue: #ADC2D2;
 $mlab-blue: #5084BB;
+$mlab-red: #9E4A46;
 $mlab-text: #5a5a5a;
 $mlab-dark-text: #333333;
 
@@ -33,6 +34,11 @@ body, html{
   color: white;
   border-color: darken($mlab-blue, 10);
   background-color: $mlab-blue;
+}
+.btn-mlab-danger {
+  color: white;
+  border-color: darken($mlab-red, 10);
+  background-color: $mlab-red;
 }
 .turbolinks-progress-bar {
   height: 7px;
@@ -719,10 +725,27 @@ ol.type li{
 
 #events {
   text-align: center;
-  .feature_fb_feed {
+  .feature_fb_feed, .recent {
     margin-top: 50px;
   }
 }
+
+/* Events Controller */
+
+.attendance_list {
+  ul {
+    li {
+      margin-left: 50px;
+    }
+  }
+  .attended {
+    color: $mlab-blue;
+  }
+  .missed {
+    color: $mlab-red;
+  }
+}
+
 
 /* Maybe a quotes section for future use */
 

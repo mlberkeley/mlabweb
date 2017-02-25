@@ -1,0 +1,20 @@
+<% provide(:title, @event.name) %>
+
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, @event.name) %>
+    </div>
+    <%= content_tag(:p, @event.when.to_formatted_s(:medium_ordinal)) %>
+    <% if logged_in? and officer_or_higher? %>
+    <!-- <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default" %> -->
+    <%= link_to "Delete", @event, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-default" %>
+    <% end %>
+</header>
+
+<div class="space">
+  <% @event.members.each do |m| %>
+    <p><%= m.name %></p>
+  <% end %>
+  <%= link_to "<< Back", events_path, class: "btn btn-default" %>
+
+</div>

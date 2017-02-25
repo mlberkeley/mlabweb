@@ -27,7 +27,6 @@ Member.create!(name: "Supreme President",
                  email: Faker::Lorem.word + "@ml.berkeley.edu",
                  password: "foobar",
                  password_confirmation: "foobar",
-                 officer: true,
                  activated: true,
                  activated_at: Time.zone.now)
 end
