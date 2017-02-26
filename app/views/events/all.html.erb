@@ -59,9 +59,6 @@
         <p><%= event.to_s %></p>
         <% if event.start > Time.now.beginning_of_day %>
           <%= link_to "#{ (@current.eql?(event)) ? "Finish Roll-Call" : "Take Attendance" }", '#', class: "btn btn-mlab", id: "#{event.id}" %>
-          <%= link_to "Details", event, class: "btn btn-default" if !event.members.empty? %>
-        <% else %>
-          <%= link_to "Details", event, class: "btn btn-default" %>
         <% end %>
         <%= link_to "Delete", event, class: "btn btn-mlab-danger", method: :delete, data: { confirm: "You sure?" } if admin_or_exec? %>
       <% end %>

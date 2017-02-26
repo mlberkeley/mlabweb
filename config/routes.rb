@@ -48,10 +48,11 @@ Rails.application.routes.draw do
   resources :specials, only: [:new, :create, :edit, :update, :destroy]
 
   # Event routes
+  get '/all_events', to: 'events#all'
   get '/past', to: 'events#past'
   get '/attendance', to: 'events#attendance'
-  get '/newevent', to: 'events#new'
-  post '/newevent', to: 'events#create'
+  get '/newevent', to: 'events#new2'
+  post '/newevent', to: 'events#create2'
   resources :events do
     collection do
       put 'call_roll'
