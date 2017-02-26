@@ -4,7 +4,7 @@
     <div class="page_title">
       <%= content_tag(:h1, @event.name) %>
     </div>
-    <%= content_tag(:p, @event.when.to_formatted_s(:medium_ordinal)) %>
+    <%= content_tag(:p, @event.start.to_formatted_s(:medium_ordinal)) %>
     <% if logged_in? and officer_or_higher? %>
     <!-- <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default" %> -->
     <%= link_to "Delete", @event, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-default" %>

@@ -59,4 +59,11 @@ Rails.application.routes.draw do
       put 'make_event'
     end
   end
+
+  # Calendar routes
+  get '/redirect', to: 'calendars#redirect', as: 'redirect'
+  get '/callback', to: 'calendars#callback', as: 'callback'
+  get '/calendars', to: 'calendars#calendars', as: 'calendars'
+  get '/gc_events/:calendar_id', to: 'calendars#events', as: 'gc_events', calendar_id: /[^\/]+/
+  post '/gc_events/:calendar_id', to: 'calendars#new_event', as: 'new_gc_event', calendar_id: /[^\/]+/
 end

@@ -34,7 +34,9 @@ ActiveRecord::Schema.define(version: 20170225063944) do
     t.datetime "updated_at",                  null: false
     t.text     "description"
     t.string   "place"
-    t.datetime "when"
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "color"
   end
 
   create_table "events_members", force: :cascade do |t|

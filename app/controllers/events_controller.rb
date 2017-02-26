@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   def past
     @mlab_graph = get_mlab_graph
     @events = @mlab_graph.get_object("v2.8/1701763616733787/events").select { |hash| hash["start_time"] < Time.now.beginning_of_day }
+    debugger
   end
 
   def attendance
@@ -29,8 +30,8 @@ class EventsController < ApplicationController
       flash[:success] = "Event successfully created"
       redirect_to events_path
     else
-      if @event.errors.messages[:when]
-        @event.errors.messages[:when].append("example: Mar 24, 2015")
+      if @event.errors.messages[:start] or @event.errors.messages[:end]
+        @event.errors.messages[:start].append("time example: Mar 24, 2015")
       end
       render 'new'
     end
@@ -67,7 +68,7 @@ class EventsController < ApplicationController
   def make_event
     mlab_graph = get_mlab_graph
     event = mlab_graph.get_object("v2.8/1701763616733787/events").select { |hash| hash["id"] == params["e_id"] }.first
-    toSave = Event.new(name: event["name"], live: false, latitude: event["place"]["location"]["latitude"], longitude: event["place"]["location"]["longitude"], description: event["description"], place: event["place"]["name"], when: event["start_time"])
+    toSave = Event.new(name: event["name"], live: false, latitude: event["place"]["location"]["latitude"], longitude: event["place"]["location"]["longitude"], description: event["description"], place: event["place"]["name"], start: event["start_time"], end: event["end_time"])
     if toSave.save
       flash[:success] = "Facebook event successfully saved to database"
       redirect_to events_path
@@ -80,6 +81,6 @@ class EventsController < ApplicationController
   private
 
     def event_params
-      params.require(:event).permit(:name, :live, :place, :when, :description)
+      params.require(:event).permit(:name, :live, :place, :start, :end, :description)
     end
 end

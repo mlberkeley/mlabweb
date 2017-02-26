@@ -20,17 +20,32 @@
   </pre>
 <% end %>
 
+<div class="calendar"></div>
+
 <div class="row event_list center">
   <div class="space"></div>
 
   <div class="col-md-4">
-    <h2>Upcoming From FB</h2>
-    <% if @fb_events %>
+    <h2>Add From FB</h2>
+    <% if !@fb_events.empty? %>
       <% @fb_events.each do |event| %>
         <hr>
         <p><%= event.to_s %></p>
         <%= link_to "Make Event", '#', class: "btn btn-default", id: "#{event["id"]}" if event["start_time"] > Time.now.beginning_of_day and true %>
       <% end %>
+    <% else %>
+      <p>None</p>
+    <% end %>
+
+    <h2>Add From Google Calendar</h2>
+    <% if @gc_events %>
+      <% @gc_events.each do |event| %>
+        <hr>
+        <p><%= event.summary %></p>
+        <%= link_to "Make Event", '#', class: "btn btn-default", id: "#{event["id"]}" if event["start_time"] > Time.now.beginning_of_day and true %>
+      <% end %>
+    <% else %>
+      <p>None</p>
     <% end %>
   </div>
 
@@ -40,9 +55,9 @@
       <% @saved_events.each do |event| %>
         <hr>
         <h5><%= event.name %></h5>
-        <h6><%= event.when.to_formatted_s(:medium_ordinal) %></h6>
+        <h6><%= event.start.to_formatted_s(:medium_ordinal) %></h6>
         <p><%= event.to_s %></p>
-        <% if event.when > Time.now.beginning_of_day %>
+        <% if event.start > Time.now.beginning_of_day %>
           <%= link_to "#{ (@current.eql?(event)) ? "Finish Roll-Call" : "Take Attendance" }", '#', class: "btn btn-mlab", id: "#{event.id}" %>
           <%= link_to "Details", event, class: "btn btn-default" if !event.members.empty? %>
         <% else %>

@@ -33,6 +33,7 @@
   <div class="col-md-10 col-md-offset-1">
     <div class="upcoming">
       <h4>Upcoming Events</h4>
+      <h5><%= link_to "Go to Calendar", calendars_path %></h5>
       <hr>
       <% if @events.any? %>
         <% @events.reverse_each do |event| %>

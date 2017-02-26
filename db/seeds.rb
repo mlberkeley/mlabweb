@@ -90,3 +90,13 @@ Special.create(title: "Demo Days",
 Special.create(title: "Decal",
                tag: "nmo",
                content: "needs edit")
+
+15.times do
+   event = Event.new
+   event.name = Faker::Book.title
+   start = Faker::Time.between(2.weeks.ago, Date.today + 2.weeks, :morning)
+   event.start = start
+   event.end = Faker::Time.between(start, start + 2.days, :evening)
+   event.color = ['black','red', nil].sample
+   event.save
+end

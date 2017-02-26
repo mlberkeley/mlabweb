@@ -1,0 +1,18 @@
+<% provide(:title, "Events") %>
+
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, @event_list.summary) %>
+      <%= content_tag(:p, @event_list.description) %>
+    </div>
+</header>
+
+<ul>
+  <% @event_list.items.each do |event| %>
+    <li><%= event.summary %> (<%= event.id %>)</li>
+  <% end %>
+</ul>
+
+<%= form_tag new_gc_event_url do %>
+  <%= submit_tag 'Add event to calendar' %>
+<% end %>

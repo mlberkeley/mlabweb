@@ -1,0 +1,13 @@
+<% provide(:title, "Calendars") %>
+
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'Calendars') %>
+    </div>
+</header>
+
+<ul>
+  <% @calendar_list.items.each do |calendar| %>
+    <li><%= link_to calendar.summary, "/gc_events/#{calendar.id}" %> (<%= calendar.id %>)</li>
+  <% end %>
+</ul>

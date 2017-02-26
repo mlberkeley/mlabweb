@@ -18,8 +18,11 @@
       <%= f.label :place %>
       <%= f.text_field :place, class: 'form-control', placeholder: "e.g. HP Auditorium" %>
 
-      <%= f.label :when, "Date / When" %>
-      <%= f.text_field :when, class: 'form-control', placeholder: "e.g. Mar 31, 1999" %>
+      <%= f.label :start, "Date / Start time - OMIT time if all-day event" %>
+      <%= f.text_field :start, class: 'form-control', placeholder: "e.g. Nov 3, 2017 5 PM or 11/3 5 PM" %>
+
+      <%= f.label :end, "Date / End time" %>
+      <%= f.text_field :end, class: 'form-control', placeholder: "e.g. Nov 3, 2017 5 PM or 11/3 5 PM" %>
 
       <%= f.label :live, class: "checkbox inline" do %>
         <%= f.check_box :live %>
