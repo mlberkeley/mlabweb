@@ -20,7 +20,10 @@
   </pre>
 <% end %>
 
-<div class="calendar"></div>
+<div class="space calendar"></div>
+<div id="remote_container">
+
+</div>
 
 <div class="row event_list center">
   <div class="space"></div>
@@ -44,9 +47,8 @@
         <p><%= event.summary %></p>
         <%= link_to "Make Event", '#', class: "btn btn-default", id: "#{event["id"]}" if event["start_time"] > Time.now.beginning_of_day and true %>
       <% end %>
-    <% else %>
-      <p>None</p>
     <% end %>
+    <%= link_to "see all google calendars", calendars_path %>
   </div>
 
   <div class="col-md-8">

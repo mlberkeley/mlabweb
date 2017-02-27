@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require owl.carousel
+//= require moment
+//= require fullcalendar
+//= require daterangepicker
+//= require fullcalendar/gcal
 //= require_tree .

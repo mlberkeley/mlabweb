@@ -3,16 +3,39 @@
 <header class="secondary_header">
     <div class="page_title">
       <%= content_tag(:h1, @event_list.summary) %>
-      <%= content_tag(:p, @event_list.description) %>
+      <p>Future events have "Make Event" button for attendance purposes</p>
     </div>
 </header>
 
-<ul>
-  <% @event_list.items.each do |event| %>
-    <li><%= event.summary %> (<%= event.id %>)</li>
-  <% end %>
-</ul>
+<div class="event_list">
+  <ul>
+    <% @event_list.items.each do |event| %>
+      <li><%= event.summary %> <strong><%= event.start.date_time if event.start %></strong> (<%= event.id %>)</li>
+      <%= link_to "Make Event", '#', class: "btn btn-default", name: "#{event.summary}", start: "#{event.start.date_time}", end: "#{event.end.date_time}" if event.start and event.start.date_time and event.start.date_time > Time.now %>
+    <% end %>
+  </ul>
+</div>
 
-<%= form_tag new_gc_event_url do %>
+<!-- <%= form_tag new_gc_event_url do %>
   <%= submit_tag 'Add event to calendar' %>
-<% end %>
+<% end %> -->
+
+
+<script type="text/javascript">
+  $(window).on("turbolinks:load", function() {
+      $('.event_list a').click(function() {
+          var name = $(this).attr('name');
+          var start = $(this).attr('start');
+          var end = $(this).attr('end');
+          if ( $(this).html()==="Make Event" ) {
+            $.ajax({
+              type: "PUT",
+              url: "/events/make_event_gcal",
+              data: {'name':name,
+                     'start':start,
+                     'end':end}
+            });
+          }
+      });
+  });
+</script>

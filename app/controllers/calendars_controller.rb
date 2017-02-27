@@ -1,12 +1,17 @@
 class CalendarsController < ApplicationController
 
+  def public_calendar
+
+  end
+
+  # Google Calendar API authentication stuff
   def redirect
     client = Signet::OAuth2::Client.new({
       client_id: Rails.application.secrets.google_client_id,
       client_secret: Rails.application.secrets.google_client_secret,
       authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
       scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
-      redirect_uri: callback_url
+      redirect_uri: gcal_callback_url
     })
 
     redirect_to client.authorization_uri.to_s
@@ -17,7 +22,7 @@ class CalendarsController < ApplicationController
       client_id: Rails.application.secrets.google_client_id,
       client_secret: Rails.application.secrets.google_client_secret,
       token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
-      redirect_uri: callback_url,
+      redirect_uri: gcal_callback_url,
       code: params[:code]
     })
 
@@ -42,8 +47,12 @@ class CalendarsController < ApplicationController
 
     begin
       @calendar_list = service.list_calendar_lists
-    rescue Google::Apis::AuthorizationError => exception
-      response = client.refresh!
+    rescue Signet::AuthorizationError => exception
+      begin
+        response = client.refresh!
+      rescue
+        redirect_to google_calendars_path and return
+      end
 
       session[:authorization] = session[:authorization].merge(response)
 
@@ -66,7 +75,6 @@ class CalendarsController < ApplicationController
     service.authorization = client
 
     @event_list = service.list_events(params[:calendar_id])
-    debugger
   end
 
   def new_event
@@ -91,6 +99,6 @@ class CalendarsController < ApplicationController
 
     service.insert_event(params[:calendar_id], event)
 
-    redirect_to gc_events_url(calendar_id: params[:calendar_id])
+    redirect_to gcal_events_url(calendar_id: params[:calendar_id])
   end
 end

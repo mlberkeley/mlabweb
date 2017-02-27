@@ -32,8 +32,8 @@
   <div class="space"></div>
   <div class="col-md-10 col-md-offset-1">
     <div class="upcoming">
-      <h4>Upcoming Events</h4>
-      <h5><%= link_to "Go to Calendar", calendars_path %></h5>
+      <h4>Upcoming Workshops</h4>
+      <h5><%= link_to "See our Calendar for Recurrent Events", public_calendar_path %></h5>
       <hr>
       <% if @events.any? %>
         <% @events.reverse_each do |event| %>
@@ -43,7 +43,7 @@
             <h6>Where: <%= p["name"] + ", " + p["location"]["street"] %></h6>
           <% end %>
           <h6>Live Counter: <strong><%= event["attending_count"] %></strong> going | <strong><%= event["interested_count"] %></strong> interested</h6>
-          <%= image_tag(event["cover"]["source"], class: "") if event["cover"]["source"] %>
+          <%= image_tag(event["cover"]["source"]) if event["cover"]["source"] %>
           <p><%= simple_format(event["description"]) %></p>
           <%= link_to "See on Facebook >", "https://www.facebook.com/events/#{event["id"]}", target: "_blank" %><br>
         <% end %>

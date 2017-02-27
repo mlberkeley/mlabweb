@@ -26,6 +26,7 @@ gem 'mini_magick'
 gem 'koala'
 gem 'figaro'
 gem 'google-api-client', require: 'google/apis/calendar_v3'
+gem 'simple_form', github: 'kesha-antonov/simple_form', branch: 'rails-5-0'
 
 gem 'unicorn'
 

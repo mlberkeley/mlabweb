@@ -22,8 +22,9 @@
         <% end %>
       </pre>
     <% else %>
-      <h5><%= (event.start > Time.now.beginning_of_day and event.members.empty?) ? event.name + "  *** attendance not taken yet ***" : event.name %></h5>
+      <h5><%= event.name %></h5>
       <h6><%= event.start.to_formatted_s(:medium_ordinal) %></h6>
+      <% if event.start < Time.now %>
       <div class="row">
         <div class="col-md-6 attended">
           <p>Attended</p>
@@ -42,6 +43,9 @@
           </ul>
         </div>
       </div>
+      <% else %>
+        <p>*** Attendance NOT Taken Yet ***</p>
+      <% end %>
     <% end %>
 
   <% end %>

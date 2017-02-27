@@ -97,6 +97,6 @@ Special.create(title: "Decal",
    start = Faker::Time.between(2.weeks.ago, Date.today + 2.weeks, :morning)
    event.start = start
    event.end = Faker::Time.between(start, start + 2.days, :evening)
-   event.color = ['black','red', nil].sample
+   event.color = ['black','green', nil].sample
    event.save
 end

@@ -58,13 +58,15 @@ Rails.application.routes.draw do
       put 'call_roll'
       put 'finish'
       put 'make_event'
+      put 'make_event_gcal'
     end
   end
 
-  # Calendar routes
-  get '/redirect', to: 'calendars#redirect', as: 'redirect'
-  get '/callback', to: 'calendars#callback', as: 'callback'
-  get '/calendars', to: 'calendars#calendars', as: 'calendars'
-  get '/gc_events/:calendar_id', to: 'calendars#events', as: 'gc_events', calendar_id: /[^\/]+/
-  post '/gc_events/:calendar_id', to: 'calendars#new_event', as: 'new_gc_event', calendar_id: /[^\/]+/
+  # Google Calendar routes
+  get '/public_calendar', to: 'calendars#public_calendar'
+  get '/gcal_redirect', to: 'calendars#redirect', as: 'google_calendars'
+  get '/gcal_callback', to: 'calendars#callback', as: 'gcal_callback'
+  get '/calendars', to: 'calendars#calendars'
+  get '/gcal_events/:calendar_id', to: 'calendars#events', as: 'gcal_events', calendar_id: /[^\/]+/
+  post '/gcal_events/:calendar_id', to: 'calendars#new_event', as: 'new_gc_event', calendar_id: /[^\/]+/
 end

@@ -1,11 +1,12 @@
 class EventsController < ApplicationController
-  before_action :logged_in_member, only: [:index, :attendance, :new, :create]
-  before_action :officer_member, only: [:index, :new, :create]
-  before_action :set_event, only: [:destroy]
+  before_action :logged_in_member, only: [:all, :attendance, :new2, :create2, :new, :create]
+  before_action :officer_member, only: [:all, :new2, :create2]
+  before_action :set_event, only: [:destroy, :show, :edit, :update]
 
   def all
     @mlab_graph = get_mlab_graph
     @fb_events = @mlab_graph.get_object("v2.8/1701763616733787/events").select { |hash| hash["start_time"] > Time.now.beginning_of_day }
+    # @gcal_events = get_gcal_events
     @saved_events = Event.all
     @current = Event.where(live: true).first
   end
@@ -13,7 +14,6 @@ class EventsController < ApplicationController
   def past
     @mlab_graph = get_mlab_graph
     @events = @mlab_graph.get_object("v2.8/1701763616733787/events").select { |hash| hash["start_time"] < Time.now.beginning_of_day }
-    debugger
   end
 
   def attendance
@@ -73,6 +73,41 @@ class EventsController < ApplicationController
       flash[:warning] = "Duplicate event error"
       redirect_to all_events_path
     end
+  end
+
+  def make_event_gcal
+    toSave = Event.new(name: params["name"], start: DateTime.parse(params["start"][0...18]), end: DateTime.parse(params["end"][0...18]))
+    if toSave.save
+      flash[:success] = "Gcal event successfully saved to database"
+      redirect_to all_events_path
+    else
+      flash[:warning] = "Duplicate event error"
+      redirect_to all_events_path
+    end
+  end
+
+  #fullCalendar methods
+  def index
+    @events = Event.where(start: params[:start]..params[:end])
+  end
+
+  def show
+  end
+
+  def new
+    @event = Event.new
+  end
+
+  def edit
+  end
+
+  def create
+    @event = Event.new(event_params)
+    @event.save
+  end
+
+  def update
+    @event.update(event_params)
   end
 
   private
