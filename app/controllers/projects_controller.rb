@@ -58,7 +58,7 @@ class ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:name, :tag, :current, :description, :picture)
+      params.require(:project).permit(:name, :tag, :current, :description, :picture, :pdf)
     end
 
     def correct_member

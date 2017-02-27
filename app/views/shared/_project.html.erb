@@ -25,7 +25,7 @@
 </section>
 
 <section>
-  <p>currently no documents uploaded for this project</p>
+  <%= @project.pdf? ? link_to("Download Project File", @project.pdf_url) : content_tag(:p, "currently no documents uploaded for this project") %>
 </section>
 <script type="text/javascript">
   $(".owl-carousel").owlCarousel();

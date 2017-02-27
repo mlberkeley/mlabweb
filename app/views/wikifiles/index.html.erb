@@ -1,0 +1,30 @@
+<% provide(:title, 'Wiki Files') %>
+
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'Member Documents') %>
+    </div>
+
+    <% if admin_or_exec? %>
+      <%= link_to "Upload New File", new_wikifile_path, class: "btn btn-default" %>
+    <% end %>
+</header>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Download Link</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @files.each do |file| %>
+      <tr>
+        <td><%= file.name %></td>
+        <td><%= link_to "Download File", file.attachment_url, target: '_blank' %></td>
+        <td><%= button_to "Delete",  file, method: :delete, class: "btn btn-mlab-danger", data: { confirm: "Are you sure that you wish to delete #{file.name}?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

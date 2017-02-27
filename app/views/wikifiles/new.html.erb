@@ -1,0 +1,26 @@
+<% provide(:title, 'Upload File') %>
+
+<header class="secondary_header">
+    <div class="page_title">
+      <%= content_tag(:h1, 'New File') %>
+    </div>
+</header>
+
+<div class="row">
+  <div class="space"></div>
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for(@file, html: { multipart: true }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <span class="picture">
+        <%= f.label :attachment, "PDF/doc/html" %>
+        <%= f.file_field :attachment %>
+      </span>
+
+      <%= f.submit "Upload", class: "btn btn-mlab" %>
+    <% end %>
+  </div>
+</div>

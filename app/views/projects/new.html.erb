@@ -31,6 +31,8 @@
       <span class="picture">
         <%= f.label :picture, "Project Picture" %><br>
         <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+        <%= f.label :pdf, "PDF File" %>
+        <%= f.file_field :pdf %>
       </span>
 
       <%= f.submit "Initialize", class: "btn btn-mlab" %>

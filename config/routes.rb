@@ -69,4 +69,8 @@ Rails.application.routes.draw do
   get '/calendars', to: 'calendars#calendars'
   get '/gcal_events/:calendar_id', to: 'calendars#events', as: 'gcal_events', calendar_id: /[^\/]+/
   post '/gcal_events/:calendar_id', to: 'calendars#new_event', as: 'new_gc_event', calendar_id: /[^\/]+/
+
+  # Wikifiles routes
+  resources :wikifiles, only: [:index, :new, :create, :destroy]
+
 end

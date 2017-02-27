@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225063944) do
+ActiveRecord::Schema.define(version: 20170227201450) do
 
   create_table "blogposts", force: :cascade do |t|
     t.text     "content"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170225063944) do
     t.datetime "updated_at",                 null: false
     t.string   "picture"
     t.boolean  "current",     default: true
+    t.string   "pdf"
   end
 
   create_table "specials", force: :cascade do |t|
@@ -105,6 +106,13 @@ ActiveRecord::Schema.define(version: 20170225063944) do
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_teams_on_member_id"
     t.index ["project_id"], name: "index_teams_on_project_id"
+  end
+
+  create_table "wikifiles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

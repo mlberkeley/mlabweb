@@ -27,4 +27,7 @@ class PagesController < ApplicationController
     @feed = @mlab_graph.get_object("v2.8/1701763616733787/feed", {fields: ['story', 'created_time', 'message', 'full_picture', 'link']})
     @recent = @mlab_graph.get_object("v2.8/1701763616733787/events", {fields: ['name', 'start_time', 'place', 'description', 'cover', 'attending_count', 'interested_count', 'id']}).select { |hash| hash["start_time"] < Time.now.beginning_of_day }.first
   end
+
+  def wiki
+  end
 end
