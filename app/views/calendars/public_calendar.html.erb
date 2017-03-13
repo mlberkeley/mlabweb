@@ -7,3 +7,12 @@
 </header>
 
 <div class="space uneditable-calendar"></div>
+
+<div class="space row">
+  <h2>Details About Our Public Events</h2>
+  <% @pcds.each do |special| %>
+    <%= render 'shared/special', object: special %>
+  <% end %>
+</div>
+
+<%= image_tag("favicon.png", alt: "ML@B logo", class: "space logo-resize") %>

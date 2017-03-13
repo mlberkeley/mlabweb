@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
-    @members = Member.where("exec = ?", true)
+    @president = Member.where("position = ?", "President").first
+    @execs = Member.where(["exec = ? and position != ? and activated = ?", true, "President", true])
     @projects = Project.where(current: true)
   end
 

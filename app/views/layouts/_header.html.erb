@@ -35,6 +35,10 @@
                   <li><%= link_to "All Members", members_path %></li>
                   <li><%= link_to "All Projects", projects_path %></li>
                   <li><%= link_to "All Events", all_events_path %></li>
+                  <% if admin? %>
+                    <li class="divider"></li>
+                    <li><%= link_to "Create Special Text", new_special_path %></li>
+                  <% end %>
                 <% end %>
                 <li class="divider"></li>
                 <li><%= link_to "Wiki", wikifiles_path %></li>

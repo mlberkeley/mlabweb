@@ -1,7 +1,7 @@
 class CalendarsController < ApplicationController
 
   def public_calendar
-
+    @pcds = Special.where(tag: "pcd")
   end
 
   # Google Calendar API authentication stuff
