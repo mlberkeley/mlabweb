@@ -3,6 +3,9 @@ class EventsController < ApplicationController
   before_action :officer_member, only: [:all, :new2, :create2]
   before_action :set_event, only: [:destroy, :show, :edit, :update]
 
+  skip_before_action :verify_authenticity_token, only: [:make_event, :make_event_gcal, :call_roll, :finish]
+
+
   def all
     @mlab_graph = get_mlab_graph
     @fb_events = @mlab_graph.get_object("v2.8/1701763616733787/events").select { |hash| hash["start_time"] > Time.now.beginning_of_day }

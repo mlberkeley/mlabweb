@@ -18,6 +18,7 @@
         <li><%= link_to "Portfolio", portfolio_path %></li>
         <!-- <li><%= link_to "Connections", connections_path %></li> -->
         <li><%= link_to "Blog", "/blog" %></li>
+        <li><%= link_to "Calendar", public_calendar_path %></li>
         <li id="nav-special"><%= link_to "Updates", updates_path %></li>
         <% if logged_in? %>
           <% if yield(:title).empty? %>

@@ -3,6 +3,9 @@ class MembersController < ApplicationController
   before_action :correct_member, only: [:edit, :update, :join, :leave]
   before_action :exec_member, only: :destroy
 
+  skip_before_action :verify_authenticity_token, only: [:join, :leave, :attend]
+
+
   def index
     @members = Member.all
   end

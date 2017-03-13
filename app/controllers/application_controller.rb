@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy]
+
   include SessionsHelper
 
   def get_mlab_graph
