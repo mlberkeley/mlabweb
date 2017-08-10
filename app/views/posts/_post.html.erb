@@ -14,9 +14,7 @@
       <h4 class="pull-right"><%= link_to fa_icon_tag("trash-o"), post, rel: 'tooltip', title: 'Delete', data: { confirm: 'Are you sure?' }, method: :delete %></h4>
     <% end %>
   </header>
-  <p>
-    <%= post.content %>
-  </p>
+  <%= markdown(post.content) %>
   <% if post.video? %>
     <div class="embed-responsive embed-responsive-16by9">
       <%= raw(youtube_embed(post.video)) %>

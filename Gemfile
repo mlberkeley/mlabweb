@@ -42,6 +42,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'koala'
+gem 'redcarpet'
+gem 'coderay'
 
 # Database
 # gem 'sqlite3'

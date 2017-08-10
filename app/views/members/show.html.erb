@@ -38,9 +38,13 @@
         <div class="panel-heading">
           Member Bio
         </div>
-        <p class="panel-body">
-          <%= @member.introduction or "I love ML@B" %>
-        </p>
+        <div class="panel-body">
+          <% if @member.introduction? %>
+            <%= markdown(@member.introduction) %>
+          <% else %>
+            <p>I love ML@B</p>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="left-timeline col-sm-8">

@@ -46,7 +46,7 @@
     <%= f.form_group :description do |f| %>
     <%= f.label :description, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_area :description, class: 'form-control', rows: 20 %>
+      <%= f.text_area :description, class: 'form-control', rows: 20, placeholder: 'Now markdown-friendly' %>
       <%= f.error_messages %>
     </div>
     <% end %>
