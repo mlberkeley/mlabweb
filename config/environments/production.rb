@@ -63,8 +63,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  # host = 'ml.berkeley.edu'
-  host = 'mlabwebv2.herokuapp.com'
+  host = 'ml.berkeley.edu'
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.smtp_settings = {
     :address              => 'smtp.gmail.com',
@@ -72,7 +71,7 @@ Rails.application.configure do
     :user_name            => ENV["GMAIL_USERNAME"],
     :password             => ENV["GMAIL_PASSWORD"],
     :authentication       => :plain,
-    :domain               => 'mlabwebv2.herokuapp.com',
+    :domain               => 'ml.berkeley.edu',
     :enable_starttls_auto => true
   }
 
