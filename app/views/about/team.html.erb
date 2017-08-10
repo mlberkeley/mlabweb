@@ -1,0 +1,41 @@
+<% @title = "Team" %>
+
+<div id="team2" class="row">
+  <div class="president item">
+    <h3>President</h3><hr>
+    <%= render 'shared/member_info', object: @president.first if @president.any? %>
+  </div>
+
+  <div class="others">
+    <h3>Execs</h3><hr>
+    <ul>
+      <% if @execs.any? %>
+      <% @execs.each do |member| %>
+        <li class="item">
+          <%= render 'shared/member_info', object: member %>
+        </li>
+      <% end %>
+      <% end %>
+    </ul>
+    <h3>Officers</h3><hr>
+    <ul>
+      <% if @officers.any? %>
+        <% @officers.each do |member| %>
+        <li class="item">
+          <%= render 'shared/member_info', object: member %>
+        </li>
+      <% end %>
+      <% end %>
+    </ul>
+    <h3>Members</h3><hr>
+    <ul>
+      <% if @members.any? %>
+        <% @members.each do |member| %>
+        <li class="item">
+          <%= render 'shared/member_info', object: member %>
+        </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

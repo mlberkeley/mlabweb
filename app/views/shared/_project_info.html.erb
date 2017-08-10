@@ -1,8 +1,10 @@
-<%= picture_of_project object %>
-<%= link_to object.name, object %>
-<% if object.members.include?(current_member) or officer_or_higher? %>
-  | <%= link_to "edit", edit_project_path(object) %>
-  <% if admin_or_exec? %>
-    | <%= link_to "delete", object, method: :delete, data: { confirm: "You sure?" } %>
-  <% end %>
-<% end %>
+<h1>
+  <%= link_to(picture_of_project(object, class: "img-circle project-img"), object) %>
+  <%= object.name %>
+</h1>
+<h5>
+  <%= object.tag %>
+</h5>
+<p>
+  <%= object.semester.capitalize + ", #{object.year}" %>
+</p>

@@ -1,0 +1,28 @@
+<li>
+  <time>
+    <span><%= post.created_at.day %></span>
+    <small><%= Date::ABBR_MONTHNAMES[post.created_at.month] %></small>
+  </time>
+  <header>
+    <%= link_to image_tag(post.member.picture? ? post.member.picture.url : "team/unpictured.jpg", class: "img-rounded", style: "width: 32px; height: 32px; margin: 10px;"), post.member %>
+    <% if post.video? or post.photo? %>
+      <h4 class="m0 mt15 mb15"> <%= post.member.fname %> <small>uploaded a <%= post.video? ? "video" : "photo" %></small><%= post.project==0 ? "" : content_tag(:small, " with ") + Project.where(id: post.project).first.name %><small>.</small></h4>
+    <% else %>
+      <h4 class="m0 mt15 mb15"><%= post.member.fname %> <small>wrote an update</small><%= post.project==0 ? "" : content_tag(:small, " for ") + Project.where(id: post.project).first.name %><small>.</small></h4>
+    <% end %>
+    <% if current_member == post.member %>
+      <h4 class="pull-right"><%= link_to fa_icon_tag("trash-o"), post, rel: 'tooltip', title: 'Delete', data: { confirm: 'Are you sure?' }, method: :delete %></h4>
+    <% end %>
+  </header>
+  <p>
+    <%= post.content %>
+  </p>
+  <% if post.video? %>
+    <div class="embed-responsive embed-responsive-16by9">
+      <%= raw(youtube_embed(post.video)) %>
+    </div>
+  <% end %>
+  <% if post.photo? %>
+    <%= image_tag post.photo.url %>
+  <% end %>
+</li>

@@ -1,26 +1,35 @@
-<% provide(:title, 'Upload File') %>
+<% @title = "New File" %>
 
-<header class="secondary_header">
-    <div class="page_title">
-      <%= content_tag(:h1, 'New File') %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= form_for(@wikifile, html: { multipart: true, class: 'form-horizontal' }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.form_group :name do |f| %>
+            <%= f.label :name, class: 'control-label col-md-2' %>
+            <div class='col-md-8'>
+              <%= f.text_field :name, class: 'form-control' %>
+              <%= f.error_messages %>
+            </div>
+          <% end %>
+
+          <%= f.form_group :attachment do |f| %>
+            <%= f.label :attachment, class: 'control-label col-md-2' %>
+            <div class='col-md-8'>
+              <%= f.file_field :attachment, class: 'form-control' %>
+              <%= f.error_messages %>
+            </div>
+          <% end %>
+
+        </div>
+
+        <div class="form-actions col-md-offset-2 col-md-10">
+          <%= f.submit "Upload", class: 'btn btn-primary' %>
+          <%= link_to "Cancel", wikifiles_path, class: 'btn' %>
+        </div>
+      <% end %>
     </div>
-</header>
-
-<div class="row">
-  <div class="space"></div>
-  <div class="col-md-8 col-md-offset-2">
-    <%= form_for(@file, html: { multipart: true }) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <span class="picture">
-        <%= f.label :attachment, "PDF/doc/html" %>
-        <%= f.file_field :attachment %>
-      </span>
-
-      <%= f.submit "Upload", class: "btn btn-mlab" %>
-    <% end %>
   </div>
 </div>

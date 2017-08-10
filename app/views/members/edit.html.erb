@@ -1,67 +1,192 @@
-<% provide(:title, "Edit member") %>
-
-<header class="secondary_header">
-    <div class="page_title">
-      <%= content_tag(:h1, 'Update Profile Settings') %>
-    </div>
-</header>
-
-<div class="row">
-  <div class="space"></div>
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@member, html: { multipart: true }) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <% if current_member?(@member) %>
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
-
-        <div class="field">
-          <%= f.label :introduction %>
-          <%= f.text_area :introduction, class: 'form-control', placeholder: "Tell the world about you...", rows: 5 %>
-        </div>
-
-        <%= f.label :grade, "Class" %>
-        <%= f.text_field :grade, class: 'form-control', placeholder: 'Freshman, Sophomore, etc.' %>
-
-        <%= f.label :major, "Major(s)" %>
-        <%= f.text_field :major, class: 'form-control', placeholder: 'pls dont be extra and spell out EECS' %>
-      <% end %>
-
-      <% if admin_or_exec? %>
-      <%= f.label :position, "Role" %>
-      <%= f.text_field :position, class: 'form-control', placeholder: 'Position in club' %>
-
-      <%= f.label :exec, class: "checkbox inline" do %>
-        <%= f.check_box :exec %>
-        <span>Exec?</span>
-      <% end %>
-      <%= f.label :officer, class: "checkbox inline" do %>
-        <%= f.check_box :officer %>
-        <span>Officer?</span>
-      <% end %>
-      <% end %>
-
-      <%= f.submit "Save changes", class: "btn btn-mlab" %>
-
-      <div class="img_edit">
-        <%= picture_of @member %>
-        <span class="picture">
-          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>  ^ change picture (square is best)
-        </span>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<script type="text/javascript">
+<% @title = "Member Settings" %>
+<% content_for :javascript do %>
+  <script type="text/javascript">
   $('#member_picture').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
     if (size_in_megabytes > 5) {
       alert('Maximum file size is 5MB. Please choose a smaller file.');
     }
   });
-</script>
+  </script>
+<% end %>
+
+<div class="container-fluid">
+  <div class='well container p50'>
+    <%= form_for(@member, html: { multipart: true }) do |f| %>
+    <%= f.error_notification %>
+    <div class="row">
+      <div class='col-md-6 col-md-offset-3 text-center'>
+        <div class="avatar-uploader">
+          <div class="inner vertical-center">
+            <%= image_tag(@member.picture? ? @member.picture.url : "team/unpictured.jpg") %>
+            <span class="icon-wrapper">
+              <i class='fa fa-cloud-upload fa-fw'></i>
+            </span>
+            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+          </div>
+        </div>
+        <h3><%= @member.full_name %>'s Settings</h3>
+        <hr>
+      </div>
+    </div>
+    <ul class="user-settings">
+
+      <% if current_member == @member %>
+        <li class='row'>
+          <div class='col-xs-12 col-md-6 col-md-offset-3 col-md-offset-3'>
+            <div class="setting-name">
+              Your First Name
+            </div>
+            <%= f.form_group :fname do |f| %>
+              <%= f.text_field :fname, class: 'col-xs-12 form-control' %>
+              <%= f.error_messages %>
+            <% end %>
+          </div>
+        </li>
+        <li class='row'>
+          <div class='col-xs-12 col-md-6 col-md-offset-3 col-md-offset-3'>
+            <div class="setting-name">
+              Your Last Name
+            </div>
+            <%= f.form_group :lname do |f| %>
+              <%= f.text_field :lname, class: 'col-xs-12 form-control' %>
+              <%= f.error_messages %>
+            <% end %>
+          </div>
+        </li>
+        <li class='row'>
+          <div class='col-xs-12 col-md-6 col-md-offset-3 col-md-offset-3'>
+            <div class="setting-name">
+              Your Bio
+            </div>
+            <%= f.form_group :introduction do |f| %>
+              <%= f.text_area :introduction, class: 'col-xs-12 form-control', placeholder: "Tell the world about you...", rows: 5 %>
+              <%= f.error_messages %>
+            <% end %>
+            <hr>
+          </div>
+        </li>
+      <% end %>
+
+      <li class='row'>
+        <div class='col-xs-12 col-md-6 col-md-offset-3 col-md-offset-3'>
+          <div class="setting-name">
+            Class
+          </div>
+          <%= f.form_group :grade do |f| %>
+            <%= f.text_field :grade, class: 'col-xs-12 form-control', placeholder: 'Freshman, Sophomore, etc.' %>
+            <%= f.error_messages %>
+          <% end %>
+        </div>
+      </li>
+
+      <li class='row'>
+        <div class='col-xs-12 col-md-6 col-md-offset-3 col-md-offset-3'>
+          <div class="setting-name">
+            Major(s)
+          </div>
+          <%= f.form_group :major do |f| %>
+            <%= f.text_field :major, class: 'col-xs-12 form-control' %>
+            <%= f.error_messages %>
+          <% end %>
+        </div>
+      </li>
+
+      <% if exec_or_higher? %>
+        <li class='row'>
+          <div class='col-xs-12 col-md-6 col-md-offset-3 col-md-offset-3'>
+            <div class="setting-name">
+              Role
+            </div>
+            <%= f.form_group :position do |f| %>
+              <%= f.text_field :position, class: 'col-xs-12 form-control', placeholder: 'Position in club' %>
+              <%= f.error_messages %>
+            <% end %>
+          </div>
+        </li>
+        <li class='row'>
+          <div class='col-xs-10 col-sm-11 col-md-5 col-md-offset-3 pull-left'>
+            <div class="setting-name">
+              Officer Member
+            </div>
+            <div class="setting-details text-muted">
+              This member has 'Officer' privileges.
+            </div>
+          </div>
+          <div class='col-sm-1 col-md-1'>
+            <div class="checkbox checkbox-primary pull-right">
+              <%= f.form_group :officer do |f| %>
+                <%= f.label :officer, class: "checkbox inline" do %>
+                  <%= f.check_box :officer %>
+                <% end %>
+                <%= f.error_messages %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+        <li class='row'>
+          <div class='col-xs-10 col-sm-11 col-md-5 col-md-offset-3 pull-left'>
+            <div class="setting-name">
+              Exec Member
+            </div>
+            <div class="setting-details text-muted">
+              This member has 'Executive' privileges.
+            </div>
+          </div>
+          <div class='col-sm-1 col-md-1'>
+            <div class="checkbox checkbox-primary pull-right">
+              <%= f.form_group :exec do |f| %>
+                <%= f.label :exec, class: "checkbox inline" do %>
+                  <%= f.check_box :exec %>
+                <% end %>
+                <%= f.error_messages %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      <% if current_member == @member %>
+        <!-- <li class='row'>
+          <div class='col-xs-10 col-sm-11 col-md-5 col-md-offset-3 pull-left'>
+            <div class="setting-name">
+              Private Messages
+            </div>
+            <div class="setting-details text-muted">
+              Receive an Email when someone sends you a private message.
+            </div>
+          </div>
+          <div class='col-sm-1 col-md-1'>
+            <div class="checkbox checkbox-primary pull-right">
+              <input id="checkbox2" type="checkbox" checked="">
+              <label for="checkbox2">
+              </label>
+            </div>
+          </div>
+        </li>
+        <li class='row'>
+          <div class='col-xs-10 col-sm-11 col-md-5 col-md-offset-3 pull-left'>
+            <div class="setting-name">
+              Security Summary
+            </div>
+            <div class="setting-details text-muted">
+              Receive an email digest of your login activity over the week.
+            </div>
+          </div>
+          <div class='col-sm-1 col-md-1'>
+            <div class="checkbox checkbox-primary pull-right">
+              <input id="checkbox3" type="checkbox" checked="">
+              <label for="checkbox3">
+              </label>
+            </div>
+          </div>
+        </li> -->
+      <% end %>
+      </
+      <div class='row'>
+        <div class='col-md-6 col-md-offset-3'>
+          <%= f.submit "Save", class: "btn btn-lg btn-primary pull-right" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>

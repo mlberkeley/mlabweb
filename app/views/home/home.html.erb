@@ -1,0 +1,140 @@
+<% content_for :body_class, "landing" %>
+
+<section>
+  <div id="m-home" class="text-center">
+    <div class="overlay">
+      <div class="container">
+        <div class="col-lg-12 col-xs-12">
+          <div class="text text-center">
+            <%= image_tag("white.png", alt: "ML@B Brain", class: "logo-resize1") %>
+            <h1><strong>Machine Learning</strong> At <span>Berkeley</span></h1>
+            <p class='lead'>Building and fostering a vibrant machine learning community.</p>
+            <a href="\about" class='btn btn-outline-primary btn-lg'>About Us &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+</section>
+
+<section class="features">
+  <!-- <h2 class='h1'><%= app_name %></h2> -->
+  <h1>Connect with ML@B</h1>
+  <p class="lead">We provide educational and computational resources to undergraduate and graduate students.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <section>
+          <i class='fa fa-calendar-check-o'></i>
+          <h4>Events</h4>
+          <p>We organize events centered around Machine Learning and Data Science that are open to all!</p>
+          <%= link_to "Public Calendar >", root_path %>
+        </section>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <section>
+          <i class='fa fa-users'></i>
+          <h4>Teams</h4>
+          <p>We work with companies on challenging problems. We work on internal research projects.</p>
+          <%= link_to "Portfolio >", root_path %>
+        </section>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <section>
+          <i class='fa fa-rss'></i>
+          <h4>Blog</h4>
+          <p>Stay informed, read our tutorials, and Learn from our blog.</p>
+          <%= link_to "Blog >", root_path %>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section class="getting-started">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-5 text-xs-center text-md-left">
+          <h1><strong>Our</strong> Executive <strong>Team</strong></h1>
+        </div>
+        <div class="col-md-7 text-xs-center text-md-right ctas">
+          <a class="btn btn-outline-default" href="#">Sign Up</a>
+          <a class="btn btn-outline-primary" href="#">or see features &raquo;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<section>
+  <div id="m-team" class="text-center">
+    <div class="overlay">
+        <div class="container">
+            <h1 style="margin-bottom: 50px"><strong>Our</strong> Executive <strong>Team</strong></h1>
+
+            <div class="owl-carousel">
+
+              <div>
+                <% if @president %>
+                <div class="thumbnail">
+                  <%= link_to(picture_of(@president), @president) %>
+                  <div class="caption">
+                    <h3><%= @president.full_name %></h3>
+                    <p><%= @president.position %></p>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+              <% @execs.each do |exec| %>
+                <div>
+                  <div class="thumbnail">
+                    <%= link_to(picture_of(exec), exec) %>
+                    <div class="caption">
+                      <h3><%= exec.full_name %></h3>
+                      <p><%= exec.position %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <p class="ocf-disclaimer">
+              We are a student group acting independently of the University of California. We take full responsibility for our organization and this web site.
+            </p>
+
+        </div>
+    </div>
+</div>
+</section>
+<!-- <section class='product-images'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-sm-12'>
+        <h2 class='h1 text-center'>Amazing App Benefit</h2>
+        <p class="lead text-center">This is the best application you could ever buy. You'd be crazy not to buy it. Especially as it's been endorsed by the product teaching mafia.</p>
+        <div class="browser">
+          <div class="browser__window">
+            <img src="http://placekitten.com/1170/560" width=1170 height=560>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<section class="features">
+      <h1>Feel Free to <strong>Contact Us</strong></h1>
+      <p><span class="color rev">ude.yelekreb.lm@tcatnoc</span></p>
+</section>
+<section class='cta'>
+  <div class="container">
+    <div class="row">
+      <div class='col-sm-12 col-md-9'>
+        <h2 class='text-xs-center text-md-left'>Subscribe to our mailing list.</h2>
+        <p class='lead text-xs-center text-md-left'>Stay up to date with our exciting events.</p>
+      </div>
+      <div class='col-sm-12 col-md-3 text-right text-xs-center'>
+        <a href="#" class='btn btn-outline-default'>Subscribe &raquo;</a>
+      </div>
+    </div>
+  </div>
+</section>

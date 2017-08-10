@@ -1,0 +1,38 @@
+<% @title = "Portfolio" %>
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+
+</script>
+<% end %>
+
+<p class="text-center"><strong>Industry</strong>: Machine Learning at Berkeley's consulting branch allows members to work together with companies to tackle challenging real world problems with the use of machine learning and data science. Each consulting project consists of around 8-10 members and lasts one semester. Through the ML@B consulting projects, members gain the experience to solve machine learning and data science problems in industry.</p>
+<p class="text-center"><strong>Research</strong>: Machine Learning at Berkeley's research division seeks to provide a platform for students and faculty to collaborate outside of the context of the many AI/ML research laboratories at Berkeley. We believe that landmark research in machine learning almost always comes from left field, and we cherish and encourage novelty in our division.
+Our projects and papers are proposed by students and then backed over the course of each academic year into fully fledged research teams. The proposal process leads to a diverse group of projects each year exploring areas from deep reinforcement learning to statistical machine learning, harnessing the creativity and unique backgrounds of our members.</p>
+
+<div id="lightbox" class="row object-list">
+
+  <% if @projects.any? %>
+  <% @projects.each do |project| %>
+    <div class="col-sm-6 col-md-3 col-lg-3 <%= project.current? %>">
+      <!-- <div class="item">
+        <%= render 'shared/project_info', object: project %>
+      </div> -->
+      <div class="portfolio-item">
+        <div class="hover-bg">
+          <a href="projects/<%= project.id %>">
+            <%= picture_of_project(project, class: "img-responsive") %>
+            <div class="hover-text">
+              <h3><%= project.name %></h3>
+              <small><%= project.tag %></small>
+              <div class="clearfix"></div>
+              <i class="fa fa-plus"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
+
+</div>

@@ -1,0 +1,17 @@
+<% content_for :navbar do %>
+  <div class="snav">
+    <ul class="snav-links">
+      <li><a href="https://ml.berkeley.edu/blog" target="_blank">Blog</a></li>
+      <li> / </li>
+      <li><%= link_to "Timeline", timeline_path, class: ('active' if @title == "Timeline") %></li>
+      <li> / </li>
+      <li><%= link_to "Events", events_path, class: ('active' if @title == "Events") %></li>
+      <li> / </li>
+      <li><%= link_to "Subscribe", subscribe_path, class: ('active' if @title == "Subscribe") %></li>
+    </ul>
+  </div>
+<% end %>
+
+<%= render "layouts/not_home" do %>
+  <%= yield %>
+<% end %>

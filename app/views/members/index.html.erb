@@ -1,26 +1,41 @@
-<% provide(:title, 'All members') %>
+<% @title = "All Members" %>
 
-<header class="secondary_header">
-    <div class="page_title">
-      <%= content_tag(:h1, 'Manage Members (A-Z)') %>
-    </div>
-</header>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="sheet sheet-condensed">
+        <div class="sheet-inner">
+          <table class="table">
+            <thead>
+              <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @members.each do |member| %>
+              <tr>
+                                <td><%= member.full_name %></td>
+                                <td><%= member.email %></td>
+                                <td><%= member.position %></td>
+                                <td class="actions">
+                  <%= link_to fa_icon_tag("eye"), member, rel: 'tooltip', title: 'Show' %>
+                  <%= link_to fa_icon_tag("pencil"), edit_member_path(member), rel: 'tooltip', title: 'Edit' %>
+                  <%= link_to fa_icon_tag("trash-o"), member, rel: 'tooltip', title: 'Delete',
+                  data: { confirm: 'Are you sure?' }, method: :delete %>
+                </td>
+              </tr>
+              <% end %>
+              <% if @members.length == 0 %>
+              <tr><td colspan=42 class='text-center'>No members.</td></tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div><!-- /.sheet-inner -->
+      </div><!-- /.sheet -->
 
-<div class="row">
-  <div class="space"></div>
-  <ul class="index-list">
-    <% @members.each do |member| %>
-      <li>
-        <%= picture_of member %>
-        <%= link_to member.name, member %>
-        <% if officer_or_higher? && !current_member?(member) %>
-          | <%= link_to "edit", edit_member_path(member) %>
-          | <%= link_to "delete", member, method: :delete, data: { confirm: "You sure?" } %>
-        <% end %>
-        <% if !member.activated? %>
-         *ACCOUNT HAS NOT BEEN ACTIVATED*
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+                </div>
+  </div>
 </div>

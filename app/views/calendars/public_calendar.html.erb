@@ -1,18 +1,17 @@
-<% provide(:title, "ML@B Public Calendar") %>
+<% @title = "ML@B Public Calendar" %>
 
-<header class="secondary_header">
-    <div class="page_title">
-      <%= content_tag(:h1, 'ML@B Public Calendar') %>
-    </div>
-</header>
+<h2 class="text-center">Come to Our Public Events</h2>
 
-<div class="space uneditable-calendar"></div>
+<h3>Reading Group</h3>
+<p></p>
 
-<div class="space row">
-  <h2>Details About Our Public Events</h2>
-  <% @pcds.each do |special| %>
-    <%= render 'shared/special', object: special %>
-  <% end %>
-</div>
+<h3>Demo Day</h3>
+<p>Being a member of ML@B means being a member of a vibrant community of students who are passionate about what they're working on. Demo Days provides our members the chance to not only show off the work they've been doing, but also learn about what the rest of the ML@B community is working on.</p>
 
-<%= image_tag("favicon.png", alt: "ML@B logo", class: "space logo-resize") %>
+<h3>Kaggle Decal</h3>
+<p>ML@B aims to make Machine Learning accessible and friendly to students at all knowledge levels. Our decal is a student run semester class that teachers the basics of Machine Learning in theory and in application. Students will have the opportunity to implement state of the art machine learning techniques and gain exposure on real world problems.</p>
+
+<h3>Various Talks and Workshops</h3>
+<p>ML@B hosts a variety of technical talks and educational workshops throughout the semester. These events are open to the public but are especially encouraged for new members who want to gain insight into the machine learning community. We've done workshops on Tensorflow and introductory Natural Language Processing. Some of our past speakers have included Adobe Research's Aaron Hertzmann, Google Brain's Ian Goodfellow, and Comma.ai's George Hotz.</p>
+
+<div class="uneditable-calendar" style="margin: 5em 0;"></div>

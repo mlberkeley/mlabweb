@@ -1,14 +1,11 @@
 <h1>
-  <%= yield(:title).eql?("About") ? link_to(picture_of(object), object) : picture_of(object) %>
-  <%= object.name %>
+  <%= link_to(picture_of(object), object) %>
+  <%= object.full_name %>
 </h1>
 <h5 class="rev">
   <%= object.email.reverse %>
 </h5>
 <p>
-  <% if !yield(:title).eql?("About") %>
-  <%= object.grade %> |
-  <% end %>
   <%= object.major %>
 </p>
 <p>

@@ -1,10 +1,6 @@
 class MembersController < ApplicationController
-  before_action :logged_in_member, only: [:index, :edit, :update, :destroy]
-  before_action :correct_member, only: [:edit, :update, :join, :leave]
-  before_action :exec_member, only: :destroy
-
-  skip_before_action :verify_authenticity_token, only: [:join, :leave, :attend]
-
+  before_action :authenticate_member!, only: [:index, :edit]
+  before_action :correct_member, only: [:edit, :update]
 
   def index
     @members = Member.all
@@ -12,27 +8,8 @@ class MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    @blogposts = @member.blogposts.paginate(page: params[:page], per_page: 5)
-    redirect_to root_url and return unless @member.activated?
-    @event = Event.where(live: true).first
-  end
-
-  def new
-    @member = Member.new
-  end
-
-  def create
-    @member = Member.new(member_params)
-    if @member.save
-      @member.send_activation_email
-      flash[:info] = "Check your email to activate your ML@B account!  -David"
-      redirect_to login_url
-    else
-      if @member.errors.messages[:email]
-        @member.errors.messages[:email].append("must end in @ml.berkeley.edu")
-      end
-      render 'new'
-    end
+    @posts = @member.posts
+    @post = @member.posts.build if member_signed_in? and @member == current_member
   end
 
   def edit
@@ -55,35 +32,14 @@ class MembersController < ApplicationController
     redirect_to members_url
   end
 
-  # AJAX methods for accessing model methods
-  def join
-    member = Member.find(params[:id])
-    project = Project.find(params[:p_id])
-    member.join(project)
-  end
-
-  def leave
-    member = Member.find(params[:id])
-    project = Project.find(params[:p_id])
-    member.leave(project)
-  end
-
-  def attend
-    member = Member.find(params[:id])
-    event = Event.where(live: true).first
-    member.attend(event)
-  end
-
   private
 
     def member_params
-      params.require(:member).permit(:name, :email, :password, :password_confirmation, :picture, :exec, :officer, :grade, :major, :position, :introduction)
+      params.require(:member).permit(:lname, :fname, :introduction, :major, :grade, :position, :exec, :officer, :picture)
     end
-
-    #Before filters
 
     def correct_member
       @member = Member.find(params[:id])
-      redirect_to(root_url) unless (current_member?(@member) or officer_or_higher?)
+      redirect_to(@member) unless (current_member == @member or officer_or_higher?)
     end
 end

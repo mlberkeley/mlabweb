@@ -3,65 +3,72 @@
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
-
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
-
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
+  <link href="/assets/dresssed/blue.css?body=1" media="all" rel="stylesheet">
+  <!-- <link href="/assets/dresssed/black.css?body=1" media="all" rel="stylesheet"> -->
+  <!-- <link href="/assets/dresssed/amber.css?body=1" media="all" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" media="screen" rel="stylesheet">
 </head>
+
+<style>
+  html, body {
+    height: 100%;
+  }
+
+  .well {
+    padding: 4em;
+  }
+
+  .container{
+    width:1025px;
+  }
+
+  .vertical-center {
+    height:100%;
+    width:100%;
+    text-align: center;  /* align the inline(-block) elements horizontally */
+    font: 0/0 a;         /* remove the gap between inline(-block) elements */
+  }
+
+  .vertical-center:before {    /* create a full-height inline block pseudo=element */
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    height: 100%;
+  }
+
+  .vertical-center > .container {
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;        /* <-- reset the font property */
+  }
+
+  @media (max-width: 768px) {
+    .vertical-center:before {
+      /* height: auto; */
+      display: none;
+    }
+  }
+</style>
 
 <body>
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+  <div class='vertical-center'>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset3">
+          <div class="fa-icon text-blue-grey-400">
+            <i class="fa fa-fw fa-2x fa-question"></i>
+          </div>
+          <div class='well'>
+            <h5>404</h5>
+            <h2 class="mt0">Sorry but we couldn't find that page.</h2>
+            <p>You may have mistyped the address or the page may have moved.</p>
+            <small>If you are the application owner check the logs for more information.</small>
+          </div>
+        </div>
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>

@@ -1,50 +1,9 @@
-<% provide(:title, "Edit project") %>
+<% @title = "Editing Project" %>
 
-<header class="secondary_header">
-    <div class="page_title">
-      <%= content_tag(:h1, 'Update Project') %>
+<div class="container">
+  <div class="row" style="margin-bottom:5em">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render 'form' %>
     </div>
-</header>
-
-<div class="row">
-  <div class="space"></div>
-  <div class="col-md-8 col-md-offset-2">
-    <%= form_for(@project, html: { multipart: true }) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <%= f.label :tag %>
-      <%= f.text_field :tag, class: 'form-control', placeholder: "Industry / Research" %>
-
-      <%= f.label :current, class: "checkbox inline" do %>
-        <%= f.check_box :current %>
-        <span>Current Project?</span>
-      <% end %>
-
-      <div class="field">
-        <%= f.label :description %>
-        <%= f.text_area :description, class: 'form-control', rows: 20 %>
-      </div>
-
-      <span class="picture">
-        <%= f.label :picture, "Upload a new picture" %><br>
-        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-        <%= f.label :pdf, "PDF File" %>
-        <%= f.file_field :pdf %>
-      </span>
-
-      <%= f.submit "Save", class: "btn btn-mlab" %>
-    <% end %>
   </div>
 </div>
-
-<script type="text/javascript">
-  $('#project_picture').bind('change', function() {
-    var size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert('Maximum file size is 5MB. Please choose a smaller file.');
-    }
-  });
-</script>

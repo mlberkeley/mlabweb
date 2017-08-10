@@ -19,6 +19,6 @@ class SubscriberMailer < ApplicationMailer
   #
   def unsubscribe(subscriber)
     @subscriber = subscriber
-    mail to: subscriber.email, subject: "Unsubscribe"
+    mail to: subscriber.email, subject: "Unsubscribed from ML@B"
   end
 end

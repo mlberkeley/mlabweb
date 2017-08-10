@@ -1,41 +1,37 @@
-<% provide(:title, "Team #{@project.name}") %>
+<% @title = "Team Members" %>
 
-<div class="col-md-10 col-md-offset-1">
-  <div class="space"></div>
+<div class="container">
+  <div class="row" style="margin-bottom:5em">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= form_for(@project, html: { class: 'form-horizontal' }) do |f| %>
+        <%= f.error_notification %>
 
-  <div id="join_or_leave" class="row">
-    <%= link_to "Done", @project, class: "btn btn-default" %>
-    <ul class="selector">
-      <% @members.each do |member| %>
-        <li id="<%= member.id %>" class="item <%= member.devoted?(@project) ? 'devoted' : '' %>">
-          <%= render 'shared/member_info', object: member %>
-        </li>
+        <div class="form-inputs">
+          <%= f.form_group :name do |f| %>
+          <%= f.label :name, class: 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :name %>
+            <%= f.error_messages %>
+          </div>
+          <% end %>
+
+          <div>
+            <% Member.all.each do |member| %>
+            <div>
+              <%= check_box_tag "project[member_ids][]", member.id, f.object.members.include?(member) %>
+              <%= member.last_first_name %>
+            </div>
+            <% end %>
+          </div>
+
+
+        </div>
+
+        <div class="form-actions col-md-offset-4 col-md-8">
+          <%= f.submit class: 'btn btn-primary' %>
+          <%= link_to "Cancel", projects_path, class: 'btn' %>
+        </div>
       <% end %>
-    </ul>
+    </div>
   </div>
-
 </div>
-
-
-<script type="text/javascript">
-  $(window).on("turbolinks:load", function() {
-      $('.selector li').click(function() {
-          var m_id = $(this).attr('id');
-          if ( $(this).hasClass('devoted') ) {
-            $(this).removeClass('devoted')
-            $.ajax({
-              type: "PUT",
-              url: "/members/".concat(m_id, "/leave"),
-              data: {'p_id':<%= @project.id %>}
-            });
-          } else {
-            $(this).addClass('devoted')
-            $.ajax({
-              type: "PUT",
-              url: "/members/".concat(m_id, "/join"),
-              data: {'p_id':<%= @project.id %>}
-            });
-          }
-      });
-  });
-</script>

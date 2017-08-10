@@ -1,0 +1,63 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $('#post_picture').bind('change', function() {
+      var size_in_megabytes = this.files[0].size/1024/1024;
+      if (size_in_megabytes > 5) {
+        alert('Maximum file size is 5MB. Please choose a smaller file.');
+      }
+    });
+  </script>
+  <script type="text/javascript">
+  $(window).on("turbolinks:load", function() {
+      $('.track').click(function() {
+          var show = $(this).attr('filter');
+          document.getElementById(show).style.display="block";
+      });
+  });
+</script>
+
+<% end %>
+
+<%= form_for(@post, html: { class: 'timeline-update' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.form_group :content do |f| %>
+    <div class="controls">
+      <%= f.text_area :content, placeholder: "What are you working on?", class: "form-control" %>
+      <%= f.error_messages %>
+    </div>
+    <% end %>
+
+    <div id="video" style="display:none;">
+      <%= f.form_group :video do |f| %>
+      <div class="controls">
+        <%= f.text_field :video, placeholder: "Input YouTube link", class: "form-control" %>
+        <%= f.error_messages %>
+      </div>
+      <% end %>
+    </div>
+
+    <div id="photo" style="display:none;">
+      <%= f.form_group :photo do |f| %>
+        <%= f.file_field :photo, accept: 'image/jpeg,image/gif,image/png', class: "form-control" %>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-6">
+        <a filter="photo", class="btn btn-sm btn-default track"><i class="fa fa-camera">
+        </i></a>
+        <a filter="video", class="btn btn-sm btn-default track"><i class="fa fa-video-camera"></i></a>
+        <!-- <a class="btn btn-sm btn-default"><i class="fa fa-map-marker"></i></a> -->
+      </div>
+      <div class="col-xs-6 col-sm-6 text-right form-actions">
+        <%= f.submit "Post", class: 'btn btn-outline-primary' %>
+
+        <%= f.select :project, current_member.projects.collect {|p| [p.name, p.id]} + [["My Profile", 0]], { include_blank: "to Location:" } %>
+      </div>
+    </div>
+
+
+  </div>
+<% end %>

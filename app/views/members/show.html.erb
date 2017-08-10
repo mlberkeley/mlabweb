@@ -1,75 +1,70 @@
-<% provide(:title, @member.name) %>
+<% @title = "#{@member.fname}'s ML@B" %>
 
-<div class="row">
-  <aside class="col-md-4">
-    <section class="member_info">
-      <%= render 'shared/member_info', object: @member %>
-    </section>
-    <% if logged_in? %>
-    <section class="buttons">
-      <% if admin_or_exec? and !current_member?(@member) %>
-      <%= link_to "Edit Member", edit_member_path(@member), class: "btn btn-default" %><br>
-      <% end %>
-      <% if current_member?(@member) %>
-      <%= link_to "Write a Post", new_blogpost_path, class: "btn btn-default" %>
-        <% if @event and !@member.events.include?(@event) %>
-        <br><%= link_to "Check-in to #{@event.name}", "#", class: "btn btn-default check-in" %>
+<% if member_signed_in? %>
+  <% content_for :navbar do %>
+    <div class="snav">
+      <ul class="snav-links">
+        <li><%= link_to "Profile", @member %></li>
+        <% if exec_or_higher? or current_member == @member %>
+          <li> / </li>
+          <li><%= link_to "Account", edit_member_path %></li>
         <% end %>
+        <% if current_member == @member %>
+          <li> / </li>
+          <li><%= link_to "Logout", destroy_member_session_path, method: :delete %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+
+
+<div class="container">
+  <div class="user-profile">
+    <header style="background: url("<%= @member.background? ? @member.background.url : image_path("dresssed/header_1.jpg") %>")">
+      <div class="avatar">
+        <%= image_tag(@member.picture? ? @member.picture.url : "team/unpictured.jpg", class: "img-rounded", style: "width: 200px; height: 200px;") %>
+        <h1><%= @member.full_name %></h1>
+      </div>
+    </header>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <ul class="list-group mt15">
+        <li class="list-group-item">Followers <span class="badge"><%=  %></span></li>
+        <li class="list-group-item">Following <span class="badge"><%=  %></span></li>
+      </ul>
+      <div class="panel panel-default mt15" id="panels">
+        <div class="panel-heading">
+          Member Bio
+        </div>
+        <p class="panel-body">
+          <%= @member.introduction or "I love ML@B" %>
+        </p>
+      </div>
+    </div>
+    <div class="left-timeline col-sm-8">
+      <% if current_member == @member %>
+        <%= render 'posts/post_form' %>
       <% end %>
-    </section>
-    <% end %>
-  </aside>
-  <div class="col-md-8">
-    <h3>Introduction</h3>
-    <p><%= @member.introduction %></p>
-    <% if @member.blogposts.any? %>
-      <h3>Blogposts (<%= @member.blogposts.count %>)</h3>
-      <ol class="blogposts">
-        <%= render @blogposts, object: yield(:title) %>
-      </ol>
-      <%= will_paginate @blogposts, :class => "mlab_pagination" %>
-    <% end %>
+
+      <% if @member.posts.any? %>
+      <ul>
+        <%= render @posts.recent %>
+        <% if @posts.old.any? %>
+          <li class="period-marker">
+            <p>Last Month</p>
+          </li>
+          <%= render @posts.old %>
+        <% end %>
+        <% if @posts.ancient.any? %>
+          <li class="period-marker">
+            <p>Last Year</p>
+          </li>
+          <%= render @posts.ancient %>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(window).on("turbolinks:load", function() {
-      $('.check-in').click(function() {
-          var m_id = <%= params[:id] %>;
-          $.ajax({
-            type: "PUT",
-            url: "/members/".concat(m_id, "/attend")
-          });
-      });
-  });
-
-  function geoFind() {
-    var output = document.getElementById("out");
-
-    if(!navigator.geolocation) {
-      output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-      return;
-    }
-
-    function success(position) {
-      var latitude = position.coords.latitude;
-      var longitude = position.coords.longitude;
-
-      output.innerHTML = 'You are at<br> <p>Latitude: ' + latitude + '° <br>Longitude: ' + longitude + '°</p>';
-
-      var img = new Image();
-      img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
-
-      output.appendChild(img);
-    }
-
-    function error() {
-      output.innerHTML = "Unable to retrieve your location";
-    }
-
-    output.innerHTML = "<p>Locating...</p>";
-
-    navigator.geolocation.getCurrentPosition(success, error);
-  };
-
-</script>

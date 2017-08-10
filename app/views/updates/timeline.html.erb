@@ -1,0 +1,23 @@
+<% @title = "Timeline" %>
+
+<div class="container-fluid">
+  <div class='row'>
+    <div class="left-timeline col-sm-12">
+      <ul>
+        <%= render @feed.recent %>
+        <% if @feed.old.any? %>
+          <li class="period-marker">
+            <p>Last Month</p>
+          </li>
+          <%= render @feed.old %>
+        <% end %>
+        <% if @feed.ancient.any? %>
+          <li class="period-marker">
+            <p>Last Year</p>
+          </li>
+          <%= render @feed.ancient %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -10,109 +10,89 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227201450) do
+ActiveRecord::Schema.define(version: 20170806213021) do
 
-  create_table "blogposts", force: :cascade do |t|
-    t.text     "content"
-    t.boolean  "published",  default: false
-    t.integer  "member_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "title",      default: "Title"
-    t.string   "picture"
-    t.bigint   "views",      default: 0
-    t.index ["member_id", "created_at"], name: "index_blogposts_on_member_id_and_created_at"
-    t.index ["member_id"], name: "index_blogposts_on_member_id"
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "live",        default: false
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.text     "description"
-    t.string   "place"
-    t.datetime "start"
-    t.datetime "end"
-    t.string   "color"
-  end
-
-  create_table "events_members", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "member_id"
-    t.index ["event_id"], name: "index_events_members_on_event_id"
-    t.index ["member_id"], name: "index_events_members_on_member_id"
-  end
-
-  create_table "members", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at",                                                        null: false
-    t.datetime "updated_at",                                                        null: false
-    t.string   "password_digest"
-    t.string   "remember_digest"
-    t.boolean  "exec",              default: false
-    t.boolean  "admin",             default: false
-    t.string   "position",          default: "Project Member"
-    t.string   "activation_digest"
-    t.boolean  "activated",         default: false
-    t.datetime "activated_at"
-    t.string   "reset_digest"
-    t.datetime "reset_sent_at"
-    t.text     "introduction",      default: "I love Machine Learning At Berkeley"
-    t.string   "picture"
-    t.boolean  "officer",           default: false
-    t.string   "major",             default: "Agriculture"
-    t.string   "grade",             default: "Freshman"
-    t.index ["email"], name: "index_members_on_email", unique: true
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.string   "tag"
-    t.text     "description"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "picture"
-    t.boolean  "current",     default: true
-    t.string   "pdf"
-  end
-
-  create_table "specials", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "tag"
-  end
-
-  create_table "subscribers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_subscribers_on_email", unique: true
-  end
-
-  create_table "teams", force: :cascade do |t|
+  create_table "associations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "member_id"
     t.integer  "project_id"
-    t.integer  "year"
-    t.string   "semester"
-    t.string   "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_teams_on_member_id"
-    t.index ["project_id"], name: "index_teams_on_project_id"
   end
 
-  create_table "wikifiles", force: :cascade do |t|
+  create_table "members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email",                                default: "",           null: false
+    t.string   "encrypted_password",                   default: "",           null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                        default: 0,            null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "fname"
+    t.string   "lname"
+    t.boolean  "exec",                                 default: false
+    t.boolean  "admin",                                default: false
+    t.boolean  "officer",                              default: false
+    t.string   "position",                             default: "Member"
+    t.text     "introduction",           limit: 65535
+    t.string   "picture"
+    t.string   "background"
+    t.string   "major",                                default: "Undeclared"
+    t.string   "grade",                                default: "Freshman"
+    t.index ["confirmation_token"], name: "index_members_on_confirmation_token", unique: true, using: :btree
+    t.index ["email"], name: "index_members_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",    limit: 65535
+    t.string   "video"
+    t.string   "photo"
+    t.integer  "project"
+    t.integer  "member_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["member_id", "created_at"], name: "index_posts_on_member_id_and_created_at", using: :btree
+    t.index ["member_id"], name: "index_posts_on_member_id", using: :btree
+  end
+
+  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "sname"
+    t.string   "tag"
+    t.text     "description", limit: 65535
+    t.string   "picture"
+    t.string   "background"
+    t.integer  "year"
+    t.string   "semester"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "subscribers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_subscribers_on_email", unique: true, using: :btree
+  end
+
+  create_table "wikifiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "attachment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "posts", "members"
 end

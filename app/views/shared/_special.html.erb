@@ -1,5 +1,0 @@
-<%= content_tag(:h3, object.title) %>
-<%= content_tag(:p, simple_format(object.content)) %>
-<% if logged_in? and admin_or_exec? %>
-  <%= link_to "edit", edit_special_path(object) %> | <%= link_to "delete", object, method: :delete, data: { confirm: "You sure?" } %>
-<% end %>

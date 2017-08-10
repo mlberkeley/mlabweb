@@ -1,35 +1,85 @@
-<% provide(:title, 'All Projects') %>
+<% @title = "Listing projects" %>
 
-<header class="secondary_header">
-    <div class="page_title">
-      <%= content_tag(:h1, 'All Projects (A-Z)') %>
-    </div>
-
-    <% if admin_or_exec? %>
-      <%= link_to "Initiate a new Project", newproject_path, class: "btn btn-default" %>
-    <% end %>
-</header>
-
-<div class="row">
-  <div class="space"><div>
-  <div class="col-md-6">
-    <h2>Industry</h2>
-    <ul class="index-list">
-      <% @industry.each do |project| %>
-        <li>
-          <%= render 'shared/project_info', object: project %>
-        </li>
-      <% end %>
+<% content_for :navbar do %>
+  <div class="snav">
+    <ul class="snav-links">
+      <li>
+        <%= link_to new_project_path do %>
+          <%= fa_icon_tag "plus" %> Add Project
+        <% end %>
+      </li>
     </ul>
   </div>
-  <div class="col-md-6">
-    <h2>Research</h2>
-    <ul class="index-list">
-      <% @research.each do |project| %>
-        <li>
-          <%= render 'shared/project_info', object: project %>
-        </li>
-      <% end %>
-    </ul>
+<% end %>
+
+<!-- <% content_for :actions do %>
+<%= link_to new_project_path, class: 'btn btn-primary btn-large pull-right' do %>
+<%= fa_icon_tag "plus" %> Add Project
+<% end %>
+<% end %> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <!-- <h3>Industry</h3> -->
+      <div class="sheet sheet-condensed">
+        <div class="sheet-inner">
+          <table class="table">
+            <thead>
+              <tr>
+                                <th>Industry</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @industry.each do |project| %>
+              <tr>
+                                <td class="actions"><%= project.name %>
+                  <%= link_to fa_icon_tag("eye"), project, rel: 'tooltip', title: 'Show' %>
+                  <%= link_to fa_icon_tag("pencil"), edit_project_path(project), rel: 'tooltip', title: 'Edit' %>
+                  <%= link_to fa_icon_tag("users"), members_project_path(project.id), rel: 'tooltip', title: 'Members' %>
+                  <%= link_to fa_icon_tag("trash-o"), project, rel: 'tooltip', title: 'Delete',
+                  data: { confirm: 'Are you sure?' }, method: :delete %>
+                </td>
+              </tr>
+              <% end %>
+              <% if @industry.length == 0 %>
+              <tr><td colspan=42 class='text-center'>No projects.</td></tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div><!-- /.sheet-inner -->
+      </div><!-- /.sheet -->
+
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <!-- <h3>Research</h3> -->
+      <div class="sheet sheet-condensed">
+        <div class="sheet-inner">
+          <table class="table">
+            <thead>
+              <tr>
+                                <th>Research</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @research.each do |project| %>
+              <tr>
+                                <td class="actions"><%= project.name %>
+                  <%= link_to fa_icon_tag("eye"), project, rel: 'tooltip', title: 'Show' %>
+                  <%= link_to fa_icon_tag("pencil"), edit_project_path(project), rel: 'tooltip', title: 'Edit' %>
+                  <%= link_to fa_icon_tag("users"), members_project_path(project.id), rel: 'tooltip', title: 'Members' %>
+                  <%= link_to fa_icon_tag("trash-o"), project, rel: 'tooltip', title: 'Delete',
+                  data: { confirm: 'Are you sure?' }, method: :delete %>
+                </td>
+              </tr>
+              <% end %>
+              <% if @research.length == 0 %>
+              <tr><td colspan=42 class='text-center'>No projects.</td></tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div><!-- /.sheet-inner -->
+      </div><!-- /.sheet -->
+    </div>
   </div>
 </div>

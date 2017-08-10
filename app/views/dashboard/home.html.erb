@@ -1,0 +1,456 @@
+<% @title = "Dashboard" %>
+<% subs_one_week_ago = Subscriber.where("created_at < ?", 1.week.ago).count + 1 %>
+<% mems_one_week_ago = Member.where("created_at < ?", 1.week.ago).count + 1 %>
+<% new_subs_past_week = Subscriber.where("created_at > ?", 1.week.ago).count + 1 %>
+<% new_mems_past_week = Member.where("created_at > ?", 1.week.ago).count + 1 %>
+
+
+<div class="row">
+  <div class="col-sm-12 col-md-6 animate-fade-in-1000">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p class="lead">Current Teams</p>
+      </div>
+      <div class="panel-body">
+
+          <% if @member.projects.current.empty? %>
+            <p class="text-center">No Teams</p>
+          <% else %>
+            <div class="owl-carousel object-list">
+              <% @member.projects.current.each do |project| %>
+                <div class="item">
+                  <%= render 'shared/project_info', object: project %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 animate-fade-in-1000">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p class="lead">Past Teams</p>
+      </div>
+      <div class="panel-body">
+
+        <% if @member.projects.past.empty? %>
+          <p class="text-center">No Teams</p>
+        <% else %>
+          <div class="owl-carousel object-list">
+            <% @member.projects.past.each do |project| %>
+              <div class="item">
+                <%= render 'shared/project_info', object: project %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<% if officer_or_higher? %>
+
+
+
+<div class="text-center">
+  <h2>Admin Metrics</h2>
+</div>
+
+<div class="container-fluid mt20">
+  <div class="row top-summary">
+    <div class="col-lg-3 col-md-6 col-sm-12 animate-drop-fade">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <p class="lead"><i class="fa fa-globe"></i> TOTAL <b>PAGE HITS</b></p>
+        </div>
+        <div class='panel-body text-red-400'>
+          <h2 class='page-hits m0'><%=  %></h2>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- <i class="fa fa-caret-down"></i> <b>10%</b> decrease in page hits. -->
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 animate-drop-fade">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <p class="lead"><i class="fa fa-globe"></i> TOTAL <b>BLOG HITS</b></p>
+        </div>
+        <div class='panel-body text-light-blue-400'>
+          <h2 class="m0"><%=  %></h2>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- <i class="fa fa-minus"></i> <b>No change</b> in blog hits. -->
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 animate-drop-fade">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <p class="lead"><i class="fa fa-users"></i> TOTAL <b>MEMBERS</b></p>
+        </div>
+        <div class='panel-body text-green-400'>
+          <h2 class="m0"><%= Member.count %></h2>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-12">
+              <% if new_mems_past_week==0 %>
+                <i class="fa fa-caret-up"></i> <b>No change</b>
+              <% elsif new_mems_past_week < 0 %>
+                <i class="fa fa-caret-down"></i> <b><%= new_mems_past_week * 100 / mems_one_week_ago %>%</b> decrease
+              <% else %>
+                <i class="fa fa-caret-up"></i> <b><%= new_mems_past_week * 100 / mems_one_week_ago %>%</b> increase
+              <% end %>
+               in membership.
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 animate-drop-fade">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <p class="lead"><i class="fa fa-users"></i> TOTAL <b>SUBSCRIBERS</b></p>
+        </div>
+        <div class='panel-body text-green-400'>
+          <h2 class="m0"><%= Subscriber.count %></h2>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-12">
+              <% if new_subs_past_week==0 %>
+                <i class="fa fa-caret-up"></i> <b>No change</b>
+              <% elsif new_subs_past_week < 0 %>
+                <i class="fa fa-caret-down"></i> <b><%= new_subs_past_week * 100 / subs_one_week_ago %>%</b> decrease
+              <% else %>
+                <i class="fa fa-caret-up"></i> <b><%= new_subs_past_week * 100 / subs_one_week_ago %>%</b> increase
+              <% end %>
+               in subscriptions.
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-metric">
+        <div class="panel-body">
+          <div class="metric-content">
+            <div class="row">
+              <header class="col-xs-12">
+                <h3>Monthly Earnings</h3>
+              </header>
+              <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" style="min-height: 150px;">
+                <div class='metric-graph' id='metric-monthly-earnings' style='height:150px;'></div>
+              </div>
+              <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                <div class="metric-value">
+                  $19,821
+                  <small>CURRENT</small>
+                </div>
+                <div class="metric-trend">
+                  <p class="text-success">
+                    <i class="fa fa-chevron-up"></i> 12%
+                  </p>
+                  <small>30 Days Ago</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-metric">
+        <div class="panel-body">
+          <div class="metric-content">
+            <div class="row">
+              <header class="col-xs-12">
+                <h3>Cancellations</h3>
+              </header>
+              <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" style="min-height: 150px;">
+                <div class='metric-graph' id='metric-cancellations' style='height:150px;'></div>
+              </div>
+              <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                <div class="metric-value">
+                  123
+                  <small>CURRENT</small>
+                </div>
+                <div class="metric-trend">
+                  <p class="text-success">
+                    <i class="fa fa-chevron-up"></i> 12%
+                  </p>
+                  <small>30 Days Ago</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row">
+    <div class="col-sm-12 col-md-9 animate-fade-in-1000">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="lead">WEEKLY ACTIVITY</p>
+        </div>
+        <div class="panel-body">
+          <!-- <div id="rickshaw-bars"></div> -->
+          Not enough data, coming soon
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3 animate-fade-in-1000">
+      <div class="panel panel-cover" style="background-image: url(<%= image_path("bg.jpg") %>)">
+        <!-- <p class="lead p10">Current President</p>
+        <%= random_avatar 115, "img-circle" %>
+        <h3 class='mt0'>Brenton Chu</h3>
+        <ul class="stats list-unstlyed list-inline clearfix">
+          <li class="col-4"><span>$1,267</span>Commission</li>
+          <li class="col-4"><span>$3,987</span>Sales</li>
+          <li class="col-4"><span>121</span>Referrals</li>
+        </ul> -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="row">
+    <div class="col-sm-12 col-md-7 animate-fade-in-1000">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="lead">SERVER INFO</p>
+        </div>
+        <div class="panel-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div id="realtime" style="height: 315px; width: 100%; display: block;">
+                </div>
+              </div>
+            </div>
+            Coming soon
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="server-status-details clearfix">
+                <h5 class="text-center">Memory Stats</h5>
+                <div class="row stat-list">
+                  <dl class="col-xs-6 col-sm-6 col-md-3">
+                    <dt>In use</dt>
+                    <dd>2.5 GB</dd>
+                  </dl>
+                  <dl class="col-xs-6 col-sm-6 col-md-3">
+                    <dt>Total</dt>
+                    <dd>4 GB</dd>
+                  </dl>
+                  <dl class="col-xs-6 col-sm-6 col-md-3">
+                    <dt>Available</dt>
+                    <dd>500 MB</dd>
+                  </dl>
+                  <dl class="col-xs-6 col-sm-6 col-md-3">
+                    <dt>Swap</dt>
+                    <dd>360 MB</dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-5 animate-fade-in-1000">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class='lead'><%= ionicon_icon_tag 'flame' %> RECENT ACTIVITY</p>
+          <ul class="nav nav-tabs nav-tabs-xs">
+            <li class="active">
+              <a href="#dashboard-recent-posts" data-toggle="tab">Posts</a>
+            </li>
+            <li class="">
+              <a href="#dashboard-recent-threads" data-toggle="tab">Project threads</a>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane fade active in" style='height: 470px; overflow: scroll;' id='dashboard-recent-posts'>
+            <ul class="list-group list-group-flush">
+              <li class='list-group-item'>
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <%= random_avatar 40, "media-object" %>
+                  </a>
+                  <div class="media-body">
+                    <h5 class="media-heading"><a href="#" title="">Fill Murray</a> commented on <a href="#" title="">Article Name</a></h5>
+                    <p class='small'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae atque, dolore quo voluptatum sed voluptas incidunt aspernatur natus iste dolor neque porro quos illo quia iusto minima, nesciunt animi architecto.</p>
+                    <ul class="list-inline small">
+                      <li><a href="#"><i class="fa fa-fw fa-pencil"></i>Edit</a></li>
+                      <li><a href="#"><i class="fa fa-fw fa-times"></i>Remove</a></li>
+                      <span class="pull-right">1 hour ago</span>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-pane fade" id="dashboard-recent-threads">
+            <div style="overflow: scroll; width: auto; height: 474px;">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="media">
+                    <a class="pull-left" href="#">
+                      <%= random_avatar 40, "media-object" %>
+                    </a>
+                    <div class="media-body">
+                      <h5 class="media-heading"><a href="#" title="">Lorem ipsum dolor sit amet</a></h5>
+                      <div class="small">started by <a href="#" title="">Fill Murray</a> in <a href="#" title="">Forum name</a><span class="pull-right">3h</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="lead">ONLINE MEMBERS</p>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Full Name</th>
+                  <th>Position</th>
+                  <th>Grade</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% Member.online.each_with_index do |m, i| %>
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= m.full_name %></td>
+                    <td><%= m.position %></td>
+                    <td><%= m.grade %></td>
+                    <td>
+                      <div class="btn-group btn-group-xs">
+                        <%= link_to fa_icon_tag("eye"), m, class: "btn btn-default" %>
+                        <%= link_to fa_icon_tag("edit"), edit_member_path(m), class: "btn btn-default" %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="lead"><i class="fa fa-trophy"></i> MOST ACTIVE MEMBERS</p>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Full Name</th>
+                  <th>Activity Count</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% Member.last(10).each_with_index do |m, i| %>
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><strong><%= m.full_name %></strong></td>
+                    <td><%=  %></td>
+                    <td><%= content_tag(:span, m.online? ? "Online" : "Offline", class: "label label-#{m.online? ? 'success' : 'danger'}") %></td>
+                    <td>
+                      <div class="btn-group btn-group-xs">
+                        <%= link_to fa_icon_tag("eye"), m, class: "btn btn-default" %>
+                        <%= link_to fa_icon_tag("edit"), edit_member_path(m), class: "btn btn-default" %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="lead"><%= fa_icon_tag("globe") %> GOOGLE ANALYTICS MAP</p>
+        </div>
+        <div class="panel-body">
+          <!-- <div id="map_canvas_1"></div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="lead"><%= fa_icon_tag("fire") %> GOOGLE ANALYTICS DATA</p>
+        </div>
+        <div class="panel-body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<% end %>

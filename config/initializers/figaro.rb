@@ -1,0 +1,9 @@
+Figaro.require_keys(
+  "GMAIL_USERNAME",
+  "GMAIL_PASSWORD",
+  "FB_API_VERSION",
+  "FB_APP_ID",
+  "FB_APP_SECRET",
+  "FB_APP_ACCESS_TOKEN",
+  "FB_USER_ACCESS_TOKEN"
+)

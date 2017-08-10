@@ -11,12 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require dresssed
+//= require_tree ./public
 //= require turbolinks
-//= require owl.carousel
-//= require moment
-//= require fullcalendar
-//= require daterangepicker
-//= require fullcalendar/gcal
-//= require_tree .

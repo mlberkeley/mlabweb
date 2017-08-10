@@ -1,0 +1,16 @@
+<% content_for :styles do %>
+  <%= stylesheet_link_tag "controller_specific/" + params[:controller] %>
+<% end %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "controller_specific/" + params[:controller] %>
+<% end %>
+
+<%= render :layout => "layouts/minimal" do %>
+  <%= render "layouts/sub_nav" %><!-- /.page-header -->
+
+  <div class='container-fluid'>
+      <div id="content" class="col-md-12">
+        <%= yield %>
+      </div> <!-- /#content -->
+  </div>
+<% end %>

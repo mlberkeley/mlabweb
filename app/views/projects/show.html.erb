@@ -1,19 +1,88 @@
-<% provide(:title, @project.name) %>
+<% @title = @project.name %>
 
-<header class="secondary_header">
-    <div class="page_title">
-      <%= content_tag(:h1, @project.name) %>
+<% if member_signed_in? %>
+<% content_for :navbar do %>
+  <%= content_tag(:p, 'a.k.a. "' + @project.sname + '"', style: 'font-style: italic; color: #5084BB') unless @project.sname.blank? %>
+  <div class="snav">
+    <ul class="snav-links">
+      <li>
+        <%= link_to edit_project_path do %>
+          <%= fa_icon_tag "pencil" %> Edit
+        <% end %>
+      </li>
+      <li> / </li>
+      <li>
+        <%= link_to fa_icon_tag("plus") + ' Members to Project', members_project_path(@project.id) %>
+      </li>
+      <li> / </li>
+      <li>
+        <%= link_to "Delete", @project, method: :delete, data: { confirm: "You sure?" } %>
+      </li>
+      <li> / </li>
+      <li>
+        <%= link_to 'Back', projects_path %>
+      </li>
+    </ul>
+  </div>
+<% end %>
+<% end %>
+
+<div class="container-fluid">
+  <div class="project-profile">
+    <%= image_tag(@project.background? ? @project.background.url : "portfolio/unpictured.png", style: "opacity: 0.6;") %>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <ul class="list-group mt15">
+        <li class="list-group-item">Followers <span class="badge"><%=  %></span></li>
+      </ul>
     </div>
-    <%= content_tag(:p, @project.tag) %>
-    <% if logged_in? and officer_or_higher? %>
-    <%= link_to "Edit", edit_project_path(@project), class: "btn btn-default" %>
-    <%= link_to "Add Members to Project", members_project_path(@project.id), class: "btn btn-default" %>
-    <%= link_to "Delete", @project, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-default" %>
-    <% end %>
-</header>
+  </div>
+  <div class='row'>
+    <div class="left-timeline col-sm-12">
+      <div class="panel panel-default mt15" id="panels">
+        <div class="panel-heading">
+          About this project
+        </div>
+        <p class="panel-body">
+          <%= @project.description %>
+        </p>
+      </div>
+      <div class="panel panel-default mt15" id="panels">
+        <div class="panel-heading">
+          Project Members
+        </div>
+        <p class="panel-body text-center">
+          <%= "No Team Members" if @project.members.empty? %>
+          <div class="owl-carousel object-list">
+            <% @project.members.each do |member| %>
+              <div class="item">
+                <%= render 'shared/member_info', object: member %>
+              </div>
+            <% end %>
+          </div>
+        </p>
+      </div>
 
-<div id="project-show">
-  <div class="space"></div>
-  <%= render 'shared/project' %>
-  <%= link_to "<< Back to Portfolio", portfolio_path, class: "btn btn-default" %>
+      <% if member_signed_in? and @project.members.include?(current_member) %>
+        <%= render 'posts/post_form' %>
+      <% end %>
+
+      <ul>
+        <%= render @posts.recent %>
+        <% if @posts.old.any? %>
+          <li class="period-marker">
+            <p>Last Month</p>
+          </li>
+          <%= render @posts.old %>
+        <% end %>
+        <% if @posts.ancient.any? %>
+          <li class="period-marker">
+            <p>Last Year</p>
+          </li>
+          <%= render @posts.ancient %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,51 @@
+<% @title = "Listing subscribers" %>
+
+<% content_for :navbar do %>
+<div class="snav">
+  <ul class="snav-links">
+    <li>
+      <%= link_to new_subscriber_path do %>
+        <%= fa_icon_tag "plus" %> Add Subscriber
+      <% end %>
+    </li>
+  </ul>
+</div>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="sheet sheet-condensed">
+        <div class="sheet-inner">
+          <table class="table">
+            <thead>
+              <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @subscribers.each do |subscriber| %>
+              <tr>
+                                <td><%= subscriber.name %></td>
+                                <td class="rev"><%= subscriber.email.reverse %></td>
+                                <td class="actions">
+                  <%= link_to fa_icon_tag("eye"), subscriber, rel: 'tooltip', title: 'Show' %>
+                  <%= link_to fa_icon_tag("pencil"), edit_subscriber_path(subscriber), rel: 'tooltip', title: 'Edit' %>
+                  <%= link_to fa_icon_tag("trash-o"), subscriber, rel: 'tooltip', title: 'Delete',
+                  data: { confirm: 'Are you sure?' }, method: :delete %>
+                </td>
+              </tr>
+              <% end %>
+              <% if @subscribers.length == 0 %>
+              <tr><td colspan=42 class='text-center'>No subscribers.</td></tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div><!-- /.sheet-inner -->
+      </div><!-- /.sheet -->
+
+                </div>
+  </div>
+</div>

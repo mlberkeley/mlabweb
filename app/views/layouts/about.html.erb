@@ -1,0 +1,17 @@
+<% content_for :navbar do %>
+  <div class="snav">
+    <ul class="snav-links">
+      <li><%= link_to "Advisors", advisors_path, class: ('active' if @title == "Advisors") %></li>
+      <li> / </li>
+      <li><%= link_to "About ML@B", about_path, class: ('active' if @title == "About ML@B") %></li>
+      <li> / </li>
+      <li><%= link_to "Team", team_path, class: ('active' if @title == "Team") %></li>
+      <li> / </li>
+      <li><%= link_to "New Member Opportunities", newmemberfaq_path, class: ('active' if @title == "New Member Opportunities") %></li>
+    </ul>
+  </div>
+<% end %>
+
+<%= render "layouts/not_home" do %>
+  <%= yield %>
+<% end %>

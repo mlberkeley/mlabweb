@@ -1,38 +1,38 @@
-<nav id="footer" <%= 'class=navbar-fixed-bottom' if !yield(:title).empty? %>>
-  <div class="container">
-    <div class="pull-left fnav">
-      <ul class="footer-links">
-        <li>ML@B &copy 2016</li>
-        <li>&middot</li>
-        <li><a href="/">Website</a></li>
-        <li>&middot</li>
-        <li><%= link_to "Blog", "/blog", target: "_blank" %></li>
-        <% if !logged_in? %>
-          <li>&middot</li>
-          <li><%= link_to "Login", login_path %></li>
-        <% end %>
-        <li>&middot</li>
-        <li>
-          <ul class="footer-social">
-            <li><a href="https://www.facebook.com/berkeleyml" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="https://twitter.com/BerkeleyMl" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://www.github.com/mlberkeley" target="_blank" rel="noopener"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://bit.ly/mlabYouTube" target="_blank" rel="noopener"><i class="fa fa-youtube"></i></a></li>
-            <li><a href="https://bit.ly/mlabLinkedIn" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i></a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <% if yield(:title).empty? %>
-      <div class="pull-right fnav ocf">
-        <a href="https://www.ocf.berkeley.edu">
-          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocfbadge_mini8.png" alt="Hosted by the OCF" style="border: 0;" />
-        </a>
+<footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-lg-4 text-xs-center text-md-left">
+          <section>
+            <h4>About</h4>
+            <a href="#">About ML@B</a> <br>
+            <a href="#">Non-Profit Statement</a> <br>
+            <a href="#">Portfolio</a>
+          </section>
+        </div>
+        <div class="col-sm-12 col-lg-4 text-xs-center text-md-left">
+          <section>
+            <h4>Social</h4>
+            <a href="#">Blog</a> <br>
+            <a href="#">Contact Us</a><br>
+            <a href="https://www.facebook.com/berkeleyml" target="_blank" rel="noopener"><i class="fa fa-facebook"></i>&nbsp;</a>
+            <a href="https://twitter.com/BerkeleyMl" target="_blank" rel="noopener"><i class="fa fa-twitter"></i>&nbsp;</a>
+            <a href="https://www.github.com/mlberkeley" target="_blank" rel="noopener"><i class="fa fa-github"></i>&nbsp;</a>
+            <a href="https://bit.ly/mlabYouTube" target="_blank" rel="noopener"><i class="fa fa-youtube"></i>&nbsp;</a>
+            <a href="https://bit.ly/mlabLinkedIn" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i></a>
+          </section>
+        </div>
+        <div class="col-sm-12 col-lg-4 text-xs-center text-md-left">
+          <section>
+            <h4>Quick Links</h4>
+            <% if member_signed_in? %>
+              <%= link_to "Logout", destroy_member_session_path, method: :delete %>
+            <% else %>
+              <%= link_to "Login", new_member_session_path %> <br>
+              <%= link_to "Sign up", new_member_registration_path %>
+            <% end %>
+            <br>
+          </section>
+        </div>
       </div>
-    <% end %>
-  </div>
-</nav>
-
-<% if !yield(:title).empty? %>
-  </div>
-<% end %>
+    </div>
+  </footer>

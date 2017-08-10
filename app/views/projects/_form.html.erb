@@ -1,0 +1,69 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $('#project_picture').bind('change', function() {
+      var size_in_megabytes = this.files[0].size/1024/1024;
+      if (size_in_megabytes > 5) {
+        alert('Maximum file size is 5MB. Please choose a smaller file.');
+      }
+    });
+  </script>
+<% end %>
+
+<%= form_for(@project, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.form_group :name do |f| %>
+    <%= f.label :name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name %>
+      <%= f.error_messages %>
+    </div>
+    <% end %>
+
+    <%= f.form_group :sname do |f| %>
+    <%= f.label :sname, "Secondary Name", class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :sname, placeholder: "optional" %>
+      <%= f.error_messages %>
+    </div>
+    <% end %>
+
+    <%= f.form_group :tag do |f| %>
+    <%= f.label :tag, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tag, placeholder: "Industry / Research" %>
+      <%= f.error_messages %>
+    </div>
+    <% end %>
+
+    <%= f.label :semester, class: 'control-label' %>
+    <%= f.select :semester, ["Fall", "Spring"] %>
+
+    <%= f.label :year %>
+    <%= f.select :year, [2017, 2016, 2015] %>
+
+    <%= f.form_group :description do |f| %>
+    <%= f.label :description, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, class: 'form-control', rows: 20 %>
+      <%= f.error_messages %>
+    </div>
+    <% end %>
+
+    <%= f.form_group :picture do |f| %>
+      <%= f.label :picture, "Project Picture" %><br>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+    <% end %>
+
+    <%= f.form_group :background do |f| %>
+      <%= f.label :background, "Backgound Picture" %><br>
+      <%= f.file_field :background, accept: 'image/jpeg,image/gif,image/png' %>
+    <% end %>
+  </div>
+
+  <div class="form-actions col-md-offset-4 col-md-8">
+    <%= f.submit class: 'btn btn-primary' %>
+    <%= link_to "Cancel", projects_path, class: 'btn' %>
+  </div>
+<% end %>
