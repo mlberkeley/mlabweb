@@ -31,3 +31,6 @@
 /public/assets
 /public/uploads
 /public/blog
+
+# Ignore Vim
+*.swp

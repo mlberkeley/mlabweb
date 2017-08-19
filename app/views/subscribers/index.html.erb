@@ -20,16 +20,18 @@
           <table class="table">
             <thead>
               <tr>
-                                <th>Name</th>
-                                <th>Email</th>
+		      <th>Name</th>
+		      <th>Subscribed On Date</th>
+				<th>Email</t>
                                 <th></th>
               </tr>
             </thead>
             <tbody>
               <% @subscribers.each do |subscriber| %>
               <tr>
-                                <td><%= subscriber.name %></td>
-                                <td class="rev"><%= subscriber.email.reverse %></td>
+		      <td><%= subscriber.name %></td>
+		      <td><%= subscriber.created_at.strftime("%d %b. %Y") %></td>
+				<td class="rev"><%= subscriber.email.reverse %></td>
                                 <td class="actions">
                   <%= link_to fa_icon_tag("eye"), subscriber, rel: 'tooltip', title: 'Show' %>
                   <%= link_to fa_icon_tag("pencil"), edit_subscriber_path(subscriber), rel: 'tooltip', title: 'Edit' %>

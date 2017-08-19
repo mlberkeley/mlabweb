@@ -36,9 +36,15 @@
       </ul>
       <div class="panel panel-default mt15" id="panels">
         <div class="panel-heading">
-          Member Bio
-        </div>
-        <div class="panel-body">
+		Member Bio
+	</div>
+	<div class="panel-heading" style="text-align:right;">
+		<%= (@member.major + " | " + @member.grade) %>
+			          </div>
+	 <div class="panel-heading rev">
+		<%= @member.email.reverse %>
+							            </div>
+	<div class="panel-body">
           <% if @member.introduction? %>
             <%= markdown(@member.introduction) %>
           <% else %>
