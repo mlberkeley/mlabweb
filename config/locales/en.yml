@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      mini_magick_processing_error: "%{e}" # <= e contains the exception.
