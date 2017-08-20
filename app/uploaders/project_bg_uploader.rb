@@ -1,10 +1,10 @@
-class MemberPicUploader < CarrierWave::Uploader::Base
+class ProjectBgUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   process :crop
-  process resize_to_limit: [600, 600]
+  process resize_to_limit: [1000, 1000]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -33,14 +33,9 @@ class MemberPicUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   # version :thumb do
-  #   process resize_to_fit: [50, 50]
+  #   process :crop
+  #   resize_to_fit(425, 100)
   # end
-
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
 
   def crop
     if model.crop_x.present?
@@ -52,6 +47,12 @@ class MemberPicUploader < CarrierWave::Uploader::Base
         img.crop!(x, y, w, h)
       end
     end
+  end
+
+  # Add a white list of extensions which are allowed to be uploaded.
+  # For images you might use something like this:
+  def extension_whitelist
+    %w(jpg jpeg gif png)
   end
 
   # Override the filename of the uploaded files:

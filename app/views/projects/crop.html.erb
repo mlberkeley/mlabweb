@@ -1,0 +1,11 @@
+<h1>Crop Background</h1>
+<%= image_tag @project.background_url, id: "cropbox" %>
+<h4>Preview</h4>
+<%= form_for @project do |f| %>
+  <% %w[x y w h].each do |attribute| %>
+    <%= f.hidden_field "crop_#{attribute}" %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit "Crop" %>
+  </div>
+<% end %>

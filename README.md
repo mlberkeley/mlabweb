@@ -17,7 +17,7 @@ $ \curl -sSL https://get.rvm.io | bash -s stable
 
 Run it, source rvm, and install and use the version of Ruby you want (at the time of writing this, the last commit was in 2.3.3p222).
 
-Install Ruby on Rails('~> 5.0.0', '>= 5.0.0.1' atm).
+Install Ruby on Rails('~> 5.0.0', '>= 5.0.5' atm).
 
 ### Clone/Fork
 
@@ -30,7 +30,15 @@ $ rails db:seed
 $ rails s
 ```
 
-For developing and testing member account functionalities, login at localhost:3000/login with
+> **NOTE**: This app uses mySQL for both development(+ test) and production purposes. So if  db:migrate  fails on you, you do not have mySQL locally set up.
+> In the Gemfile, switch out the gem 'mysql' with 'sqlite3', rebundle and migrate the database again.
+>
+> Or if you prefer and have postgres set up locally, you can use the 'pg' gem for development purposes.
+>
+> **But do not push this change to the repository**
+
+
+For developing and testing member account functionalities, login at localhost:3000/members/sign_in with
 
 ```
 login: admin@ml.berkeley.edu

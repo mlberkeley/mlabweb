@@ -21,6 +21,7 @@
             <thead>
               <tr>
                                 <th>Name</th>
+                                <th>Subscribed On Date</th>
                                 <th>Email</th>
                                 <th></th>
               </tr>
@@ -29,6 +30,7 @@
               <% @subscribers.each do |subscriber| %>
               <tr>
                                 <td><%= subscriber.name %></td>
+                                <td><%= subscriber.created_at.strftime("%d %b. %Y") %></td>
                                 <td class="rev"><%= subscriber.email.reverse %></td>
                                 <td class="actions">
                   <%= link_to fa_icon_tag("eye"), subscriber, rel: 'tooltip', title: 'Show' %>

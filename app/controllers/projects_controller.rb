@@ -39,7 +39,13 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html {
+          if params[:project][:background].present?
+            render :crop
+          else
+            redirect_to @project, notice: "Successfully created project."
+          end
+        }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -53,7 +59,13 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html {
+          if params[:project][:background].present?
+            render :crop
+          else
+            redirect_to @project, notice: "Successfully updated project."
+          end
+        }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -80,7 +92,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :sname, :tag, :semester, :year, :description, :picture, :background, member_ids: [])
+      params.require(:project).permit(:name, :sname, :tag, :semester, :year, :description, :picture, :background, :crop_x, :crop_y, :crop_w, :crop_h, member_ids: [])
     end
 
     def correct_member

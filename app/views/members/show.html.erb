@@ -38,7 +38,14 @@
         <div class="panel-heading">
           Member Bio
         </div>
+        <div class="panel-heading" style="text-align:right;">
+          <%= (@member.major + " | " + @member.grade) %>
+        </div>
+        <div class="panel-heading rev">
+          <%= @member.email.reverse %>
+        </div>
         <div class="panel-body">
+
           <% if @member.introduction? %>
             <%= markdown(@member.introduction) %>
           <% else %>

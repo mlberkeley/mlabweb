@@ -19,8 +19,12 @@ class MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update_attributes(member_params)
-      flash[:success] = "Profile updated"
-      redirect_to @member
+      if params[:member][:picture].present?
+        render :crop
+      else
+        flash[:success] = "Profile updated"
+        redirect_to @member
+      end
     else
       render 'edit'
     end
@@ -35,7 +39,7 @@ class MembersController < ApplicationController
   private
 
     def member_params
-      params.require(:member).permit(:lname, :fname, :introduction, :major, :grade, :position, :exec, :officer, :picture)
+      params.require(:member).permit(:lname, :fname, :introduction, :major, :grade, :position, :exec, :officer, :picture, :crop_x, :crop_y, :crop_w, :crop_h)
     end
 
     def correct_member

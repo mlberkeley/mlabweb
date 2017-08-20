@@ -390,7 +390,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <p class="lead"><i class="fa fa-trophy"></i> MOST ACTIVE MEMBERS</p>
+          <p class="lead">MOST ACTIVE MEMBERS</p>
         </div>
         <div class="panel-body">
           <div class="table-responsive">
@@ -406,7 +406,7 @@
               </thead>
 
               <tbody>
-                <% Member.last(10).each_with_index do |m, i| %>
+                <% Member.reorder(sign_in_count: :desc).first(10).each_with_index do |m, i| %>
                   <tr>
                     <td><%= i + 1 %></td>
                     <td><strong><%= m.full_name %></strong></td>
