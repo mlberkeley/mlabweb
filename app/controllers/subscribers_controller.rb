@@ -32,7 +32,7 @@ class SubscribersController < ApplicationController
     respond_to do |format|
       if @subscriber.save
         SubscriberMailer.subscribe(@subscriber).deliver_now
-        format.html { redirect_to @subscriber, notice: "#{@subscriber.name}, you have been subscribed!" }
+        format.html { redirect_to events_path, notice: "#{@subscriber.name}, you have been subscribed!" }
         format.json { render :show, status: :created, location: @subscriber }
       else
         format.html { render :new }

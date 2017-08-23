@@ -4,7 +4,6 @@
 <% new_subs_past_week = Subscriber.where("created_at > ?", 1.week.ago).count + 1 %>
 <% new_mems_past_week = Member.where("created_at > ?", 1.week.ago).count + 1 %>
 
-
 <div class="row">
   <div class="col-sm-12 col-md-6 animate-fade-in-1000">
     <div class="panel panel-default">
@@ -410,7 +409,7 @@
                   <tr>
                     <td><%= i + 1 %></td>
                     <td><strong><%= m.full_name %></strong></td>
-                    <td><%=  %></td>
+                    <td><%= m.sign_in_count %></td>
                     <td><%= content_tag(:span, m.online? ? "Online" : "Offline", class: "label label-#{m.online? ? 'success' : 'danger'}") %></td>
                     <td>
                       <div class="btn-group btn-group-xs">
@@ -450,6 +449,13 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="row">
+    <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1127_RC02/embed_loader.js"></script>
+    <script type="text/javascript">
+      trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"Machine Learning at berkeley","geo":"","time":"now 7-d"},{"keyword":"blockchain at berkeley","geo":"","time":"now 7-d"}],"category":0,"property":""}, {"exploreQuery":"date=now 7-d&q=Machine%20Learning%20at%20berkeley,blockchain%20at%20berkeley","guestPath":"https://trends.google.com:443/trends/embed/"});
+    </script>
   </div>
 
 </div>

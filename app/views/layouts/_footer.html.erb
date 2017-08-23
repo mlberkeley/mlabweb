@@ -12,8 +12,8 @@
         <div class="col-sm-12 col-lg-4 text-xs-center text-md-left">
           <section>
             <h4>Social</h4>
-            <a href="#">Blog</a> <br>
-            <a href="#">Contact Us</a><br>
+            <a href="//ml.berkeley.edu/blog" target="_blank" rel="noopener">Blog</a> <br>
+            <a href="mailto:contact@ml.berkeley.edu?Subject=Hello%20" target="_top">Contact Us</a> <br>
             <a href="https://www.facebook.com/berkeleyml" target="_blank" rel="noopener"><i class="fa fa-facebook"></i>&nbsp;</a>
             <a href="https://twitter.com/BerkeleyMl" target="_blank" rel="noopener"><i class="fa fa-twitter"></i>&nbsp;</a>
             <a href="https://www.github.com/mlberkeley" target="_blank" rel="noopener"><i class="fa fa-github"></i>&nbsp;</a>
@@ -28,7 +28,7 @@
               <%= link_to "Logout", destroy_member_session_path, method: :delete %>
             <% else %>
               <%= link_to "Login", new_member_session_path %> <br>
-              <%= link_to "Sign up", new_member_registration_path %>
+              <!-- <%= link_to "Sign up", new_member_registration_path %> -->
             <% end %>
             <br>
           </section>

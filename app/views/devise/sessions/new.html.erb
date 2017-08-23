@@ -51,7 +51,7 @@
     <div class="row mt20">
       <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 text-right">
         <ul class="list-unstyled options">
-          <li class="col-xs-12 col-md-6"><%= link_to "Sign Up", new_member_registration_path %></li>
+          <!-- <li class="col-xs-12 col-md-6"><%= link_to "Sign Up", new_member_registration_path %></li> -->
           <%- if devise_mapping.recoverable? %>
             <li class="col-xs-12 col-md-6"><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
           <% end -%>
@@ -61,6 +61,7 @@
           <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) %>
             <li class="col-xs-12 col-md-6"><%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %></li>
           <% end -%>
+          <li class="text-center">**Sign-Up link is only available to accepted members**</li>
         </ul>
       </div>
     </div>

@@ -56,16 +56,14 @@
         <div class="panel-heading">
           Project Members
         </div>
-        <p class="panel-body text-center">
-          <%= "No Team Members" if @project.members.empty? %>
-          <div class="owl-carousel object-list">
-            <% @project.members.each do |member| %>
-              <div class="item">
-                <%= render 'shared/member_info', object: member %>
-              </div>
-            <% end %>
-          </div>
-        </p>
+        <div class="owl-carousel object-list">
+          <% @project.members.each do |member| %>
+            <div class="item">
+              <%= render 'shared/member_info', object: member %>
+            </div>
+          <% end %>
+        </div>
+        <%= content_tag(:p, "No Team Members", class: "panel-body text-center") if @project.members.empty? %>
       </div>
 
       <% if member_signed_in? and @project.members.include?(current_member) %>

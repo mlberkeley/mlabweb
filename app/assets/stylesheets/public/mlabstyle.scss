@@ -92,25 +92,6 @@ $mlab-dark-text: #333333;
   }
 }
 
-img.img-circle.team-img {
-  width: 120px;
-  height: 120px;
-  border: 2px solid transparent;
-  transition: all 0.5s;
-  &:hover {
-    border: 4px solid #5084BB;
-  }
-}
-img.img-circle.project-img {
-  width: 150px;
-  height: 150px;
-  border: 2px solid transparent;
-  transition: all 0.5s;
-  &:hover {
-    border: 4px solid #5084BB;
-  }
-}
-
 .rev {
   unicode-bidi:bidi-override;
   direction:rtl;
@@ -145,8 +126,11 @@ img.img-circle.project-img {
     color: $mlab-blue;
   }
   ul.snav-links li {
-    font-size: 14px;
+    font-size: 16px;
     display: inline;
     margin: 0 1em;
+    a {
+      font-size: 16px;
+    }
   }
 }

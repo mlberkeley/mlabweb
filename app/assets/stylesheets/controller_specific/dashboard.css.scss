@@ -1,0 +1,14 @@
+/*
+ *= require owl.carousel
+ *= require owl.theme
+ */
+
+img.img-circle.project-img {
+  width: 150px;
+  height: 150px;
+  border: 2px solid transparent;
+  transition: all 0.5s;
+  &:hover {
+    border: 4px solid #5084BB;
+  }
+}

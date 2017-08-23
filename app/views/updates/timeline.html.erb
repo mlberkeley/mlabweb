@@ -18,6 +18,7 @@
           <%= render @feed.ancient %>
         <% end %>
       </ul>
+      <%= content_tag(:div, content_tag(:h4, "No Updates at the Moment"), class: "text-center") if @feed.empty? %>
     </div>
   </div>
 </div>
