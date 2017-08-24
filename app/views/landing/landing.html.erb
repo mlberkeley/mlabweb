@@ -1,5 +1,38 @@
 <% @title = "Landing" %>
 <% content_for :body_class, "landing" %>
+<% content_for :javascript do %>
+  <script>
+    // Date counting down to
+    var countDownDate = new Date("Sept 1, 2017 23:59:59").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("countdown").innerHTML = days + " d&nbsp; " + hours + " h&nbsp; "
+    + minutes + " m&nbsp; " + seconds + " s&nbsp; ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML = "EXPIRED";
+      document.getElementById("application").className += " disabled";
+    }
+  }, 1000);
+  </script>
+<% end %>
 
 <div class="landing">
   <div class="container">
@@ -36,28 +69,39 @@
       </div> -->
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
-          <%= image_tag("mlab.png", alt: "ML@B Brain", class: "logo-resize1") %>
+          <%= image_tag("mlab_color.png", alt: "ML@B Brain", class: "logo-resize1") %>
           <p class="lead text-xs-center">Welcome to <strong>Machine Learning At Berkeley</strong>'s Website.</p>
         </div>
       </div>
+
+      <!-- Application Links -->
+      <!-- <div class="row mt20">
+        <div class="col-sm-12 col-md-12 text-center animate-fade-in-1000">
+          <%= link_to "Apply for Fa'17 Membership", apply_member_path, class: "btn btn-outline-mlab btn-lg", id:"application" %>
+          <%= link_to "Fa'17 Membership Application Coming Soon!", "#", class: "btn btn-outline-mlab btn-lg disabled" %>
+          <h4 id="countdown" style="color: #ADC2D2;">Apply Now</h4>
+        </div>
+      </div> -->
+
       <div class="row mt20">
         <div class="col-sm-12 col-md-12 text-center">
           <!-- <div class="btn-group"> -->
             <% if member_signed_in? %>
-              <%= link_to "My ML@B", current_member, class: "btn btn-outline-primary" %>
+              <%= link_to "My ML@B", current_member, class: "btn btn-outline-primary animate-fade-in-750" %>
             <% else %>
-              <%= link_to "Member Login", new_member_session_path, class: "btn btn-outline-primary" %>
+              <%= link_to "Member Login", new_member_session_path, class: "btn btn-outline-primary animate-fade-in-750" %>
             <% end %>
-            <%= link_to "Continue to Website", home_path, class: "btn btn-outline-primary btn-lg" %>
-            <a href="https://ml.berkeley.edu/blog" target="_blank" class="btn btn-outline-primary">Read the Blog</a>
+            <%= link_to "Continue to Website", home_path, class: "btn btn-outline-primary btn-lg animate-fade-in-500" %>
+            <a href="https://ml.berkeley.edu/blog" target="_blank" class="btn btn-outline-primary animate-fade-in-750">Read the Blog</a>
           <!-- </div> -->
         </div>
       </div>
       <div class="row mt20">
-        <div class="col-sm-12 col-md-12 text-center">
+        <div class="col-sm-12 col-md-12 text-center animate-fade-in-1000">
           <h6><a href="/subscribe">Get the Newsletter &rarr;</a></h6>
         </div>
       </div>
+
       <!-- <div class="row mt20">
         <div class="col-xs-12">
           <form class="signup-form form-inline">

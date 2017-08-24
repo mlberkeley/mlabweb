@@ -42,6 +42,11 @@ Rails.application.routes.draw do
   get '/privacy', to: 'legal#privacy'
   get '/statement', to: 'legal#non_profit_statement'
 
+  # Application routes
+  # get '/apply', to: 'apply_pages#index'
+  get '/apply/member', to: 'apply_pages#member'
+  # get '/apply/client', to: 'apply_pages#client'
+
   # Wikifiles Routes
   resources :wikifiles, only: [:index, :new, :create, :destroy]
 

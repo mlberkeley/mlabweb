@@ -15,6 +15,16 @@ $mlab-dark-text: #333333;
 	color: $mlab-blue;
 }
 
+.btn-outline-mlab {
+  border-color: $mlab-blue;
+  background-color: transparent;
+  color: $mlab-blue;
+  &:hover {
+    background-color: $mlab-blue;
+    color: #fff;
+  }
+}
+
 // .main-title {
 //   text-transform: uppercase;
 //   #color {
