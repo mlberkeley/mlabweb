@@ -3,6 +3,10 @@ module ApplicationHelper
     "ML@B"
   end
 
+  def application_season?
+    false
+  end
+
   class CodeRayify < Redcarpet::Render::HTML
     def block_code(code, language)
       CodeRay.scan(code, language).div

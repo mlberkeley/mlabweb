@@ -84,24 +84,38 @@
       </div>
 
       <!-- Application Links -->
-      <!-- <div class="row mt20 application">
-        <div class="col-sm-12 col-md-12 text-center animate-fade-in-1000">
-          <%= link_to "Apply for Fa'17 Membership", apply_member_path, class: "btn btn-outline-mlab btn-lg", id:"application" %>
-          <%= link_to "Fa'17 Membership Application Coming Soon!", "#", class: "btn btn-outline-mlab btn-lg disabled" %>
-          <h4 id="countdown" style="color: #ADC2D2;">Apply Now</h4>
+      <% if application_season? %>
+        <div class="row mt20 application">
+          <div class="col-sm-12 col-md-12 text-center animate-fade-in-1000">
+            <div class="btn-group my-btn-group-responsive">
+              <%= link_to "Data Science Decal Application", "https://decal.berkeley.edu/courses/4128", class: "btn btn-outline-mlab" %>
+              <%= link_to "Apply for Fa'17 Membership", apply_member_path, class: "btn btn-outline-mlab btn-lg", id:"application" %>
+              <%= link_to "Deep Learning Decal Application", "https://decal.berkeley.edu/courses/4127", class: "btn btn-outline-mlab" %>
+            </div>
+            <h4 id="countdown" style="color: #ADC2D2;">Apply Now</h4>
+          </div>
         </div>
-      </div> -->
+      <% end %>
+
 
       <div class="row mt20">
         <div class="col-sm-12 col-md-12 text-center">
-          <!-- <div class="btn-group"> -->
+          <!-- <div class="btn-toolbar"> -->
             <% if member_signed_in? %>
-              <%= link_to "My ML@B", current_member, class: "btn btn-outline-primary animate-fade-in-750" %>
+              <!-- <div class="btn-group"> -->
+                <%= link_to "My ML@B", current_member, class: "btn btn-outline-primary animate-fade-in-750" %>
+              <!-- </div> -->
             <% else %>
-              <%= link_to "Member Login", new_member_session_path, class: "btn btn-outline-primary animate-fade-in-750" %>
+              <!-- <div class="btn-group"> -->
+                <%= link_to "Member Login", new_member_session_path, class: "btn btn-outline-primary animate-fade-in-750" %>
+              <!-- </div> -->
             <% end %>
-            <%= link_to "Continue to Website", home_path, class: "btn btn-outline-primary btn-lg animate-fade-in-500" %>
-            <a href="https://ml.berkeley.edu/blog" target="_blank" class="btn btn-outline-primary animate-fade-in-750">Read the Blog</a>
+            <!-- <div class="btn-group"> -->
+              <%= link_to "Continue to Website", home_path, class: "btn btn-outline-primary btn-lg animate-fade-in-500" %>
+            <!-- </div> -->
+            <!-- <div class="btn-group"> -->
+              <a href="https://ml.berkeley.edu/blog" target="_blank" class="btn btn-outline-primary animate-fade-in-750">Read the Blog</a>
+            <!-- </div> -->
           <!-- </div> -->
         </div>
       </div>
