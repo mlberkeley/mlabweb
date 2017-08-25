@@ -20,7 +20,7 @@ Our projects and papers are proposed by students and then backed over the course
       </div> -->
       <div class="portfolio-item">
         <div class="hover-bg">
-          <a href="projects/<%= project.id %>">
+          <%= link_to project do %>
             <%= picture_of_project(project, class: "img-responsive") %>
             <div class="hover-text">
               <h3><%= project.name %></h3>
@@ -28,7 +28,8 @@ Our projects and papers are proposed by students and then backed over the course
               <div class="clearfix"></div>
               <i class="fa fa-plus"></i>
             </div>
-          </a>
+          <% end %>
+
         </div>
       </div>
     </div>

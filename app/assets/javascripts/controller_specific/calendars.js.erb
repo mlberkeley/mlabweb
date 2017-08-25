@@ -16,7 +16,7 @@ date_range_picker = function() {
     });
   })
 };
-$(document).on('turbolinks:load', date_range_picker);
+$(document).on('turbolinks:load', date_range_picker());
 
 var initialize_calendars;
 initialize_calendars = function() {
@@ -92,4 +92,4 @@ initialize_calendars = function() {
     });
   })
 };
-$(document).on('turbolinks:load', initialize_calendars);
+$(document).on('turbolinks:load', initialize_calendars());

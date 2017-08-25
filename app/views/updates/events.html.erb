@@ -4,13 +4,13 @@
   <h3>Upcoming Workshops</h3>
   <h5><%= link_to "See our Calendar for Recurrent Events", public_calendar_path %></h5>
   <hr>
-  <div class="text-center">
+  <div class="text-center animate-fade-in-500">
     <% if @events.any? %>
       <% @events.reverse_each do |event| %>
         <h5><%= event["name"] %></h5>
         <h6>When: <%= event["start_time"][0..9] %></h6>
         <% if p = event["place"] %>
-          <h6>Where: <%= p["name"] + ", " + p["location"]["street"] %></h6>
+          <h6>Where: <%= p["name"] + (p["location"]["street"].nil? ? "" : (", " + p["location"]["street"])) %></h6>
         <% end %>
         <h6>Live Counter: <strong><%= event["attending_count"] %></strong> going | <strong><%= event["interested_count"] %></strong> interested</h6>
         <%= image_tag(event["cover"]["source"]) if event["cover"]["source"] %>
@@ -27,7 +27,7 @@
   <% if @recent %>
   <h3>Recent Events</h3>
   <hr>
-  <div class="text-center">
+  <div class="text-center animate-fade-in-1000">
     <h5><%= @recent["name"] %></h5>
     <h6>When: <%= @recent["start_time"][0..9] %></h6>
     <% if p = @recent["place"] %>

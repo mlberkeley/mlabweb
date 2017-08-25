@@ -1,25 +1,4 @@
 <% @title = "About ML@B" %>
-<% content_for :javascript do %>
-  <script type="text/javascript">
-    $(".owl-carousel").owlCarousel({
-      lazyLoad:true,
-      loop:true,
-      dots:true,
-      nav:true,
-      responsive:{
-        0:{
-            items:2,
-        },
-        600:{
-            items:3,
-        },
-        1000:{
-            items:4,
-        }
-    }
-    });
-  </script>
-<% end %>
 <p></p>
 <p>Machine Learning at Berkeley (ML@B) is student-run organization based at the University of California, Berkeley, and is dedicated to building and fostering a vibrant machine learning community on the University of California, Berkeley campus as well as contributing to the greater machine learning community beyond the campus.</p>
 <p>We provide, for the undergraduate and graduate students with introductory and intermediate knowledge in machine learning, opportunities to get hands-on experience with real world problem in both academic research and industry settings. On the industry side, we partner with companies, other nonprofit organizations, and startups to plan and offer relevant machine learning projects for the students to apply what they have learned in the classroom setting, so that they may gain more industry experience in exercising their machine learning knowledge. On the research side, we encourage and promote student-led research and offer computation resources as well as guidance from both faculty advisors and other experienced members, with the goal of inspiring novel and groundbreaking developments from the UC Berkeley machine learning community that would greatly contribute to the overall progress in the field of machine learning.</p>
@@ -35,8 +14,8 @@
       <div class="owl-carousel">
         <% (1..17).each_slice(2) do |i, j| %>
           <div class="thumbnail">
-            <%= image_tag("companies/#{i}.png") %>
-            <%= image_tag("companies/#{j}.png") if j %>
+            <%= image_tag("companies/#{i}.png", class: "animate-fade-in-#{100*i}") %>
+            <%= image_tag("companies/#{j}.png", class: "animate-fade-in-#{100*j}") if j %>
           </div>
         <% end %>
       </div>

@@ -2,35 +2,44 @@
 <% content_for :body_class, "landing" %>
 <% content_for :javascript do %>
   <script>
-    // Date counting down to
-    var countDownDate = new Date("Sept 1, 2017 23:59:59").getTime();
+    var counter = function() {
+      if ($(".landing").length <= 0) {
+        return;
+      }
+      if ($(".application").length <= 0) {
+        return;
+      }
+      // Date counting down to
+      var countDownDate = new Date("Sept 1, 2017 23:59:59").getTime();
 
-    // Update the count down every 1 second
-    var x = setInterval(function() {
+      // Update the count down every 1 second
+      var x = setInterval(function() {
 
-    // Get todays date and time
-    var now = new Date().getTime();
+        // Get todays date and time
+        var now = new Date().getTime();
 
-    // Find the distance between now an the count down date
-    var distance = countDownDate - now;
+        // Find the distance between now an the count down date
+        var distance = countDownDate - now;
 
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Display the result in the element with id="demo"
-    document.getElementById("countdown").innerHTML = days + " d&nbsp; " + hours + " h&nbsp; "
-    + minutes + " m&nbsp; " + seconds + " s&nbsp; ";
+        // Display the result in the element with id="demo"
+        document.getElementById("countdown").innerHTML = days + " d&nbsp; " + hours + " h&nbsp; "
+        + minutes + " m&nbsp; " + seconds + " s&nbsp; ";
 
-    // If the count down is finished, write some text
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("countdown").innerHTML = "EXPIRED";
-      document.getElementById("application").className += " disabled";
-    }
-  }, 1000);
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown").innerHTML = "EXPIRED";
+          document.getElementById("application").className += " disabled";
+        }
+      }, 1000);
+    };
+    $(document).on('turbolinks:load', counter());
   </script>
 <% end %>
 
@@ -75,7 +84,7 @@
       </div>
 
       <!-- Application Links -->
-      <!-- <div class="row mt20">
+      <!-- <div class="row mt20 application">
         <div class="col-sm-12 col-md-12 text-center animate-fade-in-1000">
           <%= link_to "Apply for Fa'17 Membership", apply_member_path, class: "btn btn-outline-mlab btn-lg", id:"application" %>
           <%= link_to "Fa'17 Membership Application Coming Soon!", "#", class: "btn btn-outline-mlab btn-lg disabled" %>

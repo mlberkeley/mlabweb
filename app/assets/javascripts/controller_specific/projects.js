@@ -1,9 +1,19 @@
 //= require jquery.Jcrop
 //= require owl.carousel
 
-$(".owl-carousel").owlCarousel({
-  nav:true,
+var owl;
+owl = function() {
+  $(".owl-carousel").owlCarousel({
+    nav:true,
+  })
+};
+
+$(document).on('turbolinks:load', owl());
+
+$(document).on('turbolinks:click', function (event) {
+
 });
+
 
 jQuery(() => new BgCropper());
 
