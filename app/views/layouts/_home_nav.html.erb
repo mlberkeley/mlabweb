@@ -35,14 +35,12 @@
             <%= fa_icon_tag "user" %> Welcome, <strong><%= (current_member.fname) ? current_member.fname : current_member.email %></strong>
             <span class="divider">| </span>
             <%= link_to "My ML@B", current_member %>
-            <span class="divider">| </span>
-            <%= link_to "Wiki", wikifiles_path %>
             <% if exec_or_higher? %>
               <span class="divider">| </span>
-              <%= link_to "Administration", administration_path %>
+              <%= link_to "Administration", console_path %>
             <% else %>
               <span class="divider">| </span>
-              <%= link_to "Dashboard", dashboard_path %>
+              <%= link_to "Console", console_path %>
             <% end %>
           </p>
         </li>

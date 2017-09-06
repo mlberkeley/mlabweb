@@ -1,16 +1,21 @@
-<% @title = "Administration" %>
+<% @title = "Console" %>
 
 <div class="text-center">
   <br>
   <%= link_to "Dashboard", dashboard_path, class: "btn btn-outline-primary btn-lg" %>
   <br>
   <br>
-  <%= link_to "All Members", members_path, class: "btn btn-outline-primary btn-lg" %>
+  <%= link_to "Wiki", wikifiles_path, class: "btn btn-outline-primary btn-lg" %>
   <br>
-  <br>
-  <%= link_to "All Projects", projects_path, class: "btn btn-outline-primary btn-lg" %>
-  <br>
-  <br>
-  <%= link_to "All Subscribers", subscribers_path, class: "btn btn-outline-primary btn-lg" %>
-  <br>
+  <% if exec_or_higher? %>
+    <br>
+    <%= link_to "All Members", members_path, class: "btn btn-outline-primary btn-lg" %>
+    <br>
+    <br>
+    <%= link_to "All Projects", projects_path, class: "btn btn-outline-primary btn-lg" %>
+    <br>
+    <br>
+    <%= link_to "All Subscribers", subscribers_path, class: "btn btn-outline-primary btn-lg" %>
+    <br>
+  <% end %>
 </div>

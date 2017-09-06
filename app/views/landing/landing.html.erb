@@ -100,23 +100,21 @@
 
       <div class="row mt20">
         <div class="col-sm-12 col-md-12 text-center">
-          <!-- <div class="btn-toolbar"> -->
             <% if member_signed_in? %>
-              <!-- <div class="btn-group"> -->
+              <div class="col-sm-12 col-md-4 text-md-right text-xs-center" style="padding: 5px 5px;">
                 <%= link_to "My ML@B", current_member, class: "btn btn-outline-primary animate-fade-in-750" %>
-              <!-- </div> -->
+              </div>
             <% else %>
-              <!-- <div class="btn-group"> -->
+              <div class="col-sm-12 col-md-4 text-md-right text-xs-center" style="padding: 5px 5px;">
                 <%= link_to "Member Login", new_member_session_path, class: "btn btn-outline-primary animate-fade-in-750" %>
-              <!-- </div> -->
+              </div>
             <% end %>
-            <!-- <div class="btn-group"> -->
-              <%= link_to "Continue to Website", home_path, class: "btn btn-outline-primary btn-lg animate-fade-in-500" %>
-            <!-- </div> -->
-            <!-- <div class="btn-group"> -->
+            <div class="col-sm-12 col-md-4" style="padding: 5px 5px;">
+              <%= link_to "Continue to Website", home_path, class: "btn btn-outline-primary btn-lg animate-fade-in-500", style: "width: 100%;" %>
+            </div>
+            <div class="col-sm-12 col-md-4 text-md-left text-xs-center" style="padding: 5px 5px;">
               <a href="https://ml.berkeley.edu/blog" target="_blank" class="btn btn-outline-primary animate-fade-in-750">Read the Blog</a>
-            <!-- </div> -->
-          <!-- </div> -->
+            </div>
         </div>
       </div>
       <div class="row mt20">

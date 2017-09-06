@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   # Dashboard Routes
   get '/dashboard', to: 'dashboard#home'
-  get '/administration', to: 'dashboard#options'
+  get '/console', to: 'dashboard#options'
 
   # Legal Controller Routes
   get '/terms', to: 'legal#terms_of_service'
