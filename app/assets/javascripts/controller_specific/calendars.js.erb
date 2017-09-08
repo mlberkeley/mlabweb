@@ -30,9 +30,39 @@ initialize_calendars = function() {
       },
       selectable: true,
       eventLimit: true,
+      eventColor: '#5084BB',
       googleCalendarApiKey: 'AIzaSyA4aHgVUnjbLsMgZBCz-duqSP4NFJJvRMM',
       events: {
         googleCalendarId: 'rmgij3ue94j4iah6vfe9uecbfs@group.calendar.google.com'
+      },
+
+      select: function() {
+        calendar.fullCalendar('unselect');
+      }
+    });
+  })
+
+  $('.uneditable-calendar-internal').each(function(){
+    var calendar = $(this);
+    calendar.fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,list'
+      },
+      defaultView: 'list',
+      views: {
+          list: {
+              duration: { days: 90 },
+              listDayAltFormat: 'dddd',
+          }
+      },
+      selectable: true,
+      eventLimit: true,
+      eventColor: '#5084BB',
+      googleCalendarApiKey: 'AIzaSyA4aHgVUnjbLsMgZBCz-duqSP4NFJJvRMM',
+      events: {
+        googleCalendarId: '4q0i853n8kkmcso5badlm6fqc0@group.calendar.google.com'
       },
 
       select: function() {

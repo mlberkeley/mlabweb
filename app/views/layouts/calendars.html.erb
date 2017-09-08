@@ -1,5 +1,12 @@
 <% if member_signed_in? %>
   <% content_for :navbar do %>
+    <div class="snav">
+      <ul class="snav-links">
+        <li><%= link_to "Public", public_calendar_path, class: ('active' if @title == "ML@B Public Calendar") %></li>
+        <!-- <li> / </li> -->
+        <li><%= link_to "Internal", internal_calendar_path, class: ('active' if @title == "ML@B Internal Calendar") %></li>
+      </ul>
+    </div>
   <% end %>
 <% end %>
 

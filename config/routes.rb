@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   # Calendars Routes
   get '/public_calendar', to: 'calendars#public_calendar'
+  get '/internal_calendar', to: 'calendars#internal_calendar'
 
   # Portfolio Routes
   resources :projects do
