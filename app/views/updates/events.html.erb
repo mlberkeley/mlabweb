@@ -10,10 +10,10 @@
         <h5><%= event["name"] %></h5>
         <h6>When: <%= event["start_time"][0..9] %></h6>
         <% if p = event["place"] %>
-          <h6>Where: <%= p["name"] + (p["location"]["street"].nil? ? "" : (", " + p["location"]["street"])) %></h6>
+          <h6>Where: <%= p["name"] %></h6>
         <% end %>
         <h6>Live Counter: <strong><%= event["attending_count"] %></strong> going | <strong><%= event["interested_count"] %></strong> interested</h6>
-        <%= image_tag(event["cover"]["source"]) if event["cover"]["source"] %>
+        <%= image_tag(event["cover"]["source"]) if event["cover"]["soeurce"] %>
         <p><%= simple_format(event["description"]) %></p>
         <%= link_to "See on Facebook >", "https://www.facebook.com/events/#{event["id"]}", target: "_blank" %><br>
       <% end %>
@@ -31,7 +31,7 @@
     <h5><%= @recent["name"] %></h5>
     <h6>When: <%= @recent["start_time"][0..9] %></h6>
     <% if p = @recent["place"] %>
-      <h6>Where: <%= p["name"] + (p["location"]["street"].nil? ? "" : (", " + p["location"]["street"])) %></h6>
+      <h6>Where: <%= p["name"] %></h6>
     <% end %>
     <h6><strong><%= @recent["attending_count"] %></strong> people came</h6>
     <%= image_tag(@recent["cover"]["source"], class: "") if @recent["cover"]["source"] %>

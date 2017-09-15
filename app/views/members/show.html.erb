@@ -6,11 +6,9 @@
       <ul class="snav-links">
         <li><%= link_to "Profile", @member %></li>
         <% if exec_or_higher? or current_member == @member %>
-          <li> / </li>
           <li><%= link_to "Account", edit_member_path %></li>
         <% end %>
         <% if current_member == @member %>
-          <li> / </li>
           <li><%= link_to "Logout", destroy_member_session_path, method: :delete %></li>
         <% end %>
       </ul>

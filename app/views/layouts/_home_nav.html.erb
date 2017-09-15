@@ -11,24 +11,7 @@
   </div>
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-      <li class="active">
-        <%= link_to "Home", home_path %>
-      </li>
-      <li>
-        <%= link_to "Us", about_path %>
-      </li>
-      <li>
-        <%= link_to "Projects", portfolio_path %>
-      </li>
-      <li>
-        <%= link_to "Calendar", public_calendar_path %>
-      </li>
-      <li>
-        <%= link_to "Updates", events_path %>
-      </li>
-      <li>
-        <a href="//ml.berkeley.edu/blog" target="_blank" rel="noopener">Blog</a> <br>
-      </li>
+
       <% if member_signed_in? %>
         <li class="navbar-text">
           <p>
@@ -45,8 +28,14 @@
           </p>
         </li>
       <% else %>
+        <%= content_tag(:li, link_to("Home", home_path), class: "#{controller_name == 'home' ? 'active' : ''}") %>
+        <%= content_tag(:li, link_to("Us", about_path), class: "#{controller_name == 'about' ? 'active' : ''}") %>
+        <%= content_tag(:li, link_to("Projects", portfolio_path), class: "#{controller_name == 'portfolio' ? 'active' : ''}") %>
+        <%= content_tag(:li, link_to("Calendar", public_calendar_path), class: "#{controller_name == 'calendars' ? 'active' : ''}") %>
+        <%= content_tag(:li, link_to("Updates", events_path), class: "#{controller_name == 'updates' ? 'active' : ''}") %>
+        <!-- <%= content_tag(:li, link_to("Education", education_path), class: "#{controller_name == 'education' ? 'active' : ''}") %> -->
         <li>
-          <%= link_to "Sign In", new_member_session_path %>
+          <a href="//ml.berkeley.edu/blog" target="_blank" rel="noopener">Blog</a> <br>
         </li>
       <% end %>
     </ul>

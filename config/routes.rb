@@ -20,6 +20,13 @@ Rails.application.routes.draw do
   get '/public_calendar', to: 'calendars#public_calendar'
   get '/internal_calendar', to: 'calendars#internal_calendar'
 
+  # Education Routes
+  get '/education', to: 'education#home'
+  get '/decals', to: 'education#decals'
+  get '/workshops', to: 'education#workshops'
+  get '/rg', to: 'education#rg'
+  get '/resources', to: 'education#resources'
+
   # Portfolio Routes
   resources :projects do
     member do
