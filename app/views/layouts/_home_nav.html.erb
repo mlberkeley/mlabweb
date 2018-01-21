@@ -12,32 +12,31 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
 
-      <% if member_signed_in? %>
-        <li class="navbar-text">
-          <p>
-            <%= fa_icon_tag "user" %> Welcome, <strong><%= (current_member.fname) ? current_member.fname : current_member.email %></strong>
-            <span class="divider">| </span>
-            <%= link_to "My ML@B", current_member %>
-            <% if exec_or_higher? %>
-              <span class="divider">| </span>
-              <%= link_to "Administration", console_path %>
-            <% else %>
-              <span class="divider">| </span>
-              <%= link_to "Console", console_path %>
-            <% end %>
-          </p>
-        </li>
-      <% else %>
         <%= content_tag(:li, link_to("Home", home_path), class: "#{controller_name == 'home' ? 'active' : ''}") %>
         <%= content_tag(:li, link_to("Us", about_path), class: "#{controller_name == 'about' ? 'active' : ''}") %>
         <%= content_tag(:li, link_to("Projects", portfolio_path), class: "#{controller_name == 'portfolio' ? 'active' : ''}") %>
         <%= content_tag(:li, link_to("Calendar", public_calendar_path), class: "#{controller_name == 'calendars' ? 'active' : ''}") %>
         <%= content_tag(:li, link_to("Updates", events_path), class: "#{controller_name == 'updates' ? 'active' : ''}") %>
-        <!-- <%= content_tag(:li, link_to("Education", education_path), class: "#{controller_name == 'education' ? 'active' : ''}") %> -->
+        <%= content_tag(:li, link_to("Education", workshops_path), class: "#{controller_name == 'education' ? 'active' : ''}") %>
         <li>
           <a href="//ml.berkeley.edu/blog" target="_blank" rel="noopener">Blog</a> <br>
         </li>
-      <% end %>
     </ul>
   </div>
 </div>
+<% if member_signed_in? %>
+<div class="text-right color">
+  <p>
+    <%= fa_icon_tag "user" %> Hi, <strong><%= (current_member.fname) ? current_member.fname : current_member.email %></strong>
+    <span class="divider">| </span>
+    <%= link_to "Profile", current_member %>
+    <% if exec_or_higher? %>
+      <span class="divider">| </span>
+      <%= link_to "Admin", console_path %>
+    <% else %>
+      <span class="divider">| </span>
+      <%= link_to "My ML@B", console_path %>
+    <% end %>
+  </p>
+</div>
+<% end %>
