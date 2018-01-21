@@ -27,6 +27,13 @@
     <%= yield :head %>
   </head>
   <body class="<%= yield (:body_class) %>">
+    <% if !Rails.env.production? %>
+      <!-- Debugging Params for each page -->
+      <div>
+        <%= params.inspect %>
+        <% debugger %>
+      </div>
+    <% end %>
     <%= render "layouts/navbar" unless @title == "Landing" %>
 
     <div id="main" class="container-fluid">
