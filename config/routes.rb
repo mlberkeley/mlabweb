@@ -58,4 +58,7 @@ Rails.application.routes.draw do
   # Wikifiles Routes
   resources :wikifiles, only: [:index, :new, :create, :destroy]
 
+  # Static files
+  get '/dd1', to: redirect('/dd/index.html')
+
 end
