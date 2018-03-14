@@ -3,6 +3,14 @@ module ApplicationHelper
     "ML@B"
   end
 
+  def curr_term
+    "Spring"
+  end
+
+  def curr_year
+    2018
+  end
+
   def application_season?
     false
   end

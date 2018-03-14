@@ -10,8 +10,8 @@ class Project < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :tag, presence: true, format: { with: /(\Aindustry\z|\Aresearch\z)/i }
 
-  scope :current, -> { where(semester: "fall", year: 2017) }
-  scope :past, -> { where(["semester != ? or year != ?", "fall", 2017]) }
+  scope :current, -> { where(semester: ApplicationController.helpers.curr_term.downcase, year: ApplicationController.helpers.curr_year) }
+  scope :past, -> { where(["semester != ? or year != ?", ApplicationController.helpers.curr_term.downcase, ApplicationController.helpers.curr_year]) }
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_background
@@ -25,6 +25,6 @@ class Project < ApplicationRecord
   end
 
   def current?
-    semester == "fall" and year == 2017
+    semester == ApplicationController.helpers.curr_term.downcase and year == ApplicationController.helpers.curr_year
   end
 end
