@@ -119,8 +119,9 @@
 				<div class="FirstSong">
 					<button class="song_selector">Choose Song 1</button>
 					<ul class="songs">
-						<li>Some</li>
-						<li>Songs</li>
+						<li id="1">No</li>
+						<li id="2">Songs</li>
+						<li id="3">Yet</li>
 					</ul>
 				</div>
 
@@ -129,8 +130,9 @@
 				<div class="SecondSong">
 					<button class="song_selector2">Choose Song 2</button>
 					<ul class="songs2">
-						<li>Some</li>
-						<li>Songs</li>
+						<li id="1">No</li>
+						<li id="2">Songs</li>
+						<li id="3">Yet</li>
 					</ul>
 				</div>
 
@@ -163,39 +165,46 @@
 			<script src="js/jquery.magnific-popup.min.js"></script>
 			<script src="js/main.js"></script>
 			<script type="text/javascript">
-			var trigger = $('.song_selector');
-			var trigger2 = $('.song_selector2');
-			var list = $('.songs');
-			var list2 = $('.songs2');
-			var song1 = document.getElementById("firstsong");
-			var song2 = document.getElementById("secondsong");
+				var trigger = $('.song_selector');
+				var trigger2 = $('.song_selector2');
+				var list = $('.songs');
+				var list2 = $('.songs2');
+				var song1 = document.getElementById("firstsong");
+				var song2 = document.getElementById("secondsong");
 
-			var trigger3 = $('.go');
-			var metric = document.getElementById("metric");
+				var trigger3 = $('.go');
+				var metric = document.getElementById("metric");
 
-			trigger.click(function() {
-				trigger.toggleClass('active');
-				list.slideToggle(200);
-			});
-			trigger2.click(function() {
-				trigger2.toggleClass('active');
-				list2.slideToggle(200);
-			});
+				function getEventTarget(e) {
+					e = e || window.event;
+					return e.target || e.srcElement;
+				}
 
-			trigger3.click(function() {
-				// run script to calculate similarity metric then display it
-				metric.innerHTML = "0.29";
-			})
+				trigger.click(function() {
+					trigger.toggleClass('active');
+					list.slideToggle(200);
+				});
+				trigger2.click(function() {
+					trigger2.toggleClass('active');
+					list2.slideToggle(200);
+				});
 
-			// this is optional to close the list while the new page is loading
-			list.click(function() {
-				trigger.click();
-				song1.innerHTML = "picked _____";
-			});
-			list2.click(function() {
-				trigger2.click();
-				song2.innerHTML = "picked ______";
-			});
+				trigger3.click(function() {
+					// run script to calculate similarity metric then display it
+					// metric.innerHTML = "0.29";
+				})
+
+				// this is optional to close the list while the new page is loading
+				list.click(function(event) {
+					var target = getEventTarget(event);
+					trigger.click();
+					song1.innerHTML = target.innerHTML;
+				});
+				list2.click(function(event) {
+					var target = getEventTarget(event);
+					trigger2.click();
+					song2.innerHTML = target.innerHTML;
+				});
 			</script>
 		</body>
 	</html>
