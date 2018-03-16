@@ -28,6 +28,13 @@ $mlab-dark-text: #333333;
   }
 }
 
+.fixed-element	{ position:fixed; bottom:2%; right:2%; z-index: 1000;  }
+.fixed-element .btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
 // .main-title {
 //   text-transform: uppercase;
 //   #color {

@@ -8,6 +8,14 @@
 <%= render :layout => "layouts/minimal" do %>
   <%= render "layouts/sub_nav" %><!-- /.page-header -->
 
+  <div class="fixed-element">
+    <% if member_signed_in? %>
+      <a class="btn btn-outline-primary animate-fade-in-750" href="/console"><i class='fa fa-user'></i></a>
+    <% else %>
+      <a class="btn btn-outline-primary animate-fade-in-750" href="/members/sign_in"><i class='fa fa-user'></i></a>
+    <% end %>
+  </div>
+
   <div class='container-fluid'>
       <div id="content" class="col-md-12">
         <%= yield %>
