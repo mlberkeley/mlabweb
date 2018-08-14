@@ -61,4 +61,7 @@ Rails.application.routes.draw do
   # Static files
   get '/dd1', to: redirect('/dd/index.html')
 
+  #Extra ibt
+  get '/decals/MLD', to: redirect('https://github.com/mlberkeley/Machine-Learning-Decal-Fall-2018')
+
 end
