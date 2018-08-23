@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def curr_term
-    "Spring"
+    "Fall"
   end
 
   def curr_year
@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def application_season?
-    false
+    true
   end
 
   class CodeRayify < Redcarpet::Render::HTML

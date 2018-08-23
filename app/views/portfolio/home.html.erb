@@ -20,15 +20,16 @@ Our projects and papers are proposed by students and then backed over the course
       </div> -->
       <div class="portfolio-item">
         <div class="hover-bg">
-          <%= link_to project do %>
-            <%= picture_of_project(project, class: "img-responsive") %>
+          <%= picture_of_project(project, class: "img-responsive") %>
             <div class="hover-text">
               <h3><%= project.name %></h3>
               <small><%= project.tag %></small>
               <div class="clearfix"></div>
-              <i class="fa fa-plus"></i>
+              <!-- <i class="fa fa-plus"></i> -->
             </div>
-          <% end %>
+          <!-- <%= link_to project do %>
+            
+          <% end %>-->
 
         </div>
       </div>

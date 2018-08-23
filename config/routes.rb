@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   # Root
-  root 'landing#landing'
+  root 'home#home'
   get '/home', to: 'home#home'
-
+  get '/apply', to: 'landing#landing'
 
   # Member Routes
   devise_for :members

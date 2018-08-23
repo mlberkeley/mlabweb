@@ -16,11 +16,11 @@
         <%= content_tag(:li, link_to("Us", about_path), class: "#{controller_name == 'about' ? 'active' : ''}") %>
         <%= content_tag(:li, link_to("Projects", portfolio_path), class: "#{controller_name == 'portfolio' ? 'active' : ''}") %>
         <%= content_tag(:li, link_to("Calendar", public_calendar_path), class: "#{controller_name == 'calendars' ? 'active' : ''}") %>
-        <%= content_tag(:li, link_to("Updates", events_path), class: "#{controller_name == 'updates' ? 'active' : ''}") %>
-        <%= content_tag(:li, link_to("Education", workshops_path), class: "#{controller_name == 'education' ? 'active' : ''}") %>
+        <%= content_tag(:li, link_to("Education", decals_path), class: "#{controller_name == 'education' ? 'active' : ''}") %>
         <li>
           <a href="//ml.berkeley.edu/blog" target="_blank" rel="noopener">Blog</a> <br>
         </li>
+        <%= content_tag(:li, link_to("Apply", apply_path), class: "#{controller_name == 'apply' ? 'active' : ''}") %>
     </ul>
   </div>
 </div>

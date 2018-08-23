@@ -9,6 +9,8 @@
       if ($(".application").length <= 0) {
         return;
       }
+      //Hold for now
+      return;
       // Date counting down to
       var countDownDate = new Date("Jan 25, 2018 23:59:59").getTime();
 
@@ -79,24 +81,33 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
           <%= image_tag("mlab_color.png", alt: "ML@B Brain", class: "logo-resize1") %>
-          <p class="lead text-xs-center">Welcome to <strong>Machine Learning At Berkeley</strong>'s Website.</p>
+          <p class="lead text-xs-center"><strong>Machine Learning At Berkeley</strong></p>
         </div>
       </div>
 
       <!-- Application Links -->
       <% if application_season? %>
+        <div class="row application">
+          <div class="col-sm-12 col-md-12 text-center animate-fade-in-1000">
+            <h4 id="countdown" style="color: #ADC2D2;">Member Applications Coming Soon. Apply Now to DeCals!</h4>
+          </div>
+        </div>
         <div class="row mt20 application">
           <div class="col-sm-12 col-md-12 text-center animate-fade-in-1000">
-            <div class="btn-group my-btn-group-responsive">
-              <!-- <%= link_to "Data Science Decal Application", "https://decal.berkeley.edu/courses/4128", class: "btn btn-outline-mlab" %> -->
-              <%= link_to "Apply for Sp'18 Membership", apply_member_path, class: "btn btn-outline-mlab btn-lg", id:"application" %>
-              <!-- <%= link_to "Deep Learning Decal Application", "https://decal.berkeley.edu/courses/4127", class: "btn btn-outline-mlab" %> -->
-            </div>
-            <h4 id="countdown" style="color: #ADC2D2;">Apply Now</h4>
+              <div class="col-sm-12 col-md-6 text-md-right text-xs-center" style="padding: 5px 5px;">
+                <%= link_to "The Impact of AI Decal", "https://decal.berkeley.edu/courses/4542", class: "btn btn-outline-mlab" %>
+              </div>
+              <!-- <div class="col-sm-12 col-md-4" style="padding: 5px 5px;">
+                <%= link_to "Application for Fall '18 Membership Coming Soon", "", class: "btn btn-outline-mlab btn-lg", id:"application", style: "width: 100%;"%> 
+              </div> -->
+              <div class="col-sm-12 col-md-6 text-md-left text-xs-center" style="padding: 5px 5px;">
+                <%= link_to "Machine Learning Decal", "https://ml.berkeley.edu/decals/MLD", class: "btn btn-outline-mlab" %> 
+              </div>
           </div>
         </div>
       <% end %>
-
+      <br/>
+      <br/>
 
       <div class="row mt20">
         <div class="col-sm-12 col-md-12 text-center">
@@ -110,7 +121,7 @@
               </div>
             <% end %>
             <div class="col-sm-12 col-md-4" style="padding: 5px 5px;">
-              <%= link_to "Continue to Website", home_path, class: "btn btn-outline-primary btn-lg animate-fade-in-500", style: "width: 100%;" %>
+              <%= link_to "Back to Website", home_path, class: "btn btn-outline-primary btn-lg animate-fade-in-500", style: "width: 100%;" %>
             </div>
             <div class="col-sm-12 col-md-4 text-md-left text-xs-center" style="padding: 5px 5px;">
               <a href="https://ml.berkeley.edu/blog" target="_blank" class="btn btn-outline-primary animate-fade-in-750">Read the Blog</a>
