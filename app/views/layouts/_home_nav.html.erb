@@ -18,7 +18,10 @@
         <%= content_tag(:li, link_to("Calendar", public_calendar_path), class: "#{controller_name == 'calendars' ? 'active' : ''}") %>
         <%= content_tag(:li, link_to("Education", decals_path), class: "#{controller_name == 'education' ? 'active' : ''}") %>
         <li>
-          <a href="//ml.berkeley.edu/blog" target="_blank" rel="noopener">Blog</a> <br>
+          <a href="//ml.berkeley.edu/blog" target="_blank" rel="noopener">Blog</a>
+        </li>
+        <li>
+          <a href="//ml.berkeley.edu/mlcareerfair/" target="_blank" rel="noopener">Career Fair</a>
         </li>
         <%= content_tag(:li, link_to("Apply", apply_path), class: "#{controller_name == 'apply' ? 'active' : ''}") %>
     </ul>
